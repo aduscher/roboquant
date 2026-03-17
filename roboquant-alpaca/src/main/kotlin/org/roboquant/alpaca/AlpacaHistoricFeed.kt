@@ -21,8 +21,15 @@ import net.jacobpeterson.alpaca.openapi.marketdata.api.StockApi
 import net.jacobpeterson.alpaca.openapi.marketdata.model.Sort
 import net.jacobpeterson.alpaca.openapi.marketdata.model.StockAdjustment
 import net.jacobpeterson.alpaca.openapi.marketdata.model.StockBar
+import org.robok.common.Logging
+import org.robok.common.PriceBar
+import org.robok.common.PriceQuote
+import org.robok.common.Stock
+import org.robok.common.TimeSpan
+import org.robok.common.Timeframe
+import org.robok.common.TradePrice
 import org.roboquant.common.*
-import org.roboquant.feeds.HistoricPriceFeed
+import org.robok.feeds.HistoricPriceFeed
 import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import kotlin.collections.joinToString
@@ -56,7 +63,7 @@ class AlpacaHistoricFeed(
     }
 
     /**
-     * Retrieve the [PriceQuote] for a number of [symbols] and specified [timeframe].
+     * Retrieve the [org.robok.common.PriceQuote] for a number of [symbols] and specified [timeframe].
      */
     fun retrieveStockQuotes(vararg symbols: String, timeframe: Timeframe) {
         val (start, end) = toOffset(timeframe)

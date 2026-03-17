@@ -3,8 +3,8 @@ package org.roboquant.traders;
 import java.util.List;
 import kotlin.Metadata;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Account;
-import org.roboquant.common.Event;
+import org.robok.common.Account;
+import org.robok.common.EventK;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -15,5 +15,5 @@ import org.roboquant.common.Event;
 )
 public interface Trader {
    @NotNull
-   List createOrders(@NotNull List var1, @NotNull Account var2, @NotNull Event var3);
+   List createOrders(@NotNull List var1, @NotNull Account var2, @NotNull EventK var3);
 }

@@ -10,11 +10,8 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.Reflection;
 import kotlin.jvm.internal.SourceDebugExtension;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Account;
-import org.roboquant.common.Event;
-import org.roboquant.common.Logging;
-import org.roboquant.common.TimeSpan;
-import org.roboquant.common.TimeSpanKt;
+import org.robok.common.*;
+import org.robok.traders.Trader;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -24,9 +21,9 @@ import org.roboquant.common.TimeSpanKt;
    d2 = {"Lorg/roboquant/traders/CircuitBreaker;", "Lorg/roboquant/traders/Trader;", "trader", "maxOrders", "", "period", "Lorg/roboquant/common/TimeSpan;", "(Lorg/roboquant/traders/Trader;ILorg/roboquant/common/TimeSpan;)V", "history", "Ljava/util/LinkedList;", "Lkotlin/Pair;", "Ljava/time/Instant;", "logger", "Lorg/roboquant/common/Logging$Logger;", "getTrader", "()Lorg/roboquant/traders/Trader;", "createOrders", "", "Lorg/roboquant/common/Order;", "signals", "Lorg/roboquant/common/Signal;", "account", "Lorg/roboquant/common/Account;", "event", "Lorg/roboquant/common/Event;", "exceeds", "", "newOrders", "time", "roboquant"}
 )
 @SourceDebugExtension({"SMAP\nCircuitBreaker.kt\nKotlin\n*S Kotlin\n*F\n+ 1 CircuitBreaker.kt\norg/roboquant/traders/CircuitBreaker\n+ 2 Logging.kt\norg/roboquant/common/Logging$Logger\n*L\n1#1,79:1\n52#2,3:80\n*S KotlinDebug\n*F\n+ 1 CircuitBreaker.kt\norg/roboquant/traders/CircuitBreaker\n*L\n56#1:80,3\n*E\n"})
-public final class CircuitBreaker implements Trader {
+public final class CircuitBreaker implements org.robok.traders.Trader {
    @NotNull
-   private final Trader trader;
+   private final org.robok.traders.Trader trader;
    private final int maxOrders;
    @NotNull
    private final TimeSpan period;
@@ -35,7 +32,7 @@ public final class CircuitBreaker implements Trader {
    @NotNull
    private final Logging.Logger logger;
 
-   public CircuitBreaker(@NotNull Trader trader, int maxOrders, @NotNull TimeSpan period) {
+   public CircuitBreaker(@NotNull org.robok.traders.Trader trader, int maxOrders, @NotNull TimeSpan period) {
       Intrinsics.checkNotNullParameter(trader, "trader");
       Intrinsics.checkNotNullParameter(period, "period");
       super();
@@ -74,7 +71,7 @@ public final class CircuitBreaker implements Trader {
    }
 
    @NotNull
-   public List createOrders(@NotNull List signals, @NotNull Account account, @NotNull Event event) {
+   public List createOrders(@NotNull List signals, @NotNull Account account, @NotNull EventK event) {
       Intrinsics.checkNotNullParameter(signals, "signals");
       Intrinsics.checkNotNullParameter(account, "account");
       Intrinsics.checkNotNullParameter(event, "event");

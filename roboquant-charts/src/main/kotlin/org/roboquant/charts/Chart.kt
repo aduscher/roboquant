@@ -24,7 +24,7 @@ import org.icepear.echarts.Option
 import org.icepear.echarts.components.grid.Grid
 import org.icepear.echarts.components.toolbox.*
 import org.icepear.echarts.components.visualMap.ContinousVisualMap
-import org.roboquant.common.Amount
+import org.robok.common.Amount
 import java.lang.reflect.Type
 import java.time.Instant
 import java.util.*

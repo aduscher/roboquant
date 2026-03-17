@@ -26,10 +26,10 @@ import org.icepear.echarts.components.coord.cartesian.ValueAxis
 import org.icepear.echarts.components.dataZoom.DataZoom
 import org.icepear.echarts.components.toolbox.ToolboxDataZoomFeature
 import org.icepear.echarts.components.tooltip.Tooltip
-import org.roboquant.common.Amount
-import org.roboquant.common.Asset
-import org.roboquant.common.Currency
-import org.roboquant.common.Trade
+import org.robok.common.Amount
+import org.robok.common.Asset
+import org.robok.common.CurrencyK
+import org.robok.common.Trade
 import java.math.BigDecimal
 import java.time.Instant
 
@@ -50,7 +50,7 @@ internal fun Trade.getTooltip(): String {
  */
 class TradeChart(
     private val trades: List<Trade>,
-    private val currency: Currency? = null,
+    private val currency: CurrencyK? = null,
     private val perAsset: Boolean = false
 ) : Chart() {
 

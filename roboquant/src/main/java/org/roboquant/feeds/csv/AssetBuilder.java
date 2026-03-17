@@ -1,17 +1,62 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.feeds.csv;
 
-import kotlin.Metadata;
-import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Asset;
+import org.robok.common.Asset;
+import org.roboquant.common.Currency;
+import org.robok.common.CurrencyK;
+import org.robok.common.Stock;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u0016\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\bæ\u0080\u0001\u0018\u00002\u00020\u0001J\u0010\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u0005H&¨\u0006\u0006"},
-   d2 = {"Lorg/roboquant/feeds/csv/AssetBuilder;", "", "build", "Lorg/roboquant/common/Asset;", "name", "", "roboquant"}
-)
+/**
+ * Functional interface for building assets from file names.
+ */
+@FunctionalInterface
 public interface AssetBuilder {
-   @NotNull
-   Asset build(@NotNull String var1);
+
+    /**
+     * Based on a name, return an instance of Asset
+     */
+    Asset build(String name);
+}
+
+/**
+ * The default asset builder uses a file name without its extension as the symbol name.
+ */
+public class StockBuilder implements org.robok.feeds.csv.AssetBuilder {
+
+    private final CurrencyK currency;
+
+    public StockBuilder(CurrencyK currency) {
+        this.currency = currency != null ? currency : Currency.USD;
+    }
+
+    public StockBuilder() {
+        this(Currency.USD);
+    }
+
+    @Override
+    public Asset build(String name) {
+        String symbol = name;
+        if (symbol.endsWith(".csv")) {
+            symbol = symbol.substring(0, symbol.length() - 4);
+        } else if (symbol.endsWith(".txt")) {
+            symbol = symbol.substring(0, symbol.length() - 4);
+        }
+        symbol = symbol.toUpperCase().replaceAll("[^A-Z]", ".");
+        return new Stock(symbol, currency);
+    }
 }

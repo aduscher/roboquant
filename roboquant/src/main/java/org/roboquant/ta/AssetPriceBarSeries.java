@@ -13,9 +13,10 @@ import kotlin.jvm.internal.SourceDebugExtension;
 import kotlin.jvm.internal.markers.KMutableMap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Event;
-import org.roboquant.common.PriceBar;
+import org.robok.common.Asset;
+import org.robok.common.EventK;
+import org.robok.common.PriceBar;
+import org.robok.ta.PriceBarSeries;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -63,15 +64,15 @@ public final class AssetPriceBarSeries implements Map, KMutableMap {
       return this.map.containsKey(key);
    }
 
-   public boolean containsValue(@NotNull PriceBarSeries value) {
+   public boolean containsValue(@NotNull org.robok.ta.PriceBarSeries value) {
       Intrinsics.checkNotNullParameter(value, "value");
       return this.map.containsValue(value);
    }
 
    @Nullable
-   public PriceBarSeries get(@NotNull Asset key) {
+   public org.robok.ta.PriceBarSeries get(@NotNull Asset key) {
       Intrinsics.checkNotNullParameter(key, "key");
-      return (PriceBarSeries)this.map.get(key);
+      return (org.robok.ta.PriceBarSeries)this.map.get(key);
    }
 
    public boolean isEmpty() {
@@ -79,10 +80,10 @@ public final class AssetPriceBarSeries implements Map, KMutableMap {
    }
 
    @Nullable
-   public PriceBarSeries put(@NotNull Asset key, @NotNull PriceBarSeries value) {
+   public org.robok.ta.PriceBarSeries put(@NotNull Asset key, @NotNull org.robok.ta.PriceBarSeries value) {
       Intrinsics.checkNotNullParameter(key, "key");
       Intrinsics.checkNotNullParameter(value, "value");
-      return (PriceBarSeries)this.map.put(key, value);
+      return (org.robok.ta.PriceBarSeries)this.map.put(key, value);
    }
 
    public void putAll(@NotNull Map from) {
@@ -91,9 +92,9 @@ public final class AssetPriceBarSeries implements Map, KMutableMap {
    }
 
    @Nullable
-   public PriceBarSeries remove(@NotNull Asset key) {
+   public org.robok.ta.PriceBarSeries remove(@NotNull Asset key) {
       Intrinsics.checkNotNullParameter(key, "key");
-      return (PriceBarSeries)this.map.remove(key);
+      return (org.robok.ta.PriceBarSeries)this.map.remove(key);
    }
 
    public AssetPriceBarSeries(int capacity) {
@@ -110,20 +111,20 @@ public final class AssetPriceBarSeries implements Map, KMutableMap {
       Object var10000;
       if (value$iv == null) {
          int var8 = 0;
-         Object answer$iv = new PriceBarSeries(this.capacity);
+         Object answer$iv = new org.robok.ta.PriceBarSeries(this.capacity);
          $this$getOrPut$iv.put(key$iv, answer$iv);
          var10000 = answer$iv;
       } else {
          var10000 = value$iv;
       }
 
-      PriceBarSeries series = (PriceBarSeries)var10000;
+      org.robok.ta.PriceBarSeries series = (org.robok.ta.PriceBarSeries)var10000;
       series.add(priceBar, time);
       return series.isFull();
    }
 
    // $FF: synthetic method
-   public static boolean add$default(AssetPriceBarSeries var0, PriceBar var1, Instant var2, int var3, Object var4) {
+   public static boolean add$default(org.robok.ta.AssetPriceBarSeries var0, PriceBar var1, Instant var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          Instant var10000 = Instant.MIN;
          Intrinsics.checkNotNullExpressionValue(var10000, "MIN");
@@ -133,7 +134,7 @@ public final class AssetPriceBarSeries implements Map, KMutableMap {
       return var0.add(var1, var2);
    }
 
-   public final void addAll(@NotNull Event event) {
+   public final void addAll(@NotNull EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       Iterable $this$filterIsInstance$iv = (Iterable)event.getItems();
       int $i$f$filterIsInstance = 0;
@@ -154,14 +155,14 @@ public final class AssetPriceBarSeries implements Map, KMutableMap {
          Object var10000;
          if (value$iv == null) {
             int var15 = 0;
-            Object answer$iv = new PriceBarSeries(this.capacity);
+            Object answer$iv = new org.robok.ta.PriceBarSeries(this.capacity);
             $this$filterIsInstanceTo$iv$iv.put(key$iv, answer$iv);
             var10000 = answer$iv;
          } else {
             var10000 = value$iv;
          }
 
-         PriceBarSeries series = (PriceBarSeries)var10000;
+         org.robok.ta.PriceBarSeries series = (PriceBarSeries)var10000;
          series.add(action, event.getTime());
       }
 

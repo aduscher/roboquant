@@ -1,15 +1,21 @@
 package org.roboquant.brokers;
 
-import kotlin.Metadata;
-import org.jetbrains.annotations.NotNull;
-
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u0016\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\bf\u0018\u00002\u00020\u0001J\u0010\u0010\u0002\u001a\u00020\u00032\u0006\u0010\u0004\u001a\u00020\u0005H&¨\u0006\u0006"},
-   d2 = {"Lorg/roboquant/brokers/AccountModel;", "", "updateAccount", "", "account", "Lorg/roboquant/brokers/InternalAccount;", "roboquant"}
-)
+/**
+ * Interface for modeling different types of Accounts used in the SimBroker, like a CashAccountModel or MarginAccountModel.
+ *
+ * Currently, the main functionality is that at the end of each step the buying power is re-calculated and made
+ * available in the attribute buying power.
+ *
+ * But in the future, an implementation could make other updates to the account.
+ * For example, calculate borrowing fees or interest payments on the loan value that might apply.
+ */
 public interface AccountModel {
-   void updateAccount(@NotNull InternalAccount var1);
+
+    /**
+     * Update the account based on the rules within the account model.
+     *
+     * @param account the internal account to update
+     */
+    void updateAccount(InternalAccount account);
+
 }

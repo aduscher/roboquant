@@ -1,20 +1,23 @@
 package org.roboquant.common;
 
-import java.time.LocalDate;
-import kotlin.Metadata;
-import kotlin.jvm.internal.Intrinsics;
-import org.jetbrains.annotations.NotNull;
+import org.robok.common.RoboquantException;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004¨\u0006\u0005"},
-   d2 = {"Lorg/roboquant/common/NoTradingException;", "Lorg/roboquant/common/RoboquantException;", "date", "Ljava/time/LocalDate;", "(Ljava/time/LocalDate;)V", "roboquant"}
-)
-public final class NoTradingException extends RoboquantException {
-   public NoTradingException(@NotNull LocalDate date) {
-      Intrinsics.checkNotNullParameter(date, "date");
-      super(date + " is not a trading day");
-   }
+import java.time.LocalDate;
+
+/**
+ * No Trading exception is thrown when time information is requested for days that there is no trading.
+ * For example, what is the closing time on a Sunday?
+ */
+public class NoTradingException extends RoboquantException {
+
+    private final LocalDate date;
+
+    public NoTradingException(LocalDate date) {
+        super(date + " is not a trading day");
+        this.date = date;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
 }

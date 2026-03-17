@@ -27,14 +27,15 @@ import net.jacobpeterson.alpaca.websocket.marketdata.streams.crypto.CryptoMarket
 import net.jacobpeterson.alpaca.websocket.marketdata.streams.crypto.CryptoMarketDataWebsocketInterface
 import net.jacobpeterson.alpaca.websocket.marketdata.streams.stock.StockMarketDataListenerAdapter
 import net.jacobpeterson.alpaca.websocket.marketdata.streams.stock.StockMarketDataWebsocketInterface
-import org.roboquant.common.ConfigurationException
-import org.roboquant.common.Event
-import org.roboquant.common.Logging
-import org.roboquant.common.PriceBar
-import org.roboquant.common.PriceItem
-import org.roboquant.common.PriceQuote
-import org.roboquant.common.Stock
-import org.roboquant.common.TradePrice
+import org.robok.common.ConfigurationException
+import org.robok.common.EventK
+import org.robok.common.Logging
+import org.robok.common.PriceBar
+import org.robok.common.PriceItem
+import org.robok.common.PriceQuote
+import org.robok.common.Stock
+import org.robok.common.TradePrice
+import org.robok.feeds.LiveFeed
 import org.roboquant.feeds.*
 import java.io.IOException
 import java.time.Instant
@@ -175,7 +176,7 @@ class AlpacaLiveFeed(
 
     private fun send(time: Instant, item: PriceItem) {
         logger.trace { "received item=$item time=$time" }
-        val event = Event(time, listOf(item))
+        val event = EventK(time, listOf(item))
         send(event)
     }
 

@@ -12,10 +12,11 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.SourceDebugExtension;
 import kotlinx.coroutines.BuildersKt;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Asset;
-import org.roboquant.common.TimeSeries;
-import org.roboquant.common.Timeframe;
-import org.roboquant.feeds.Feed;
+import org.robok.common.Asset;
+import org.robok.common.TimeSeries;
+import org.robok.common.Timeframe;
+import org.robok.feeds.Feed;
+import org.robok.ta.Indicator;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -27,7 +28,7 @@ import org.roboquant.feeds.Feed;
 @SourceDebugExtension({"SMAP\nIndicator.kt\nKotlin\n*S Kotlin\n*F\n+ 1 Indicator.kt\norg/roboquant/ta/IndicatorKt\n+ 2 Feed.kt\norg/roboquant/feeds/FeedKt\n+ 3 Maps.kt\nkotlin/collections/MapsKt__MapsKt\n+ 4 _Collections.kt\nkotlin/collections/CollectionsKt___CollectionsKt\n*L\n1#1,77:1\n132#2:78\n149#2:79\n453#3:80\n403#3:81\n1238#4,4:82\n*S KotlinDebug\n*F\n+ 1 Indicator.kt\norg/roboquant/ta/IndicatorKt\n*L\n64#1:78\n64#1:79\n75#1:80\n75#1:81\n75#1:82,4\n*E\n"})
 public final class IndicatorKt {
    @NotNull
-   public static final Map apply(@NotNull Feed $this$apply, @NotNull Indicator indicator, @NotNull Asset[] assets, @NotNull Timeframe timeframe, boolean addSymbolPostfix) {
+   public static final Map apply(@NotNull Feed $this$apply, @NotNull org.robok.ta.Indicator indicator, @NotNull Asset[] assets, @NotNull Timeframe timeframe, boolean addSymbolPostfix) {
       Intrinsics.checkNotNullParameter($this$apply, "<this>");
       Intrinsics.checkNotNullParameter(indicator, "indicator");
       Intrinsics.checkNotNullParameter(assets, "assets");
@@ -75,6 +76,6 @@ public final class IndicatorKt {
          var4 = true;
       }
 
-      return apply(var0, var1, var2, var3, var4);
+      return org.robok.ta.IndicatorKt.apply(var0, var1, var2, var3, var4);
    }
 }

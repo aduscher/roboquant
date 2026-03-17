@@ -21,6 +21,9 @@ import net.jacobpeterson.alpaca.openapi.trader.model.OrderSide
 import net.jacobpeterson.alpaca.openapi.trader.model.OrderType
 import net.jacobpeterson.alpaca.openapi.trader.model.PostOrderRequest
 import net.jacobpeterson.alpaca.openapi.trader.model.TimeInForce
+import org.robok.common.Order
+import org.robok.common.TIF
+import org.robok.common.UnsupportedException
 import org.roboquant.common.*
 
 /**

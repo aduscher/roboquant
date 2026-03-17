@@ -20,7 +20,7 @@ import org.roboquant.charts.CorrelationChart
 import org.roboquant.charts.ImageCreator
 import org.roboquant.charts.PriceBarChart
 import org.roboquant.charts.transcodeSVG2PNG
-import org.roboquant.feeds.random.RandomWalk
+import org.robok.feeds.random.RandomWalk
 import java.io.File
 import kotlin.test.Ignore
 import kotlin.test.Test

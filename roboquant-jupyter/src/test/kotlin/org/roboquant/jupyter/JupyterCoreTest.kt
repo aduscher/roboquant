@@ -18,8 +18,8 @@ package org.roboquant.jupyter
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.roboquant.charts.PriceChart
-import org.roboquant.common.RoboquantException
-import org.roboquant.feeds.random.RandomWalk
+import org.robok.common.RoboquantException
+import org.robok.feeds.random.RandomWalk
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue

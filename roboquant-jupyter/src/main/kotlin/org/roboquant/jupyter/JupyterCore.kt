@@ -21,9 +21,9 @@ import org.jetbrains.kotlinx.jupyter.api.libraries.ColorScheme
 import org.jetbrains.kotlinx.jupyter.api.libraries.JupyterIntegration
 import org.jetbrains.kotlinx.jupyter.api.libraries.resources
 import org.roboquant.charts.Chart
-import org.roboquant.common.Config
-import org.roboquant.common.Logging
-import org.roboquant.common.Size
+import org.robok.common.Config
+import org.robok.common.Logging
+import org.robok.common.Size
 import java.io.PrintWriter
 import java.io.StringWriter
 

@@ -11,7 +11,8 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.SourceDebugExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Event;
+import org.robok.common.EventK;
+import org.robok.strategies.Strategy;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -21,7 +22,7 @@ import org.roboquant.common.Event;
    d2 = {"Lorg/roboquant/strategies/CombinedStrategy;", "Lorg/roboquant/strategies/Strategy;", "strategies", "", "signalResolver", "Lkotlin/Function1;", "", "Lorg/roboquant/common/Signal;", "Lorg/roboquant/strategies/SignalResolver;", "Lkotlin/ExtensionFunctionType;", "([Lorg/roboquant/strategies/Strategy;Lkotlin/jvm/functions/Function1;)V", "", "(Ljava/util/Collection;Lkotlin/jvm/functions/Function1;)V", "getStrategies", "()Ljava/util/Collection;", "createSignals", "event", "Lorg/roboquant/common/Event;", "roboquant"}
 )
 @SourceDebugExtension({"SMAP\nCombinedStrategy.kt\nKotlin\n*S Kotlin\n*F\n+ 1 CombinedStrategy.kt\norg/roboquant/strategies/CombinedStrategy\n+ 2 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,50:1\n1#2:51\n*E\n"})
-public class CombinedStrategy implements Strategy {
+public class CombinedStrategy implements org.robok.strategies.Strategy {
    @NotNull
    private final Collection strategies;
    @Nullable
@@ -48,13 +49,13 @@ public class CombinedStrategy implements Strategy {
       return this.strategies;
    }
 
-   public CombinedStrategy(@NotNull Strategy[] strategies, @Nullable Function1 signalResolver) {
+   public CombinedStrategy(@NotNull org.robok.strategies.Strategy[] strategies, @Nullable Function1 signalResolver) {
       Intrinsics.checkNotNullParameter(strategies, "strategies");
       this((Collection)ArraysKt.toList(strategies), signalResolver);
    }
 
    // $FF: synthetic method
-   public CombinedStrategy(Strategy[] var1, Function1 var2, int var3, DefaultConstructorMarker var4) {
+   public CombinedStrategy(org.robok.strategies.Strategy[] var1, Function1 var2, int var3, DefaultConstructorMarker var4) {
       if ((var3 & 2) != 0) {
          var2 = null;
       }
@@ -63,7 +64,7 @@ public class CombinedStrategy implements Strategy {
    }
 
    @NotNull
-   public List createSignals(@NotNull Event event) {
+   public List createSignals(@NotNull EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       List signals = (List)(new ArrayList());
 

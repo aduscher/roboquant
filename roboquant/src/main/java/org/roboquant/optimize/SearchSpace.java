@@ -1,30 +1,44 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.optimize;
 
-import kotlin.Metadata;
-import kotlin.jvm.internal.Intrinsics;
-import kotlin.jvm.internal.markers.KMappedMarker;
-import org.jetbrains.annotations.NotNull;
+/**
+ * Interface for all types of search spaces.
+ * A search space contains the parameters that define the space as well as how these parameters are accessed,
+ * for example, grid or random.
+ */
+public interface SearchSpace extends Iterable<Params> {
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000$\n\u0002\u0018\u0002\n\u0002\u0010\u001c\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0010\u0006\n\u0000\bf\u0018\u00002\b\u0012\u0004\u0012\u00020\u00020\u0001J\u0018\u0010\u0007\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\u00022\u0006\u0010\n\u001a\u00020\u000bH\u0016R\u0012\u0010\u0003\u001a\u00020\u0004X¦\u0004¢\u0006\u0006\u001a\u0004\b\u0005\u0010\u0006¨\u0006\f"},
-   d2 = {"Lorg/roboquant/optimize/SearchSpace;", "", "Lorg/roboquant/optimize/Params;", "size", "", "getSize", "()I", "update", "", "params", "score", "", "roboquant"}
-)
-public interface SearchSpace extends Iterable, KMappedMarker {
-   void update(@NotNull Params var1, double var2);
+    /**
+     * Update the search space based on an observation.
+     * The observation is a combination of the selected [params] and the resulting [score].
+     *
+     * This is not used by current search spaces, but is required for future search spaces like Bayesian search that
+     * update their behavior based on observations.
+     *
+     * The default implementation is to do nothing.
+     */
+    default void update(Params params, double score) {
+    }
 
-   int getSize();
+    /**
+     * Returns the total number of parameter combinations in this search space.
+     * This will determine how many back tests are required to find the optimum parameter combination.
+     */
+    int getSize();
 
-   @Metadata(
-      mv = {1, 9, 0},
-      k = 3,
-      xi = 48
-   )
-   public static final class DefaultImpls {
-      public static void update(@NotNull SearchSpace $this, @NotNull Params params, double score) {
-         Intrinsics.checkNotNullParameter(params, "params");
-      }
-   }
 }

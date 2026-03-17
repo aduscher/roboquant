@@ -23,9 +23,20 @@ import com.ib.client.EClientSocket
 import com.ib.client.OrderType
 import com.ib.client.Types.Action
 import com.ib.controller.AccountSummaryTag
-import org.roboquant.brokers.Broker
-import org.roboquant.brokers.FixedExchangeRates
-import org.roboquant.brokers.InternalAccount
+import org.robok.brokers.Broker
+import org.robok.brokers.FixedExchangeRates
+import org.robok.brokers.InternalAccount
+import org.robok.common.Account
+import org.robok.common.Amount
+import org.robok.common.CurrencyK
+import org.robok.common.EventK
+import org.robok.common.Logging
+import org.robok.common.Order
+import org.robok.common.Position
+import org.robok.common.Size
+import org.robok.common.UnsupportedException
+import org.robok.common.hours
+import org.robok.common.minus
 import org.roboquant.common.*
 import org.roboquant.ibkr.IBKR.toAsset
 import org.roboquant.ibkr.IBKR.toContract
@@ -53,7 +64,7 @@ class IBKRBroker(
 
     private val accountId: String?
     private var client: EClientSocket
-    private var account = InternalAccount(Currency.USD)
+    private var account = InternalAccount(CurrencyK.USD)
 
     @Suppress("PLATFORM_CLASS_MAPPED_TO_KOTLIN")
     private var accountUpdateLock = Any() as Object
@@ -64,7 +75,7 @@ class IBKRBroker(
     /**
      * ExchangeRates as provided during intialization of the account.
      */
-    val exchangeRates = FixedExchangeRates(Currency.USD)
+    val exchangeRates = FixedExchangeRates(CurrencyK.USD)
 
     private val logger = Logging.getLogger(IBKRBroker::class)
 
@@ -132,7 +143,7 @@ class IBKRBroker(
      * @param event optional event that triggered the sync. If te event is provided, its time cannot be in the past
      * more than 1 hour ago. This prevents placing orders in a back test using this broker.
      */
-    override fun sync(event: Event?): Account {
+    override fun sync(event: EventK?): Account {
         if (event != null) {
             if (event.time < Instant.now() - 1.hours) throw UnsupportedException("cannot place orders in the past")
         }
@@ -252,7 +263,7 @@ class IBKRBroker(
             }
 
             if (currency != null && "BASE" != currency) {
-                val c = Currency.getInstance(currency)
+                val c = CurrencyK.getInstance(currency)
                 when (key) {
                     AccountSummaryTag.BuyingPower.name -> {
                         if (! initialized) {

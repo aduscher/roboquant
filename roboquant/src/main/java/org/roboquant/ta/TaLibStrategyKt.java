@@ -4,6 +4,8 @@ import kotlin.Metadata;
 import kotlin.collections.ArraysKt;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
+import org.robok.ta.PriceBarSeries;
+import org.robok.ta.TaLib;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -13,55 +15,55 @@ import org.jetbrains.annotations.NotNull;
    d2 = {"recordHigh", "", "Lorg/roboquant/ta/TaLib;", "high", "", "period", "", "previous", "series", "Lorg/roboquant/ta/PriceBarSeries;", "recordLow", "low", "roboquant"}
 )
 public final class TaLibStrategyKt {
-   public static final boolean recordLow(@NotNull TaLib $this$recordLow, @NotNull double[] low, int period, int previous) {
+   public static final boolean recordLow(@NotNull org.robok.ta.TaLib $this$recordLow, @NotNull double[] low, int period, int previous) {
       Intrinsics.checkNotNullParameter($this$recordLow, "<this>");
       Intrinsics.checkNotNullParameter(low, "low");
       return $this$recordLow.minIndex(low, period, previous) == ArraysKt.getLastIndex(low) - previous;
    }
 
    // $FF: synthetic method
-   public static boolean recordLow$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static boolean recordLow$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
 
-      return recordLow(var0, var1, var2, var3);
+      return org.robok.ta.TaLibStrategyKt.recordLow(var0, var1, var2, var3);
    }
 
-   public static final boolean recordLow(@NotNull TaLib $this$recordLow, @NotNull PriceBarSeries series, int period, int previous) {
+   public static final boolean recordLow(@NotNull org.robok.ta.TaLib $this$recordLow, @NotNull org.robok.ta.PriceBarSeries series, int period, int previous) {
       Intrinsics.checkNotNullParameter($this$recordLow, "<this>");
       Intrinsics.checkNotNullParameter(series, "series");
-      return recordLow($this$recordLow, series.getLow(), period, previous);
+      return org.robok.ta.TaLibStrategyKt.recordLow($this$recordLow, series.getLow(), period, previous);
    }
 
    // $FF: synthetic method
-   public static boolean recordLow$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static boolean recordLow$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
 
-      return recordLow(var0, var1, var2, var3);
+      return org.robok.ta.TaLibStrategyKt.recordLow(var0, var1, var2, var3);
    }
 
-   public static final boolean recordHigh(@NotNull TaLib $this$recordHigh, @NotNull double[] high, int period, int previous) {
+   public static final boolean recordHigh(@NotNull org.robok.ta.TaLib $this$recordHigh, @NotNull double[] high, int period, int previous) {
       Intrinsics.checkNotNullParameter($this$recordHigh, "<this>");
       Intrinsics.checkNotNullParameter(high, "high");
       return $this$recordHigh.maxIndex(high, period, previous) == ArraysKt.getLastIndex(high) - previous;
    }
 
    // $FF: synthetic method
-   public static boolean recordHigh$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static boolean recordHigh$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
 
-      return recordHigh(var0, var1, var2, var3);
+      return org.robok.ta.TaLibStrategyKt.recordHigh(var0, var1, var2, var3);
    }
 
-   public static final boolean recordHigh(@NotNull TaLib $this$recordHigh, @NotNull PriceBarSeries series, int period, int previous) {
+   public static final boolean recordHigh(@NotNull org.robok.ta.TaLib $this$recordHigh, @NotNull org.robok.ta.PriceBarSeries series, int period, int previous) {
       Intrinsics.checkNotNullParameter($this$recordHigh, "<this>");
       Intrinsics.checkNotNullParameter(series, "series");
-      return recordHigh($this$recordHigh, series.getHigh(), period, previous);
+      return org.robok.ta.TaLibStrategyKt.recordHigh($this$recordHigh, series.getHigh(), period, previous);
    }
 
    // $FF: synthetic method
@@ -70,6 +72,6 @@ public final class TaLibStrategyKt {
          var3 = 0;
       }
 
-      return recordHigh(var0, var1, var2, var3);
+      return org.robok.ta.TaLibStrategyKt.recordHigh(var0, var1, var2, var3);
    }
 }

@@ -3,7 +3,7 @@ package org.roboquant.strategies;
 import java.util.List;
 import kotlin.Metadata;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Event;
+import org.robok.common.EventK;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -14,5 +14,5 @@ import org.roboquant.common.Event;
 )
 public interface Strategy {
    @NotNull
-   List createSignals(@NotNull Event var1);
+   List createSignals(@NotNull EventK var1);
 }

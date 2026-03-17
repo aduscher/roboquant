@@ -1,0 +1,91 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.robok.brokers
+
+import org.roboquant.common.*
+import org.robok.common.CurrencyK
+import org.robok.feeds.Feed
+import org.robok.common.PriceItem
+import org.robok.common.toCurrencyPair
+import org.robok.feeds.filter
+import java.time.Instant
+import java.util.*
+
+/**
+ * Use a feed with [PriceItem] to determine currency conversion rates.
+ *
+ * @param feed the feed to use
+ * @property priceType the type of price, by default "DEFAULT"
+ */
+class FeedExchangeRates(
+    feed: Feed,
+    private val priceType: String = "DEFAULT",
+) : ExchangeRates {
+
+    private val exchangeRates = mutableMapOf<Pair<CurrencyK, CurrencyK>, NavigableMap<Instant, Double>>()
+
+    private val logger = _root_ide_package_.org.robok.common.Logging.getLogger(this::class)
+
+    /**
+     * Get the currencies that are part of these exchange rates
+     */
+    val currencies
+        get() = exchangeRates.keys.map { listOf(it.first, it.second) }.flatten().toSet()
+
+    init {
+        setRates(feed)
+    }
+
+
+    private fun setRates(feed: Feed) {
+        val items = feed.filter<PriceItem>()
+        for ((now, item) in items) {
+            val asset = item.asset
+            val rate = item.getPrice(priceType)
+            try {
+                val pair = asset.symbol.toCurrencyPair()
+                val map = exchangeRates.getOrPut(pair) { TreeMap() }
+                map[now] = rate
+            } catch (_: org.robok.common.RoboquantException) {
+                logger.warn { "could map asset to currency pair $asset" }
+            }
+        }
+    }
+
+    private fun find(pair: Pair<CurrencyK, CurrencyK>, time: Instant): Double? {
+        val rates = exchangeRates[pair]
+        return if (rates !== null) {
+            val result = rates.floorEntry(time) ?: rates.firstEntry()
+            result.value
+        } else {
+            null
+        }
+    }
+
+    override fun getRate(amount: org.robok.common.Amount, to: CurrencyK, time: Instant): Double {
+        val from = amount.currency
+        (from === to || amount.value == 0.0) && return 1.0
+
+        var result = find(Pair(amount.currency, to), time)
+        if (result !== null) return result
+
+        result = find(Pair(amount.currency, to), time)
+        if (result !== null) return 1.0 / result
+        throw _root_ide_package_.org.robok.common.ConfigurationException("No conversion for $amount to $to")
+    }
+
+}

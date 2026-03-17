@@ -16,15 +16,19 @@
 
 package org.roboquant.charts
 
-import org.roboquant.common.Account
-import org.roboquant.common.Position
-import org.roboquant.brokers.InternalAccount
-import org.roboquant.common.*
-import org.roboquant.feeds.util.HistoricTestFeed
-import org.roboquant.journals.MemoryJournal
-import org.roboquant.journals.metrics.AccountMetric
-import org.roboquant.run
-import org.roboquant.strategies.EMACrossover
+import org.robok.common.Account
+import org.robok.common.Position
+import org.robok.brokers.InternalAccount
+import org.robok.common.Amount
+import org.robok.common.Order
+import org.robok.common.Size
+import org.robok.common.Stock
+import org.robok.common.USD
+import org.robok.feeds.util.HistoricTestFeed
+import org.robok.journals.MemoryJournal
+import org.robok.journals.metrics.AccountMetric
+import org.robok.run
+import org.robok.strategies.EMACrossover
 
 /**
  * Remove end-of-line characters so test results are the same on different operating-systems.

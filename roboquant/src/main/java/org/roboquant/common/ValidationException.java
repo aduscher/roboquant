@@ -1,19 +1,29 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.common;
 
-import kotlin.Metadata;
-import kotlin.jvm.internal.Intrinsics;
-import org.jetbrains.annotations.NotNull;
+import org.robok.common.RoboquantException;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u0012\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0002\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004¨\u0006\u0005"},
-   d2 = {"Lorg/roboquant/common/ValidationException;", "Lorg/roboquant/common/RoboquantException;", "msg", "", "(Ljava/lang/String;)V", "roboquant"}
-)
-public final class ValidationException extends RoboquantException {
-   public ValidationException(@NotNull String msg) {
-      Intrinsics.checkNotNullParameter(msg, "msg");
-      super(msg);
-   }
+/**
+ * Validation exception.
+ */
+public class ValidationException extends RoboquantException {
+
+    public ValidationException(String msg) {
+        super(msg);
+    }
 }

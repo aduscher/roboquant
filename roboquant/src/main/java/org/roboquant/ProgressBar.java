@@ -11,7 +11,7 @@ import kotlin.jvm.internal.StringCompanionObject;
 import kotlin.math.MathKt;
 import kotlin.text.StringsKt;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Timeframe;
+import org.robok.common.Timeframe;
 
 @Metadata(
    mv = {1, 9, 0},

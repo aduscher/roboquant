@@ -1,44 +1,50 @@
 package org.roboquant.brokers;
 
-import kotlin.Metadata;
-import kotlin.jvm.internal.DefaultConstructorMarker;
-import kotlin.jvm.internal.Intrinsics;
-import org.jetbrains.annotations.NotNull;
 import org.roboquant.common.Amount;
-import org.roboquant.common.PositionKt;
+import org.roboquant.common.Positions;
 import org.roboquant.common.Wallet;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u001e\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0006\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\u000f\u0012\b\b\u0002\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\u0010\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\bH\u0016R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u0004¢\u0006\u0002\n\u0000¨\u0006\t"},
-   d2 = {"Lorg/roboquant/brokers/CashAccount;", "Lorg/roboquant/brokers/AccountModel;", "minimum", "", "(D)V", "updateAccount", "", "account", "Lorg/roboquant/brokers/InternalAccount;", "roboquant"}
-)
-public final class CashAccount implements AccountModel {
-   private final double minimum;
+/**
+ * AccountModel that models a plain cash account. No additional leverage or margin is available for trading.
+ * This is the default AccountModel if none is specified during instantiation of a SimBroker
+ *
+ * You should typically not short positions when using the CashAccount since that is almost never allowed in the real
+ * world and also not supported.
+ *
+ * If you want to do it anyway, then the short exposures are for the full 100% deducted from the buying power.
+ *
+ * So the used calculation is:
+ *
+ *      Buying power = cash - short exposure - minimum
+ *
+ * Note: currently open orders are not taken into consideration when calculating the total buying power
+ */
+public class CashAccount implements AccountModel {
 
-   public CashAccount(double minimum) {
-      this.minimum = minimum;
-   }
+    private final double minimum;
 
-   // $FF: synthetic method
-   public CashAccount(double var1, int var3, DefaultConstructorMarker var4) {
-      if ((var3 & 1) != 0) {
-         var1 = (double)0.0F;
-      }
+    /**
+     * Create a CashAccount with the specified minimum cash balance.
+     *
+     * @param minimum the minimum amount of cash balance required to maintain in the account, defaults to 0.0.
+     *                 It is denoted in the base currency of the account.
+     */
+    public CashAccount(double minimum) {
+        this.minimum = minimum;
+    }
 
-      this(var1);
-   }
+    /**
+     * Create a CashAccount with default minimum of 0.0
+     */
+    public CashAccount() {
+        this(0.0);
+    }
 
-   public void updateAccount(@NotNull InternalAccount account) {
-      Intrinsics.checkNotNullParameter(account, "account");
-      Wallet remaining = account.getCash().minus(PositionKt.exposure(PositionKt.getShort(account.getPositions())));
-      Amount buyingPower = remaining.convert(account.getBaseCurrency(), account.getLastUpdate()).minus((Number)this.minimum);
-      account.setBuyingPower(buyingPower);
-   }
+    @Override
+    public void updateAccount(InternalAccount account) {
+        Wallet remaining = account.getCash().minus(Positions.exposure(Positions.getShort(account.getPositions())));
+        Amount buyingPower = remaining.convert(account.getBaseCurrency(), account.getLastUpdate()).minus(minimum);
+        account.setBuyingPower(buyingPower);
+    }
 
-   public CashAccount() {
-      this((double)0.0F, 1, (DefaultConstructorMarker)null);
-   }
 }

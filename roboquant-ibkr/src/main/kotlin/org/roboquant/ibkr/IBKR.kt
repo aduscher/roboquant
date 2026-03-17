@@ -17,8 +17,14 @@
 package org.roboquant.ibkr
 
 import com.ib.client.*
+import org.robok.common.Asset
+import org.robok.common.Config
+import org.robok.common.ConfigurationException
 import org.roboquant.common.*
-import org.roboquant.common.Currency
+import org.robok.common.CurrencyK
+import org.robok.common.Logging
+import org.robok.common.Stock
+import org.robok.common.UnsupportedException
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.time.Instant
@@ -140,7 +146,7 @@ object IBKR {
         result != null && return result
 
         val asset = when (secType()) {
-            Types.SecType.STK -> Stock(symbol(), Currency.getInstance(currency()))
+            Types.SecType.STK -> Stock(symbol(), CurrencyK.getInstance(currency()))
             else -> throw UnsupportedException("Unsupported asset type ${secType()}")
         }
 

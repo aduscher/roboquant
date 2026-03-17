@@ -18,9 +18,21 @@ package org.roboquant.questdb
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.io.TempDir
+import org.robok.common.EventK
+import org.robok.common.PriceBar
+import org.robok.common.PriceQuote
+import org.robok.common.Stock
+import org.robok.common.Timeframe
+import org.robok.common.TradePrice
+import org.robok.common.millis
+import org.robok.common.months
+import org.robok.common.plus
+import org.robok.common.timeframe
+import org.robok.feeds.EventChannel
+import org.robok.feeds.Feed
 import org.roboquant.common.*
 import org.roboquant.feeds.*
-import org.roboquant.feeds.random.RandomWalk
+import org.robok.feeds.random.RandomWalk
 import java.io.File
 import java.time.Instant
 import kotlin.test.Test
@@ -91,7 +103,7 @@ internal class QuestDBFeedTestIT {
                 val now = Instant.now()
                 repeat(100) {
                     val action = PriceQuote(asset, 100.0, 10000.0, 100.0, 10000.0)
-                    val event = Event(now + it.millis, listOf(action))
+                    val event = EventK(now + it.millis, listOf(action))
                     channel.send(event)
                 }
             }
@@ -121,7 +133,7 @@ internal class QuestDBFeedTestIT {
                 val now = Instant.now()
                 repeat(100) {
                     val action = TradePrice(asset, 100.0, 10000.0)
-                    val event = Event(now + it.millis, listOf(action))
+                    val event = EventK(now + it.millis, listOf(action))
                     channel.send(event)
                 }
             }

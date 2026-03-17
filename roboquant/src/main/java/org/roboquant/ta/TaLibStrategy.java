@@ -13,12 +13,16 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.SourceDebugExtension;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Event;
-import org.roboquant.common.PriceBar;
-import org.roboquant.common.Signal;
-import org.roboquant.common.SignalType;
-import org.roboquant.strategies.Strategy;
+import org.robok.common.Asset;
+import org.robok.common.EventK;
+import org.robok.common.PriceBar;
+import org.robok.common.Signal;
+import org.robok.common.SignalType;
+import org.robok.strategies.Strategy;
+import org.robok.ta.AssetPriceBarSeries;
+import org.robok.ta.InsufficientData;
+import org.robok.ta.PriceBarSeries;
+import org.robok.ta.TaLib;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -36,15 +40,15 @@ public final class TaLibStrategy implements Strategy {
    @NotNull
    private Function2 buyFn;
    @NotNull
-   private final AssetPriceBarSeries assetPriceBarSeries;
+   private final org.robok.ta.AssetPriceBarSeries assetPriceBarSeries;
    @NotNull
-   private final TaLib taLib;
+   private final org.robok.ta.TaLib taLib;
 
    public TaLibStrategy(int initialCapacity) {
       this.sellFn = null.INSTANCE;
       this.buyFn = null.INSTANCE;
       this.assetPriceBarSeries = new AssetPriceBarSeries(initialCapacity);
-      this.taLib = new TaLib((Core)null, 1, (DefaultConstructorMarker)null);
+      this.taLib = new org.robok.ta.TaLib((Core)null, 1, (DefaultConstructorMarker)null);
    }
 
    // $FF: synthetic method
@@ -57,7 +61,7 @@ public final class TaLibStrategy implements Strategy {
    }
 
    @NotNull
-   public final TaLib getTaLib() {
+   public final org.robok.ta.TaLib getTaLib() {
       return this.taLib;
    }
 
@@ -72,7 +76,7 @@ public final class TaLibStrategy implements Strategy {
    }
 
    @NotNull
-   public List createSignals(@NotNull Event event) {
+   public List createSignals(@NotNull EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       List results = (List)(new ArrayList());
       Instant time = event.getTime();
@@ -90,7 +94,7 @@ public final class TaLibStrategy implements Strategy {
       for(PriceBar priceBar : (List)destination$iv$iv) {
          if (this.assetPriceBarSeries.add(priceBar, time)) {
             Asset asset = priceBar.getAsset();
-            PriceBarSeries priceSerie = (PriceBarSeries)MapsKt.getValue(this.assetPriceBarSeries, asset);
+            org.robok.ta.PriceBarSeries priceSerie = (org.robok.ta.PriceBarSeries)MapsKt.getValue(this.assetPriceBarSeries, asset);
 
             try {
                if ((Boolean)this.buyFn.invoke(this.taLib, priceSerie)) {
@@ -126,7 +130,7 @@ public final class TaLibStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibStrategy recordHighLow(@NotNull final int... timePeriods) {
+      public final org.robok.ta.TaLibStrategy recordHighLow(@NotNull final int... timePeriods) {
          Intrinsics.checkNotNullParameter(timePeriods, "timePeriods");
          if (timePeriods.length == 0) {
             int var12 = 0;
@@ -160,10 +164,10 @@ public final class TaLibStrategy implements Strategy {
                String var11 = "Any provided period needs to be at least of size 2";
                throw new IllegalArgumentException(var11.toString());
             } else {
-               TaLibStrategy strategy = new TaLibStrategy(ArraysKt.maxOrThrow(timePeriods));
+               org.robok.ta.TaLibStrategy strategy = new org.robok.ta.TaLibStrategy(ArraysKt.maxOrThrow(timePeriods));
                strategy.buy(new Function2() {
                   @NotNull
-                  public final Boolean invoke(@NotNull TaLib $this$buy, @NotNull PriceBarSeries it) {
+                  public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$buy, @NotNull org.robok.ta.PriceBarSeries it) {
                      Intrinsics.checkNotNullParameter($this$buy, "$this$buy");
                      Intrinsics.checkNotNullParameter(it, "it");
                      double[] data = it.getHigh();
@@ -194,7 +198,7 @@ public final class TaLibStrategy implements Strategy {
                });
                strategy.sell(new Function2() {
                   @NotNull
-                  public final Boolean invoke(@NotNull TaLib $this$sell, @NotNull PriceBarSeries it) {
+                  public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$sell, @NotNull org.robok.ta.PriceBarSeries it) {
                      Intrinsics.checkNotNullParameter($this$sell, "$this$sell");
                      Intrinsics.checkNotNullParameter(it, "it");
                      double[] data = it.getLow();
@@ -229,16 +233,16 @@ public final class TaLibStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibStrategy breakout(final int highPeriod, final int lowPeriod) {
+      public final org.robok.ta.TaLibStrategy breakout(final int highPeriod, final int lowPeriod) {
          if (highPeriod <= 0 || lowPeriod <= 0) {
             int var4 = 0;
             String var5 = "Periods have to be larger than 0";
             throw new IllegalArgumentException(var5.toString());
          } else {
-            TaLibStrategy strategy = new TaLibStrategy(Integer.max(highPeriod, lowPeriod));
+            org.robok.ta.TaLibStrategy strategy = new org.robok.ta.TaLibStrategy(Integer.max(highPeriod, lowPeriod));
             strategy.buy(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$buy, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$buy, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$buy, "$this$buy");
                   Intrinsics.checkNotNullParameter(it, "it");
                   return TaLibStrategyKt.recordHigh$default($this$buy, (double[])it.getHigh(), highPeriod, 0, 4, (Object)null);
@@ -246,7 +250,7 @@ public final class TaLibStrategy implements Strategy {
             });
             strategy.sell(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$sell, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$sell, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$sell, "$this$sell");
                   Intrinsics.checkNotNullParameter(it, "it");
                   return TaLibStrategyKt.recordLow$default($this$sell, (double[])it.getLow(), lowPeriod, 0, 4, (Object)null);
@@ -257,7 +261,7 @@ public final class TaLibStrategy implements Strategy {
       }
 
       // $FF: synthetic method
-      public static TaLibStrategy breakout$default(Factory var0, int var1, int var2, int var3, Object var4) {
+      public static org.robok.ta.TaLibStrategy breakout$default(Factory var0, int var1, int var2, int var3, Object var4) {
          if ((var3 & 1) != 0) {
             var1 = 100;
          }
@@ -270,7 +274,7 @@ public final class TaLibStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibStrategy smaCrossover(final int slow, final int fast) {
+      public final org.robok.ta.TaLibStrategy smaCrossover(final int slow, final int fast) {
          if (slow <= 0 || fast <= 0) {
             int var6 = 0;
             String var7 = "Periods have to be larger than 0";
@@ -280,21 +284,21 @@ public final class TaLibStrategy implements Strategy {
             String var5 = "Slow period have to be larger than fast period";
             throw new IllegalArgumentException(var5.toString());
          } else {
-            TaLibStrategy strategy = new TaLibStrategy(slow);
+            org.robok.ta.TaLibStrategy strategy = new org.robok.ta.TaLibStrategy(slow);
             strategy.buy(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$buy, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$buy, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$buy, "$this$buy");
                   Intrinsics.checkNotNullParameter(it, "it");
-                  return TaLib.sma$default($this$buy, (double[])it.getClose(), fast, 0, 4, (Object)null) > TaLib.sma$default($this$buy, (double[])it.getClose(), slow, 0, 4, (Object)null);
+                  return org.robok.ta.TaLib.sma$default($this$buy, (double[])it.getClose(), fast, 0, 4, (Object)null) > org.robok.ta.TaLib.sma$default($this$buy, (double[])it.getClose(), slow, 0, 4, (Object)null);
                }
             });
             strategy.sell(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$sell, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$sell, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$sell, "$this$sell");
                   Intrinsics.checkNotNullParameter(it, "it");
-                  return TaLib.sma$default($this$sell, (double[])it.getClose(), fast, 0, 4, (Object)null) < TaLib.sma$default($this$sell, (double[])it.getClose(), slow, 0, 4, (Object)null);
+                  return org.robok.ta.TaLib.sma$default($this$sell, (double[])it.getClose(), fast, 0, 4, (Object)null) < org.robok.ta.TaLib.sma$default($this$sell, (double[])it.getClose(), slow, 0, 4, (Object)null);
                }
             });
             return strategy;
@@ -302,7 +306,7 @@ public final class TaLibStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibStrategy emaCrossover(final int slow, final int fast) {
+      public final org.robok.ta.TaLibStrategy emaCrossover(final int slow, final int fast) {
          if (slow <= 0 || fast <= 0) {
             int var6 = 0;
             String var7 = "Periods have to be larger than 0";
@@ -312,21 +316,21 @@ public final class TaLibStrategy implements Strategy {
             String var5 = "Slow period have to be larger than fast period";
             throw new IllegalArgumentException(var5.toString());
          } else {
-            TaLibStrategy strategy = new TaLibStrategy(slow);
+            org.robok.ta.TaLibStrategy strategy = new org.robok.ta.TaLibStrategy(slow);
             strategy.buy(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$buy, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$buy, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$buy, "$this$buy");
                   Intrinsics.checkNotNullParameter(it, "it");
-                  return TaLib.ema$default($this$buy, (double[])it.getClose(), fast, 0, 4, (Object)null) > TaLib.ema$default($this$buy, (double[])it.getClose(), slow, 0, 4, (Object)null);
+                  return org.robok.ta.TaLib.ema$default($this$buy, (double[])it.getClose(), fast, 0, 4, (Object)null) > org.robok.ta.TaLib.ema$default($this$buy, (double[])it.getClose(), slow, 0, 4, (Object)null);
                }
             });
             strategy.sell(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$sell, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$sell, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$sell, "$this$sell");
                   Intrinsics.checkNotNullParameter(it, "it");
-                  return TaLib.ema$default($this$sell, (double[])it.getClose(), fast, 0, 4, (Object)null) < TaLib.ema$default($this$sell, (double[])it.getClose(), slow, 0, 4, (Object)null);
+                  return org.robok.ta.TaLib.ema$default($this$sell, (double[])it.getClose(), fast, 0, 4, (Object)null) < org.robok.ta.TaLib.ema$default($this$sell, (double[])it.getClose(), slow, 0, 4, (Object)null);
                }
             });
             return strategy;
@@ -334,7 +338,7 @@ public final class TaLibStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibStrategy rsi(final int timePeriod, final double lowThreshold, final double highThreshold) {
+      public final org.robok.ta.TaLibStrategy rsi(final int timePeriod, final double lowThreshold, final double highThreshold) {
          if (!((double)0.0F <= lowThreshold ? lowThreshold <= (double)100.0F : false) || !((double)0.0F <= highThreshold ? highThreshold <= (double)100.0F : false)) {
             int var9 = 0;
             String var10 = "Thresholds have to be in the range 0..100";
@@ -344,18 +348,18 @@ public final class TaLibStrategy implements Strategy {
             String var8 = "High threshold has to be larger than low threshold";
             throw new IllegalArgumentException(var8.toString());
          } else {
-            TaLibStrategy strategy = new TaLibStrategy(timePeriod + 1);
+            org.robok.ta.TaLibStrategy strategy = new org.robok.ta.TaLibStrategy(timePeriod + 1);
             strategy.buy(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$buy, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$buy, @NotNull org.robok.ta.PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$buy, "$this$buy");
                   Intrinsics.checkNotNullParameter(it, "it");
-                  return TaLib.rsi$default($this$buy, (double[])it.getClose(), timePeriod, 0, 4, (Object)null) < lowThreshold;
+                  return org.robok.ta.TaLib.rsi$default($this$buy, (double[])it.getClose(), timePeriod, 0, 4, (Object)null) < lowThreshold;
                }
             });
             strategy.sell(new Function2() {
                @NotNull
-               public final Boolean invoke(@NotNull TaLib $this$sell, @NotNull PriceBarSeries it) {
+               public final Boolean invoke(@NotNull org.robok.ta.TaLib $this$sell, @NotNull PriceBarSeries it) {
                   Intrinsics.checkNotNullParameter($this$sell, "$this$sell");
                   Intrinsics.checkNotNullParameter(it, "it");
                   return TaLib.rsi$default($this$sell, (double[])it.getClose(), timePeriod, 0, 4, (Object)null) > highThreshold;
@@ -366,7 +370,7 @@ public final class TaLibStrategy implements Strategy {
       }
 
       // $FF: synthetic method
-      public static TaLibStrategy rsi$default(Factory var0, int var1, double var2, double var4, int var6, Object var7) {
+      public static org.robok.ta.TaLibStrategy rsi$default(Factory var0, int var1, double var2, double var4, int var6, Object var7) {
          if ((var6 & 2) != 0) {
             var2 = (double)30.0F;
          }

@@ -16,10 +16,10 @@
 
 package org.roboquant.charts
 
-import org.roboquant.common.Timeframe
-import org.roboquant.common.Item
-import org.roboquant.feeds.random.RandomWalk
-import org.roboquant.ta.Indicator
+import org.robok.common.Timeframe
+import org.robok.common.Item
+import org.robok.feeds.random.RandomWalk
+import org.robok.ta.Indicator
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals

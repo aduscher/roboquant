@@ -19,9 +19,28 @@ package org.roboquant.avro
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.io.TempDir
+import org.robok.common.Asset
+import org.robok.common.EventK
+import org.robok.common.OrderBook
+import org.robok.common.PriceBar
+import org.robok.common.PriceItem
+import org.robok.common.PriceQuote
+import org.robok.common.Stock
+import org.robok.common.Timeframe
+import org.robok.common.TradePrice
+import org.robok.common.days
+import org.robok.common.millis
+import org.robok.common.minus
+import org.robok.common.plus
+import org.robok.common.years
+import org.robok.feeds.AssetFeed
+import org.robok.feeds.EventChannel
+import org.robok.feeds.Feed
+import org.robok.feeds.filter
 import org.roboquant.common.*
 import org.roboquant.feeds.*
-import org.roboquant.feeds.random.RandomWalk
+import org.robok.feeds.random.RandomWalk
+import org.robok.feeds.toList
 import java.io.File
 import java.time.Instant
 import kotlin.test.Test
@@ -33,7 +52,7 @@ internal class AvroFeedTest {
 
     private class MyFeed(override val assets: Set<Asset>) : AssetFeed {
 
-        val events = mutableListOf<Event>()
+        val events = mutableListOf<EventK>()
 
         override suspend fun play(channel: EventChannel) {
             for (event in events) channel.send(event)
@@ -80,10 +99,10 @@ internal class AvroFeedTest {
         )
         val feed = MyFeed(setOf(asset))
         val now = Instant.now()
-        feed.events.add(Event(now + 1.millis, listOf(p1)))
-        feed.events.add(Event(now + 2.millis, listOf(p2)))
-        feed.events.add(Event(now + 3.millis, listOf(p3)))
-        feed.events.add(Event(now + 4.millis, listOf(p4)))
+        feed.events.add(EventK(now + 1.millis, listOf(p1)))
+        feed.events.add(EventK(now + 2.millis, listOf(p2)))
+        feed.events.add(EventK(now + 3.millis, listOf(p3)))
+        feed.events.add(EventK(now + 4.millis, listOf(p4)))
 
         val feed2 = AvroFeed(fileName)
         assertDoesNotThrow {

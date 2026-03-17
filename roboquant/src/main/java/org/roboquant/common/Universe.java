@@ -1,50 +1,116 @@
 package org.roboquant.common;
 
 import java.time.Instant;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import kotlin.Lazy;
-import kotlin.LazyKt;
-import kotlin.Metadata;
-import org.jetbrains.annotations.NotNull;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u001c\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010 \n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\bf\u0018\u0000 \u00072\u00020\u0001:\u0001\u0007J\u0016\u0010\u0002\u001a\b\u0012\u0004\u0012\u00020\u00040\u00032\u0006\u0010\u0005\u001a\u00020\u0006H&¨\u0006\b"},
-   d2 = {"Lorg/roboquant/common/Universe;", "", "getAssets", "", "Lorg/roboquant/common/Asset;", "time", "Ljava/time/Instant;", "Factory", "roboquant"}
-)
+/**
+ * A Universe represents a collection of assets.
+ * Where it differs from regular collections, is that the assets that belong to a collection can change over time.
+ * So the assets in the collection at time t can be different from the assets in the collection at time t+1.
+ */
 public interface Universe {
-   @NotNull
-   Factory Factory = Universe.Factory.$$INSTANCE;
 
-   @NotNull
-   List getAssets(@NotNull Instant var1);
+    /**
+     * Return the list of assets in this universe at the given point in time.
+     */
+    List<Asset> getAssets(Instant time);
 
-   @Metadata(
-      mv = {1, 9, 0},
-      k = 1,
-      xi = 48,
-      d1 = {"\u0000\u0014\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0005\b\u0086\u0003\u0018\u00002\u00020\u0001B\u0007\b\u0002¢\u0006\u0002\u0010\u0002R\u001b\u0010\u0003\u001a\u00020\u00048FX\u0086\u0084\u0002¢\u0006\f\n\u0004\b\u0007\u0010\b\u001a\u0004\b\u0005\u0010\u0006¨\u0006\t"},
-      d2 = {"Lorg/roboquant/common/Universe$Factory;", "", "()V", "sp500", "Lorg/roboquant/common/Universe;", "getSp500", "()Lorg/roboquant/common/Universe;", "sp500$delegate", "Lkotlin/Lazy;", "roboquant"}
-   )
-   public static final class Factory {
-      // $FF: synthetic field
-      static final Factory $$INSTANCE = new Factory();
-      @NotNull
-      private static final Lazy sp500$delegate;
+    /**
+     * Factory for standard universes.
+     */
+    class Factory {
+        private static Universe sp500;
 
-      private Factory() {
-      }
+        private Factory() {
+        }
 
-      @NotNull
-      public final Universe getSp500() {
-         Lazy var1 = sp500$delegate;
-         return (Universe)var1.getValue();
-      }
+        /**
+         * Return the universe of all the S&P 500 stocks.
+         */
+        public static synchronized Universe getSp500() {
+            if (sp500 == null) {
+                sp500 = new SP500Universe();
+            }
+            return sp500;
+        }
+    }
 
-      static {
-         sp500$delegate = LazyKt.lazy(null.INSTANCE);
-      }
-   }
+    /**
+     * SP500 asset collection.
+     */
+    class SP500Universe implements Universe {
+
+        private final LocalDate startSP500 = LocalDate.parse("1960-01-01");
+        private final List<AssetEntry> assets;
+        private static final String fileName = "/sp500.csv";
+
+        public SP500Universe() {
+            this.assets = new ArrayList<>();
+            loadAssets();
+        }
+
+        private void loadAssets() {
+            try {
+                java.io.InputStream stream = SP500Universe.class.getResourceAsStream(fileName);
+                if (stream == null) {
+                    throw new RoboquantException("Couldn't find file " + fileName);
+                }
+
+                try {
+                    byte[] bytes = stream.readAllBytes();
+                    String content = new String(bytes, java.nio.charset.StandardCharsets.UTF_8);
+                    
+                    // Simple CSV parsing
+                    String[] lines = content.split("\n");
+                    if (lines.length > 0) {
+                        // Skip header
+                        for (int i = 1; i < lines.length; i++) {
+                            String line = lines[i].trim();
+                            if (line.isEmpty()) continue;
+                            
+                            String[] parts = line.split(";");
+                            if (parts.length >= 2) {
+                                String symbol = parts[0].trim();
+                                String dateStr = parts.length > 1 ? parts[1].trim() : "";
+                                
+                                Asset asset = new Stock(symbol, Currency.USD);
+                                LocalDate startDate = dateStr.isEmpty() ? startSP500 : LocalDate.parse(dateStr);
+                                Instant start = startDate.atTime(0, 0).atZone(Exchange.US.getZoneId()).toInstant();
+                                Timeframe timeframe = new Timeframe(start, Timeframe.MAX);
+                                
+                                assets.add(new AssetEntry(asset, timeframe));
+                            }
+                        }
+                    }
+                } finally {
+                    stream.close();
+                }
+            } catch (Exception e) {
+                throw new RoboquantException("Failed to load SP500: " + e.getMessage(), e);
+            }
+        }
+
+        @Override
+        public List<Asset> getAssets(Instant time) {
+            List<Asset> result = new ArrayList<>();
+            for (AssetEntry entry : assets) {
+                if (entry.timeframe.contains(time)) {
+                    result.add(entry.asset);
+                }
+            }
+            return result;
+        }
+
+        private static class AssetEntry {
+            final Asset asset;
+            final Timeframe timeframe;
+
+            AssetEntry(Asset asset, Timeframe timeframe) {
+                this.asset = asset;
+                this.timeframe = timeframe;
+            }
+        }
+    }
 }

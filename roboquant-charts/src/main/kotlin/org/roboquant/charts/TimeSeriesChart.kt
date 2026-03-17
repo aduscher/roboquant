@@ -23,7 +23,7 @@ import org.icepear.echarts.components.coord.cartesian.TimeAxis
 import org.icepear.echarts.components.coord.cartesian.ValueAxis
 import org.icepear.echarts.components.dataZoom.DataZoom
 import org.icepear.echarts.components.series.LineStyle
-import org.roboquant.common.TimeSeries
+import org.robok.common.TimeSeries
 import java.math.BigDecimal
 import java.math.RoundingMode
 

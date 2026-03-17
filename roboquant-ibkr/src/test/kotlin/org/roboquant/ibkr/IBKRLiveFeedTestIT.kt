@@ -16,9 +16,15 @@
 
 package org.roboquant.ibkr
 
+import org.robok.common.Config
+import org.robok.common.CurrencyK
+import org.robok.common.Logging
 import org.roboquant.common.*
-import org.roboquant.common.PriceItem
-import org.roboquant.feeds.filter
+import org.robok.common.PriceItem
+import org.robok.common.Stock
+import org.robok.common.Timeframe
+import org.robok.common.minutes
+import org.robok.feeds.filter
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
@@ -31,10 +37,10 @@ internal class IBKRLiveFeedTestIT {
         Config.getProperty("test.ibkr") ?: return
 
         val feed = IBKRLiveFeed()
-        val assets = listOf(Stock("ABN", Currency.EUR))
+        val assets = listOf(Stock("ABN", CurrencyK.EUR))
         feed.subscribe(assets, interval = 1)
 
-        feed.subscribe(Stock("KPN", Currency.EUR))
+        feed.subscribe(Stock("KPN", CurrencyK.EUR))
 
         val actions = feed.filter<PriceItem>(Timeframe.next(2.minutes)) {
             logger.info("received price $it")

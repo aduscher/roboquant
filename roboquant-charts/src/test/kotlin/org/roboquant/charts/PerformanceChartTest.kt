@@ -16,7 +16,7 @@
 
 package org.roboquant.charts
 
-import org.roboquant.feeds.random.RandomWalk
+import org.robok.feeds.random.RandomWalk
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

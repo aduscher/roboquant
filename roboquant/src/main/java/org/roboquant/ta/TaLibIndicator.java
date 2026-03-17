@@ -13,8 +13,12 @@ import kotlin.jvm.functions.Function2;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Item;
-import org.roboquant.common.PriceBar;
+import org.robok.common.Item;
+import org.robok.common.PriceBar;
+import org.robok.ta.Indicator;
+import org.robok.ta.InsufficientData;
+import org.robok.ta.PriceBarSeries;
+import org.robok.ta.TaLib;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -29,16 +33,16 @@ public final class TaLibIndicator implements Indicator {
    @NotNull
    private final Function2 block;
    @NotNull
-   private final TaLib taLib;
+   private final org.robok.ta.TaLib taLib;
    @NotNull
-   private final PriceBarSeries series;
+   private final org.robok.ta.PriceBarSeries series;
 
    public TaLibIndicator(int initialCapacity, @NotNull Function2 block) {
       Intrinsics.checkNotNullParameter(block, "block");
       super();
       this.block = block;
-      this.taLib = new TaLib((Core)null, 1, (DefaultConstructorMarker)null);
-      this.series = new PriceBarSeries(initialCapacity);
+      this.taLib = new org.robok.ta.TaLib((Core)null, 1, (DefaultConstructorMarker)null);
+      this.series = new org.robok.ta.PriceBarSeries(initialCapacity);
    }
 
    // $FF: synthetic method
@@ -81,19 +85,19 @@ public final class TaLibIndicator implements Indicator {
       }
 
       @NotNull
-      public final TaLibIndicator rsi(final int barCount) {
-         return new TaLibIndicator(0, new Function2() {
+      public final org.robok.ta.TaLibIndicator rsi(final int barCount) {
+         return new org.robok.ta.TaLibIndicator(0, new Function2() {
             @NotNull
-            public final Map invoke(@NotNull TaLib $this$$receiver, @NotNull PriceBarSeries it) {
+            public final Map invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull org.robok.ta.PriceBarSeries it) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(it, "it");
-               return MapsKt.mapOf(TuplesKt.to("rsi" + barCount, TaLib.rsi$default($this$$receiver, (PriceBarSeries)it, barCount, 0, 4, (Object)null)));
+               return MapsKt.mapOf(TuplesKt.to("rsi" + barCount, org.robok.ta.TaLib.rsi$default($this$$receiver, (org.robok.ta.PriceBarSeries)it, barCount, 0, 4, (Object)null)));
             }
          }, 1, (DefaultConstructorMarker)null);
       }
 
       // $FF: synthetic method
-      public static TaLibIndicator rsi$default(Companion var0, int var1, int var2, Object var3) {
+      public static org.robok.ta.TaLibIndicator rsi$default(Companion var0, int var1, int var2, Object var3) {
          if ((var2 & 1) != 0) {
             var1 = 10;
          }
@@ -102,13 +106,13 @@ public final class TaLibIndicator implements Indicator {
       }
 
       @NotNull
-      public final TaLibIndicator bbands(final int barCount) {
-         return new TaLibIndicator(0, new Function2() {
+      public final org.robok.ta.TaLibIndicator bbands(final int barCount) {
+         return new org.robok.ta.TaLibIndicator(0, new Function2() {
             @NotNull
-            public final Map invoke(@NotNull TaLib $this$$receiver, @NotNull PriceBarSeries it) {
+            public final Map invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull org.robok.ta.PriceBarSeries it) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(it, "it");
-               Triple var3 = TaLib.bbands$default($this$$receiver, (PriceBarSeries)it, barCount, (double)0.0F, (double)0.0F, (MAType)null, 0, 60, (Object)null);
+               Triple var3 = org.robok.ta.TaLib.bbands$default($this$$receiver, (org.robok.ta.PriceBarSeries)it, barCount, (double)0.0F, (double)0.0F, (MAType)null, 0, 60, (Object)null);
                double high = ((Number)var3.component1()).doubleValue();
                double mid = ((Number)var3.component2()).doubleValue();
                double low = ((Number)var3.component3()).doubleValue();
@@ -120,7 +124,7 @@ public final class TaLibIndicator implements Indicator {
       }
 
       // $FF: synthetic method
-      public static TaLibIndicator bbands$default(Companion var0, int var1, int var2, Object var3) {
+      public static org.robok.ta.TaLibIndicator bbands$default(Companion var0, int var1, int var2, Object var3) {
          if ((var2 & 1) != 0) {
             var1 = 10;
          }
@@ -129,19 +133,19 @@ public final class TaLibIndicator implements Indicator {
       }
 
       @NotNull
-      public final TaLibIndicator ema(final int barCount) {
-         return new TaLibIndicator(0, new Function2() {
+      public final org.robok.ta.TaLibIndicator ema(final int barCount) {
+         return new org.robok.ta.TaLibIndicator(0, new Function2() {
             @NotNull
-            public final Map invoke(@NotNull TaLib $this$$receiver, @NotNull PriceBarSeries it) {
+            public final Map invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull org.robok.ta.PriceBarSeries it) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(it, "it");
-               return MapsKt.mapOf(TuplesKt.to("ema" + barCount, TaLib.ema$default($this$$receiver, (PriceBarSeries)it, barCount, 0, 4, (Object)null)));
+               return MapsKt.mapOf(TuplesKt.to("ema" + barCount, org.robok.ta.TaLib.ema$default($this$$receiver, (org.robok.ta.PriceBarSeries)it, barCount, 0, 4, (Object)null)));
             }
          }, 1, (DefaultConstructorMarker)null);
       }
 
       // $FF: synthetic method
-      public static TaLibIndicator ema$default(Companion var0, int var1, int var2, Object var3) {
+      public static org.robok.ta.TaLibIndicator ema$default(Companion var0, int var1, int var2, Object var3) {
          if ((var2 & 1) != 0) {
             var1 = 10;
          }
@@ -150,19 +154,19 @@ public final class TaLibIndicator implements Indicator {
       }
 
       @NotNull
-      public final TaLibIndicator sma(final int barCount) {
-         return new TaLibIndicator(0, new Function2() {
+      public final org.robok.ta.TaLibIndicator sma(final int barCount) {
+         return new org.robok.ta.TaLibIndicator(0, new Function2() {
             @NotNull
-            public final Map invoke(@NotNull TaLib $this$$receiver, @NotNull PriceBarSeries it) {
+            public final Map invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull org.robok.ta.PriceBarSeries it) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(it, "it");
-               return MapsKt.mapOf(TuplesKt.to("sma" + barCount, TaLib.sma$default($this$$receiver, (PriceBarSeries)it, barCount, 0, 4, (Object)null)));
+               return MapsKt.mapOf(TuplesKt.to("sma" + barCount, org.robok.ta.TaLib.sma$default($this$$receiver, (org.robok.ta.PriceBarSeries)it, barCount, 0, 4, (Object)null)));
             }
          }, 1, (DefaultConstructorMarker)null);
       }
 
       // $FF: synthetic method
-      public static TaLibIndicator sma$default(Companion var0, int var1, int var2, Object var3) {
+      public static org.robok.ta.TaLibIndicator sma$default(Companion var0, int var1, int var2, Object var3) {
          if ((var2 & 1) != 0) {
             var1 = 10;
          }
@@ -171,19 +175,19 @@ public final class TaLibIndicator implements Indicator {
       }
 
       @NotNull
-      public final TaLibIndicator mfi(final int barCount) {
-         return new TaLibIndicator(0, new Function2() {
+      public final org.robok.ta.TaLibIndicator mfi(final int barCount) {
+         return new org.robok.ta.TaLibIndicator(0, new Function2() {
             @NotNull
-            public final Map invoke(@NotNull TaLib $this$$receiver, @NotNull PriceBarSeries it) {
+            public final Map invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull org.robok.ta.PriceBarSeries it) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(it, "it");
-               return MapsKt.mapOf(TuplesKt.to("mfi" + barCount, TaLib.mfi$default($this$$receiver, it, barCount, 0, 4, (Object)null)));
+               return MapsKt.mapOf(TuplesKt.to("mfi" + barCount, org.robok.ta.TaLib.mfi$default($this$$receiver, it, barCount, 0, 4, (Object)null)));
             }
          }, 1, (DefaultConstructorMarker)null);
       }
 
       // $FF: synthetic method
-      public static TaLibIndicator mfi$default(Companion var0, int var1, int var2, Object var3) {
+      public static org.robok.ta.TaLibIndicator mfi$default(Companion var0, int var1, int var2, Object var3) {
          if ((var2 & 1) != 0) {
             var1 = 10;
          }
@@ -192,10 +196,10 @@ public final class TaLibIndicator implements Indicator {
       }
 
       @NotNull
-      public final TaLibIndicator stochastic(final int fastKPeriod, final int slowKPeriod, final int slowDPeriod) {
-         return new TaLibIndicator(0, new Function2() {
+      public final org.robok.ta.TaLibIndicator stochastic(final int fastKPeriod, final int slowKPeriod, final int slowDPeriod) {
+         return new org.robok.ta.TaLibIndicator(0, new Function2() {
             @NotNull
-            public final Map invoke(@NotNull TaLib $this$$receiver, @NotNull PriceBarSeries it) {
+            public final Map invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull PriceBarSeries it) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(it, "it");
                Pair var3 = TaLib.stoch$default($this$$receiver, it, fastKPeriod, slowKPeriod, (MAType)null, slowDPeriod, (MAType)null, 0, 104, (Object)null);
@@ -208,7 +212,7 @@ public final class TaLibIndicator implements Indicator {
       }
 
       // $FF: synthetic method
-      public static TaLibIndicator stochastic$default(Companion var0, int var1, int var2, int var3, int var4, Object var5) {
+      public static org.robok.ta.TaLibIndicator stochastic$default(Companion var0, int var1, int var2, int var3, int var4, Object var5) {
          if ((var4 & 1) != 0) {
             var1 = 5;
          }

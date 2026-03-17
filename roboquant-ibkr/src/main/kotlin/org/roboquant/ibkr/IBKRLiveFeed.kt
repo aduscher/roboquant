@@ -18,12 +18,12 @@ package org.roboquant.ibkr
 
 import com.ib.client.Decimal
 import com.ib.client.EClientSocket
-import org.roboquant.common.Asset
-import org.roboquant.common.Logging
-import org.roboquant.common.seconds
-import org.roboquant.common.Event
-import org.roboquant.feeds.LiveFeed
-import org.roboquant.common.PriceBar
+import org.robok.common.Asset
+import org.robok.common.Logging
+import org.robok.common.seconds
+import org.robok.common.EventK
+import org.robok.feeds.LiveFeed
+import org.robok.common.PriceBar
 import org.roboquant.ibkr.IBKR.toContract
 import java.time.Instant
 
@@ -31,7 +31,7 @@ import java.time.Instant
  * Get realtime bars from IBKR. Please note that often you need paid subscriptions to get access to this
  * data and there are additional limitations to the frequency you can invoke their API's.
  *
- * Please note each [Event] will contain only a single asset at a time, even if subscribed to multiple assets.
+ * Please note each [EventK] will contain only a single asset at a time, even if subscribed to multiple assets.
  *
  * The default settings like the port number are the ones for a paper trading account. It is convenient to
  * share the market data subscriptions between live and paper trading accounts, so it is recommended to
@@ -117,7 +117,7 @@ class IBKRLiveFeed(configure: IBKRConfig.() -> Unit = {}) : LiveFeed() {
                 val v = volume?.value()?.toDouble() ?: Double.NaN
                 val action = PriceBar(subscription.asset, open, high, low, close, v, subscription.interval.seconds)
                 val now = Instant.ofEpochSecond(time) // IBKR uses second-resolution
-                val event = Event(now, listOf(action))
+                val event = EventK(now, listOf(action))
                 logger.trace { "send event=$event" }
                 send(event)
             }

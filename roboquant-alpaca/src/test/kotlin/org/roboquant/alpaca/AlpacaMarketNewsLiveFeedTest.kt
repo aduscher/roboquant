@@ -17,9 +17,9 @@
 package org.roboquant.alpaca
 
 import kotlinx.coroutines.runBlocking
-import org.roboquant.common.NewsItems
-import org.roboquant.common.Stock
-import org.roboquant.feeds.EventChannel
+import org.robok.common.NewsItems
+import org.robok.common.Stock
+import org.robok.feeds.EventChannel
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertEquals

@@ -1,34 +1,46 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.brokers;
 
-import java.time.Instant;
-import kotlin.Metadata;
-import kotlin.jvm.internal.Intrinsics;
-import org.jetbrains.annotations.NotNull;
 import org.roboquant.common.Amount;
 import org.roboquant.common.Currency;
-import org.roboquant.common.UnsupportedException;
+import java.time.Instant;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000$\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u0006\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J \u0010\u0003\u001a\u00020\u00042\u0006\u0010\u0005\u001a\u00020\u00062\u0006\u0010\u0007\u001a\u00020\b2\u0006\u0010\t\u001a\u00020\nH\u0016¨\u0006\u000b"},
-   d2 = {"Lorg/roboquant/brokers/NoExchangeRates;", "Lorg/roboquant/brokers/ExchangeRates;", "()V", "getRate", "", "amount", "Lorg/roboquant/common/Amount;", "to", "Lorg/roboquant/common/Currency;", "time", "Ljava/time/Instant;", "roboquant"}
-)
-public final class NoExchangeRates implements ExchangeRates {
-   public double getRate(@NotNull Amount amount, @NotNull Currency to, @NotNull Instant time) {
-      Intrinsics.checkNotNullParameter(amount, "amount");
-      Intrinsics.checkNotNullParameter(to, "to");
-      Intrinsics.checkNotNullParameter(time, "time");
-      if (amount.getCurrency() == to) {
-         return (double)1.0F;
-      } else {
-         throw new UnsupportedException("Cannot convert " + amount + " to " + to);
-      }
-   }
+/**
+ * This implementation will not convert between different currencies and only return an exchange rate of 1.0 if from
+ * and to are the same currency.
+ * It will throw an UnsupportedException in all other use cases.
+ */
+public class NoExchangeRates implements ExchangeRates {
 
-   @NotNull
-   public Amount convert(@NotNull Amount amount, @NotNull Currency to, @NotNull Instant time) {
-      return ExchangeRates.DefaultImpls.convert(this, amount, to, time);
-   }
+    /**
+     * Return the conversion rate between two currencies.
+     * @see ExchangeRates#getRate
+     *
+     * @param amount The total amount to be converted
+     * @param to the target currency
+     * @param time the time of conversion
+     * @return The rate to use
+     */
+    @Override
+    public double getRate(Amount amount, Currency to, Instant time) {
+        if (amount.getCurrency() == to)
+            return 1.0;
+        throw new IllegalArgumentException("Cannot convert " + amount + " to " + to);
+    }
+
 }

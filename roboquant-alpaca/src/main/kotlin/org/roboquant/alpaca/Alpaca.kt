@@ -20,8 +20,8 @@ import net.jacobpeterson.alpaca.AlpacaAPI
 import net.jacobpeterson.alpaca.model.util.apitype.MarketDataWebsocketSourceType
 import net.jacobpeterson.alpaca.model.util.apitype.TraderAPIEndpointType
 import net.jacobpeterson.alpaca.openapi.marketdata.model.StockFeed
-import org.roboquant.common.Config
-import org.roboquant.common.Exchange
+import org.robok.common.Config
+import org.robok.common.Exchange
 
 /**
  * Alias for EndpointAPIType

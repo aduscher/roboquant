@@ -1,95 +1,157 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.common;
 
+import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.NoSuchElementException;
-import kotlin.Metadata;
-import kotlin.jvm.internal.SourceDebugExtension;
-import org.jetbrains.annotations.NotNull;
+import java.util.Set;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u00004\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0010\t\n\u0000\n\u0002\u0010\u0013\n\u0002\b\u0004\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0006\n\u0000\n\u0002\u0010\u0002\n\u0002\b\u0007\b\u0016\u0018\u00002\u00020\u0001B\r\u0012\u0006\u0010\u0002\u001a\u00020\u0003¢\u0006\u0002\u0010\u0004J\u0010\u0010\f\u001a\u00020\r2\u0006\u0010\u000e\u001a\u00020\u000fH\u0016J\b\u0010\u0010\u001a\u00020\u0011H\u0016J\u000e\u0010\u0012\u001a\u00020\u00112\u0006\u0010\u0013\u001a\u00020\u0003J\u0006\u0010\u0014\u001a\u00020\rJ\b\u0010\u0015\u001a\u00020\u000fH\u0016J\u0006\u0010\u0016\u001a\u00020\bJ\u0010\u0010\u0017\u001a\u00020\r2\u0006\u0010\u000e\u001a\u00020\u000fH\u0016R\u000e\u0010\u0002\u001a\u00020\u0003X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0005\u001a\u00020\u0006X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0007\u001a\u00020\bX\u0082\u000e¢\u0006\u0002\n\u0000R\u0011\u0010\t\u001a\u00020\u00038F¢\u0006\u0006\u001a\u0004\b\n\u0010\u000b¨\u0006\u0018"},
-   d2 = {"Lorg/roboquant/common/PriceSeries;", "", "capacity", "", "(I)V", "counter", "", "data", "", "size", "getSize", "()I", "add", "", "price", "", "clear", "", "increaseCapacity", "newCapacity", "isFull", "last", "toDoubleArray", "update", "roboquant"}
-)
-@SourceDebugExtension({"SMAP\nPriceSeries.kt\nKotlin\n*S Kotlin\n*F\n+ 1 PriceSeries.kt\norg/roboquant/common/PriceSeries\n+ 2 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,137:1\n1#2:138\n*E\n"})
+/**
+ * Holds a fix amount of historic prices. When adding a new value while the buffer is full, the oldest one will be
+ * removed (aka a circular buffer). This is typically used by strategies to track rolling windows or replay buffers.
+ *
+ * Internally, it uses a double[] to hold the price values. Instances of this class are not thread safe during
+ * updates.
+ */
 public class PriceSeries {
-   private int capacity;
-   @NotNull
-   private double[] data;
-   private long counter;
 
-   public PriceSeries(int capacity) {
-      this.capacity = capacity;
-      this.data = new double[this.capacity];
-   }
+    private int capacity;
+    private double[] data;
+    private long counter;
 
-   public boolean add(double price) {
-      int index = (int)(this.counter % (long)this.capacity);
-      this.data[index] = price;
-      int var4 = this.counter++;
-      return this.isFull();
-   }
+    public PriceSeries(int capacity) {
+        this.capacity = capacity;
+        this.data = new double[capacity];
+    }
 
-   public boolean update(double price) {
-      if (this.counter == 0L) {
-         throw new NoSuchElementException();
-      } else {
-         int index = (int)((this.counter - 1L) % (long)this.capacity);
-         this.data[index] = price;
-         return this.isFull();
-      }
-   }
+    /**
+     * Append a new price to the end of the buffer. If the buffer is full, the first element will be removed to make
+     * room.
+     *
+     * @param price the price to add
+     * @return true if the buffer is full, false otherwise
+     */
+    public boolean add(double price) {
+        int index = (int) (counter % capacity);
+        data[index] = price;
+        counter++;
+        return isFull();
+    }
 
-   public double last() {
-      if (this.counter == 0L) {
-         throw new NoSuchElementException();
-      } else {
-         int index = (int)((this.counter - 1L) % (long)this.capacity);
-         return this.data[index];
-      }
-   }
+    /**
+     * Update the last price with a new price.
+     *
+     * @param price the new price
+     * @return true if the buffer is full, false otherwise
+     */
+    public boolean update(double price) {
+        if (counter == 0L) throw new NoSuchElementException();
+        int index = (int) ((counter - 1) % capacity);
+        data[index] = price;
+        return isFull();
+    }
 
-   public final boolean isFull() {
-      return this.counter >= (long)this.capacity;
-   }
+    /**
+     * Return the last added price, even if the buffer isn't filled yet.
+     *
+     * @return the last price
+     */
+    public double last() {
+        if (counter == 0L) throw new NoSuchElementException();
+        int index = (int) ((counter - 1) % capacity);
+        return data[index];
+    }
 
-   public final int getSize() {
-      return this.counter > (long)this.capacity ? this.capacity : (int)this.counter;
-   }
+    /**
+     * Return true if the rolling window is fully filled, so it is ready to be used.
+     *
+     * @return true if full
+     */
+    public boolean isFull() {
+        return counter >= capacity;
+    }
 
-   @NotNull
-   public final double[] toDoubleArray() {
-      double[] result = new double[this.getSize()];
-      double[] var10000;
-      if (this.counter > (long)this.capacity) {
-         int offset = (int)(this.counter % (long)this.capacity);
-         System.arraycopy(this.data, offset, result, 0, this.capacity - offset);
-         System.arraycopy(this.data, 0, result, this.capacity - offset, offset);
-         var10000 = result;
-      } else {
-         System.arraycopy(this.data, 0, result, 0, result.length);
-         var10000 = result;
-      }
+    /**
+     * Return the size of this price series.
+     *
+     * @return the size
+     */
+    public int getSize() {
+        return counter > capacity ? capacity : (int) counter;
+    }
 
-      return var10000;
-   }
+    /**
+     * Return the stored values as a double[]. If this method is invoked before the buffer is full, it will
+     * return a smaller array of length PriceSeries.getSize().
+     *
+     * @return the data as double array
+     */
+    public double[] toDoubleArray() {
+        double[] result = new double[getSize()];
+        if (counter > capacity) {
+            int offset = (int) (counter % capacity);
+            System.arraycopy(data, offset, result, 0, capacity - offset);
+            System.arraycopy(data, 0, result, capacity - offset, offset);
+        } else {
+            System.arraycopy(data, 0, result, 0, result.length);
+        }
+        return result;
+    }
 
-   public final void increaseCapacity(int newCapacity) {
-      if (newCapacity <= this.capacity) {
-         int var3 = 0;
-         String var4 = "new capcity should be larger than old one, new=" + newCapacity + " old=" + this.capacity;
-         throw new IllegalArgumentException(var4.toString());
-      } else {
-         double[] oldData = this.toDoubleArray();
-         this.data = new double[newCapacity];
-         System.arraycopy(oldData, 0, this.data, 0, this.getSize());
-         this.capacity = newCapacity;
-      }
-   }
+    /**
+     * Increase the capacity to the newCapacity.
+     *
+     * @param newCapacity the new capacity
+     */
+    public void increaseCapacity(int newCapacity) {
+        if (newCapacity <= capacity) {
+            throw new IllegalArgumentException("new capacity should be larger than old one, new=" + newCapacity + " old=" + capacity);
+        }
+        double[] oldData = toDoubleArray();
+        data = new double[newCapacity];
+        System.arraycopy(oldData, 0, data, 0, getSize());
+        capacity = newCapacity;
+    }
 
-   public void clear() {
-      this.counter = 0L;
-      this.data = new double[this.capacity];
-   }
+    /**
+     * Clear the buffer and reset the capacity to the initial capacity.
+     */
+    public void clear() {
+        counter = 0L;
+        data = new double[capacity];
+    }
+
+    public static Set<Asset> addAll(Map<Asset, PriceSeries> map, Event event, int capacity, String priceType) {
+        Set<Asset> result = new LinkedHashSet<>();
+        for (Map.Entry<Asset, Item.PriceItem> entry : event.getPrices().entrySet()) {
+            Asset asset = entry.getKey();
+            Item.PriceItem item = entry.getValue();
+            PriceSeries priceSeries = map.computeIfAbsent(asset, k -> new PriceSeries(capacity));
+            priceSeries.add(item.getPrice(priceType));
+            if (priceSeries.isFull()) {
+                result.add(asset);
+            }
+        }
+        return result;
+    }
+
+    public static Set<Asset> addAll(Map<Asset, PriceSeries> map, Event event, int capacity) {
+        return addAll(map, event, capacity, "DEFAULT");
+    }
+
 }

@@ -12,10 +12,10 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.SourceDebugExtension;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Asset;
-import org.roboquant.common.ExtensionsKt;
-import org.roboquant.common.Signal;
-import org.roboquant.common.SignalType;
+import org.robok.common.Asset;
+import org.robok.common.ExtensionsKt;
+import org.robok.common.Signal;
+import org.robok.common.SignalType;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -96,7 +96,7 @@ public final class SignalResolverKt {
       for(Object element$iv$iv : $this$groupBy$iv) {
          Signal it = (Signal)element$iv$iv;
          int var53 = 0;
-         if (!ExtensionsKt.getIszero(it.getRating())) {
+         if (!org.robok.common.ExtensionsKt.getIszero(it.getRating())) {
             destination$iv$iv.add(element$iv$iv);
          }
       }

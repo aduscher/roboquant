@@ -4,7 +4,9 @@ import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.random.Random;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Config;
+import org.robok.common.Config;
+import org.robok.traders.SignalShuffleTrader;
+import org.robok.traders.Trader;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -15,18 +17,18 @@ import org.roboquant.common.Config;
 )
 public final class SignalResolutionKt {
    @NotNull
-   public static final Trader shuffleSignals(@NotNull Trader $this$shuffleSignals, @NotNull Random random) {
+   public static final org.robok.traders.Trader shuffleSignals(@NotNull org.robok.traders.Trader $this$shuffleSignals, @NotNull Random random) {
       Intrinsics.checkNotNullParameter($this$shuffleSignals, "<this>");
       Intrinsics.checkNotNullParameter(random, "random");
-      return new SignalShuffleTrader($this$shuffleSignals, random);
+      return new org.robok.traders.SignalShuffleTrader($this$shuffleSignals, random);
    }
 
    // $FF: synthetic method
-   public static Trader shuffleSignals$default(Trader var0, Random var1, int var2, Object var3) {
+   public static org.robok.traders.Trader shuffleSignals$default(Trader var0, Random var1, int var2, Object var3) {
       if ((var2 & 1) != 0) {
          var1 = Config.INSTANCE.getRandom();
       }
 
-      return shuffleSignals(var0, var1);
+      return org.robok.traders.SignalResolutionKt.shuffleSignals(var0, var1);
    }
 }

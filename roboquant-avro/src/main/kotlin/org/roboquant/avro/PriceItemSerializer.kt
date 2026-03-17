@@ -16,18 +16,18 @@
 
 package org.roboquant.avro
 
-import org.roboquant.common.Asset
-import org.roboquant.common.OrderBook
-import org.roboquant.common.PriceBar
-import org.roboquant.common.PriceItem
-import org.roboquant.common.PriceItemType
-import org.roboquant.common.PriceQuote
-import org.roboquant.common.TimeSpan
-import org.roboquant.common.TradePrice
-import org.roboquant.common.UnsupportedException
+import org.robok.common.Asset
+import org.robok.common.OrderBook
+import org.robok.common.PriceBar
+import org.robok.common.PriceItem
+import org.robok.common.PriceItemType
+import org.robok.common.PriceQuote
+import org.robok.common.TimeSpan
+import org.robok.common.TradePrice
+import org.robok.common.UnsupportedException
 
 /**
- * Used by AvroFeed to serialize and deserialize [org.roboquant.common.PriceItem] to a DoubleArray, so it
+ * Used by AvroFeed to serialize and deserialize [PriceItem] to a DoubleArray, so it
  * can be stored in an Avro file.
  */
 internal class PriceItemSerializer {

@@ -1,0 +1,62 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.robok.brokers
+
+import org.robok.TestData
+import org.robok.common.CurrencyK.Companion.EUR
+import org.robok.common.CurrencyK.Companion.GBP
+import org.robok.common.CurrencyK.Companion.JPY
+import org.robok.common.CurrencyK.Companion.USD
+import org.robok.common.EUR
+import org.robok.common.USD
+import java.time.Instant
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+
+internal class ECBExchangeRatesTest {
+
+    @Test
+    fun testECBReferenceRates() {
+        val fileName = TestData.dataDir() + "ECB/eurofxref-hist.csv"
+        val x = ECBExchangeRates.fromFile(fileName)
+
+        var c = x.getRate(100.EUR, EUR, Instant.now())
+        assertEquals(1.0, c)
+
+        c = x.getRate(100.USD, EUR, Instant.now())
+        assertTrue(c < 100.0)
+
+        c = x.getRate(100.EUR, JPY, Instant.now())
+        assertTrue(c > 100.0)
+
+        val r1 = x.getRate(100.USD, JPY, Instant.MIN)
+        val r2 = x.getRate(100.USD, JPY, Instant.MIN.plusMillis(1L))
+        assertEquals(r1, r2)
+
+        c = x.getRate(100.USD, JPY, Instant.MAX)
+        assertTrue(c > 100.0)
+
+        val currencies = x.currencies
+        assertTrue(JPY in currencies)
+        assertTrue(EUR in currencies)
+        assertTrue(USD in currencies)
+        assertTrue(GBP in currencies)
+    }
+
+
+}

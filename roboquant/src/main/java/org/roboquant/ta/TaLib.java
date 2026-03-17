@@ -11,7 +11,9 @@ import kotlin.collections.ArraysKt;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.DoesNotComputeException;
+import org.robok.common.DoesNotComputeException;
+import org.robok.ta.InsufficientData;
+import org.robok.ta.PriceBarSeries;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -60,14 +62,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.acosLookback() + previous;
-         throw new InsufficientData("acos", lookback + 1);
+         throw new org.robok.ta.InsufficientData("acos", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double acos$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double acos$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -75,13 +77,13 @@ public final class TaLib {
       return var0.acos(var1, var2);
    }
 
-   public final double acos(@NotNull PriceBarSeries serie, int previous) {
+   public final double acos(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.acos(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double acos$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double acos$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -103,14 +105,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.adLookback() + previous;
-         throw new InsufficientData("ad", lookback + 1);
+         throw new org.robok.ta.InsufficientData("ad", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double ad$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static double ad$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -118,13 +120,13 @@ public final class TaLib {
       return var0.ad(var1, var2, var3, var4, var5);
    }
 
-   public final double ad(@NotNull PriceBarSeries serie, int previous) {
+   public final double ad(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.ad(serie.getHigh(), serie.getLow(), serie.getClose(), serie.getVolume(), previous);
    }
 
    // $FF: synthetic method
-   public static double ad$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double ad$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -144,14 +146,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.addLookback() + previous;
-         throw new InsufficientData("add", lookback + 1);
+         throw new org.robok.ta.InsufficientData("add", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double add$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
+   public static double add$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
@@ -173,14 +175,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.adOscLookback(fastPeriod, slowPeriod) + previous;
-         throw new InsufficientData("adOsc", lookback + 1);
+         throw new org.robok.ta.InsufficientData("adOsc", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double adOsc$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, int var7, int var8, Object var9) {
+   public static double adOsc$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = 3;
       }
@@ -196,13 +198,13 @@ public final class TaLib {
       return var0.adOsc(var1, var2, var3, var4, var5, var6, var7);
    }
 
-   public final double adOsc(@NotNull PriceBarSeries serie, int fastPeriod, int slowPeriod, int previous) {
+   public final double adOsc(@NotNull org.robok.ta.PriceBarSeries serie, int fastPeriod, int slowPeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.adOsc(serie.getHigh(), serie.getLow(), serie.getClose(), serie.getVolume(), fastPeriod, slowPeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double adOsc$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, int var5, Object var6) {
+   public static double adOsc$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 3;
       }
@@ -231,14 +233,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.adxLookback(timePeriod) + previous;
-         throw new InsufficientData("adx", lookback + 1);
+         throw new org.robok.ta.InsufficientData("adx", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double adx$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double adx$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -250,13 +252,13 @@ public final class TaLib {
       return var0.adx(var1, var2, var3, var4, var5);
    }
 
-   public final double adx(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double adx(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.adx(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double adx$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double adx$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -281,14 +283,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.adxrLookback(timePeriod) + previous;
-         throw new InsufficientData("adxr", lookback + 1);
+         throw new org.robok.ta.InsufficientData("adxr", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double adxr$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double adxr$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -300,13 +302,13 @@ public final class TaLib {
       return var0.adxr(var1, var2, var3, var4, var5);
    }
 
-   public final double adxr(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double adxr(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.adxr(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double adxr$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double adxr$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -330,14 +332,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.apoLookback(fastPeriod, slowPeriod, mAType) + previous;
-         throw new InsufficientData("apo", lookback + 1);
+         throw new org.robok.ta.InsufficientData("apo", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double apo$default(TaLib var0, double[] var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
+   public static double apo$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 12;
       }
@@ -357,14 +359,14 @@ public final class TaLib {
       return var0.apo(var1, var2, var3, var4, var5);
    }
 
-   public final double apo(@NotNull PriceBarSeries serie, int fastPeriod, int slowPeriod, @NotNull MAType mAType, int previous) {
+   public final double apo(@NotNull org.robok.ta.PriceBarSeries serie, int fastPeriod, int slowPeriod, @NotNull MAType mAType, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(mAType, "mAType");
       return this.apo(serie.getClose(), fastPeriod, slowPeriod, mAType, previous);
    }
 
    // $FF: synthetic method
-   public static double apo$default(TaLib var0, PriceBarSeries var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
+   public static double apo$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 12;
       }
@@ -398,14 +400,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.aroonLookback(timePeriod) + previous;
-         throw new InsufficientData("aroon", lookback + 1);
+         throw new org.robok.ta.InsufficientData("aroon", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair aroon$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static Pair aroon$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 14;
       }
@@ -418,13 +420,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair aroon(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final Pair aroon(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.aroon(serie.getHigh(), serie.getLow(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static Pair aroon$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static Pair aroon$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -448,14 +450,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.aroonOscLookback(timePeriod) + previous;
-         throw new InsufficientData("aroonOsc", lookback + 1);
+         throw new org.robok.ta.InsufficientData("aroonOsc", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double aroonOsc$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static double aroonOsc$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 14;
       }
@@ -467,13 +469,13 @@ public final class TaLib {
       return var0.aroonOsc(var1, var2, var3, var4);
    }
 
-   public final double aroonOsc(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double aroonOsc(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.aroonOsc(serie.getHigh(), serie.getLow(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double aroonOsc$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double aroonOsc$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -496,14 +498,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.asinLookback() + previous;
-         throw new InsufficientData("asin", lookback + 1);
+         throw new org.robok.ta.InsufficientData("asin", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double asin$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double asin$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -511,13 +513,13 @@ public final class TaLib {
       return var0.asin(var1, var2);
    }
 
-   public final double asin(@NotNull PriceBarSeries serie, int previous) {
+   public final double asin(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.asin(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double asin$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double asin$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -536,14 +538,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.atanLookback() + previous;
-         throw new InsufficientData("atan", lookback + 1);
+         throw new org.robok.ta.InsufficientData("atan", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double atan$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double atan$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -551,13 +553,13 @@ public final class TaLib {
       return var0.atan(var1, var2);
    }
 
-   public final double atan(@NotNull PriceBarSeries serie, int previous) {
+   public final double atan(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.atan(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double atan$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double atan$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -578,14 +580,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.atrLookback(timePeriod) + previous;
-         throw new InsufficientData("atr", lookback + 1);
+         throw new org.robok.ta.InsufficientData("atr", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double atr$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double atr$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -597,13 +599,13 @@ public final class TaLib {
       return var0.atr(var1, var2, var3, var4, var5);
    }
 
-   public final double atr(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double atr(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.atr(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double atr$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double atr$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -629,14 +631,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.avgPriceLookback() + previous;
-         throw new InsufficientData("avgPrice", lookback + 1);
+         throw new org.robok.ta.InsufficientData("avgPrice", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double avgPrice$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static double avgPrice$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -644,13 +646,13 @@ public final class TaLib {
       return var0.avgPrice(var1, var2, var3, var4, var5);
    }
 
-   public final double avgPrice(@NotNull PriceBarSeries serie, int previous) {
+   public final double avgPrice(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.avgPrice(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double avgPrice$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double avgPrice$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -673,14 +675,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.bbandsLookback(timePeriod, deviationsup, deviationsdown, mAType) + previous;
-         throw new InsufficientData("bbands", lookback + 1);
+         throw new org.robok.ta.InsufficientData("bbands", lookback + 1);
       } else {
          return new Triple(output1[0], output2[0], output3[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Triple bbands$default(TaLib var0, double[] var1, int var2, double var3, double var5, MAType var7, int var8, int var9, Object var10) {
+   public static Triple bbands$default(org.robok.ta.TaLib var0, double[] var1, int var2, double var3, double var5, MAType var7, int var8, int var9, Object var10) {
       if ((var9 & 2) != 0) {
          var2 = 5;
       }
@@ -705,14 +707,14 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Triple bbands(@NotNull PriceBarSeries serie, int timePeriod, double deviationsup, double deviationsdown, @NotNull MAType mAType, int previous) {
+   public final Triple bbands(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, double deviationsup, double deviationsdown, @NotNull MAType mAType, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(mAType, "mAType");
       return this.bbands(serie.getClose(), timePeriod, deviationsup, deviationsdown, mAType, previous);
    }
 
    // $FF: synthetic method
-   public static Triple bbands$default(TaLib var0, PriceBarSeries var1, int var2, double var3, double var5, MAType var7, int var8, int var9, Object var10) {
+   public static Triple bbands$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, double var3, double var5, MAType var7, int var8, int var9, Object var10) {
       if ((var9 & 2) != 0) {
          var2 = 5;
       }
@@ -748,14 +750,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.betaLookback(timePeriod) + previous;
-         throw new InsufficientData("beta", lookback + 1);
+         throw new org.robok.ta.InsufficientData("beta", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double beta$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static double beta$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 5;
       }
@@ -781,14 +783,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.bopLookback() + previous;
-         throw new InsufficientData("bop", lookback + 1);
+         throw new org.robok.ta.InsufficientData("bop", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double bop$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static double bop$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -796,13 +798,13 @@ public final class TaLib {
       return var0.bop(var1, var2, var3, var4, var5);
    }
 
-   public final double bop(@NotNull PriceBarSeries serie, int previous) {
+   public final double bop(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.bop(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double bop$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double bop$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -823,14 +825,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cciLookback(timePeriod) + previous;
-         throw new InsufficientData("cci", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cci", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double cci$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double cci$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -842,13 +844,13 @@ public final class TaLib {
       return var0.cci(var1, var2, var3, var4, var5);
    }
 
-   public final double cci(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double cci(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cci(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double cci$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double cci$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -874,14 +876,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl2CrowsLookback() + previous;
-         throw new InsufficientData("cdl2Crows", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl2Crows", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl2Crows$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl2Crows$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -889,13 +891,13 @@ public final class TaLib {
       return var0.cdl2Crows(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl2Crows(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl2Crows(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl2Crows(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl2Crows$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl2Crows$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -917,14 +919,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl3BlackCrowsLookback() + previous;
-         throw new InsufficientData("cdl3BlackCrows", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl3BlackCrows", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl3BlackCrows$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl3BlackCrows$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -932,13 +934,13 @@ public final class TaLib {
       return var0.cdl3BlackCrows(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl3BlackCrows(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl3BlackCrows(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl3BlackCrows(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl3BlackCrows$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl3BlackCrows$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -960,14 +962,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl3InsideLookback() + previous;
-         throw new InsufficientData("cdl3Inside", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl3Inside", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl3Inside$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl3Inside$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -975,13 +977,13 @@ public final class TaLib {
       return var0.cdl3Inside(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl3Inside(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl3Inside(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl3Inside(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl3Inside$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl3Inside$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1003,14 +1005,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl3LineStrikeLookback() + previous;
-         throw new InsufficientData("cdl3LineStrike", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl3LineStrike", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl3LineStrike$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl3LineStrike$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1018,13 +1020,13 @@ public final class TaLib {
       return var0.cdl3LineStrike(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl3LineStrike(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl3LineStrike(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl3LineStrike(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl3LineStrike$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl3LineStrike$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1046,14 +1048,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl3OutsideLookback() + previous;
-         throw new InsufficientData("cdl3Outside", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl3Outside", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl3Outside$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl3Outside$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1061,13 +1063,13 @@ public final class TaLib {
       return var0.cdl3Outside(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl3Outside(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl3Outside(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl3Outside(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl3Outside$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl3Outside$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1089,14 +1091,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl3StarsInSouthLookback() + previous;
-         throw new InsufficientData("cdl3StarsInSouth", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl3StarsInSouth", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl3StarsInSouth$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl3StarsInSouth$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1104,13 +1106,13 @@ public final class TaLib {
       return var0.cdl3StarsInSouth(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl3StarsInSouth(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl3StarsInSouth(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl3StarsInSouth(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl3StarsInSouth$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl3StarsInSouth$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1132,14 +1134,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdl3WhiteSoldiersLookback() + previous;
-         throw new InsufficientData("cdl3WhiteSoldiers", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdl3WhiteSoldiers", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdl3WhiteSoldiers$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdl3WhiteSoldiers$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1147,13 +1149,13 @@ public final class TaLib {
       return var0.cdl3WhiteSoldiers(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdl3WhiteSoldiers(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdl3WhiteSoldiers(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdl3WhiteSoldiers(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdl3WhiteSoldiers$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdl3WhiteSoldiers$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1175,14 +1177,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlAbandonedBabyLookback(penetration) + previous;
-         throw new InsufficientData("cdlAbandonedBaby", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlAbandonedBaby", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlAbandonedBaby$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlAbandonedBaby$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = 0.3;
       }
@@ -1194,13 +1196,13 @@ public final class TaLib {
       return var0.cdlAbandonedBaby(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlAbandonedBaby(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlAbandonedBaby(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlAbandonedBaby(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlAbandonedBaby$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlAbandonedBaby$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 0.3;
       }
@@ -1226,14 +1228,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlAdvanceBlockLookback() + previous;
-         throw new InsufficientData("cdlAdvanceBlock", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlAdvanceBlock", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlAdvanceBlock$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlAdvanceBlock$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1241,13 +1243,13 @@ public final class TaLib {
       return var0.cdlAdvanceBlock(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlAdvanceBlock(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlAdvanceBlock(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlAdvanceBlock(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlAdvanceBlock$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlAdvanceBlock$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1269,14 +1271,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlBeltHoldLookback() + previous;
-         throw new InsufficientData("cdlBeltHold", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlBeltHold", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlBeltHold$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlBeltHold$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1284,13 +1286,13 @@ public final class TaLib {
       return var0.cdlBeltHold(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlBeltHold(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlBeltHold(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlBeltHold(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlBeltHold$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlBeltHold$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1312,14 +1314,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlBreakawayLookback() + previous;
-         throw new InsufficientData("cdlBreakaway", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlBreakaway", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlBreakaway$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlBreakaway$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1327,13 +1329,13 @@ public final class TaLib {
       return var0.cdlBreakaway(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlBreakaway(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlBreakaway(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlBreakaway(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlBreakaway$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlBreakaway$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1355,14 +1357,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlClosingMarubozuLookback() + previous;
-         throw new InsufficientData("cdlClosingMarubozu", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlClosingMarubozu", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlClosingMarubozu$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlClosingMarubozu$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1370,13 +1372,13 @@ public final class TaLib {
       return var0.cdlClosingMarubozu(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlClosingMarubozu(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlClosingMarubozu(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlClosingMarubozu(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlClosingMarubozu$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlClosingMarubozu$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1398,14 +1400,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlConcealBabysWallLookback() + previous;
-         throw new InsufficientData("cdlConcealBabysWall", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlConcealBabysWall", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlConcealBabysWall$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlConcealBabysWall$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1413,13 +1415,13 @@ public final class TaLib {
       return var0.cdlConcealBabysWall(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlConcealBabysWall(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlConcealBabysWall(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlConcealBabysWall(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlConcealBabysWall$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlConcealBabysWall$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1441,14 +1443,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlCounterAttackLookback() + previous;
-         throw new InsufficientData("cdlCounterAttack", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlCounterAttack", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlCounterAttack$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlCounterAttack$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1456,13 +1458,13 @@ public final class TaLib {
       return var0.cdlCounterAttack(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlCounterAttack(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlCounterAttack(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlCounterAttack(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlCounterAttack$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlCounterAttack$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1484,14 +1486,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlDarkCloudCoverLookback(penetration) + previous;
-         throw new InsufficientData("cdlDarkCloudCover", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlDarkCloudCover", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlDarkCloudCover$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlDarkCloudCover$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = (double)0.5F;
       }
@@ -1503,13 +1505,13 @@ public final class TaLib {
       return var0.cdlDarkCloudCover(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlDarkCloudCover(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlDarkCloudCover(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlDarkCloudCover(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlDarkCloudCover$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlDarkCloudCover$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = (double)0.5F;
       }
@@ -1535,14 +1537,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlDojiLookback() + previous;
-         throw new InsufficientData("cdlDoji", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlDoji", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlDoji$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlDoji$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1550,13 +1552,13 @@ public final class TaLib {
       return var0.cdlDoji(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlDoji(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlDoji(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlDoji(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlDoji$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlDoji$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1578,14 +1580,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlDojiStarLookback() + previous;
-         throw new InsufficientData("cdlDojiStar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlDojiStar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlDojiStar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlDojiStar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1593,13 +1595,13 @@ public final class TaLib {
       return var0.cdlDojiStar(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlDojiStar(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlDojiStar(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlDojiStar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlDojiStar$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlDojiStar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1621,14 +1623,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlDragonflyDojiLookback() + previous;
-         throw new InsufficientData("cdlDragonflyDoji", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlDragonflyDoji", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlDragonflyDoji$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlDragonflyDoji$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1636,13 +1638,13 @@ public final class TaLib {
       return var0.cdlDragonflyDoji(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlDragonflyDoji(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlDragonflyDoji(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlDragonflyDoji(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlDragonflyDoji$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlDragonflyDoji$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1664,14 +1666,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlEngulfingLookback() + previous;
-         throw new InsufficientData("cdlEngulfing", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlEngulfing", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlEngulfing$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlEngulfing$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1679,13 +1681,13 @@ public final class TaLib {
       return var0.cdlEngulfing(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlEngulfing(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlEngulfing(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlEngulfing(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlEngulfing$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlEngulfing$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1707,14 +1709,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlEveningDojiStarLookback(penetration) + previous;
-         throw new InsufficientData("cdlEveningDojiStar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlEveningDojiStar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlEveningDojiStar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlEveningDojiStar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = 0.3;
       }
@@ -1726,13 +1728,13 @@ public final class TaLib {
       return var0.cdlEveningDojiStar(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlEveningDojiStar(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlEveningDojiStar(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlEveningDojiStar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlEveningDojiStar$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlEveningDojiStar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 0.3;
       }
@@ -1758,14 +1760,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlEveningStarLookback(penetration) + previous;
-         throw new InsufficientData("cdlEveningStar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlEveningStar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlEveningStar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlEveningStar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = 0.3;
       }
@@ -1777,13 +1779,13 @@ public final class TaLib {
       return var0.cdlEveningStar(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlEveningStar(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlEveningStar(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlEveningStar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlEveningStar$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlEveningStar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 0.3;
       }
@@ -1809,14 +1811,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlGapSideSideWhiteLookback() + previous;
-         throw new InsufficientData("cdlGapSideSideWhite", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlGapSideSideWhite", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlGapSideSideWhite$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlGapSideSideWhite$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1824,13 +1826,13 @@ public final class TaLib {
       return var0.cdlGapSideSideWhite(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlGapSideSideWhite(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlGapSideSideWhite(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlGapSideSideWhite(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlGapSideSideWhite$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlGapSideSideWhite$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1852,14 +1854,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlGravestoneDojiLookback() + previous;
-         throw new InsufficientData("cdlGravestoneDoji", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlGravestoneDoji", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlGravestoneDoji$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlGravestoneDoji$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1867,13 +1869,13 @@ public final class TaLib {
       return var0.cdlGravestoneDoji(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlGravestoneDoji(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlGravestoneDoji(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlGravestoneDoji(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlGravestoneDoji$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlGravestoneDoji$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1895,14 +1897,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHammerLookback() + previous;
-         throw new InsufficientData("cdlHammer", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHammer", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHammer$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHammer$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1910,13 +1912,13 @@ public final class TaLib {
       return var0.cdlHammer(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHammer(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHammer(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHammer(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHammer$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHammer$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1938,14 +1940,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHangingManLookback() + previous;
-         throw new InsufficientData("cdlHangingMan", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHangingMan", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHangingMan$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHangingMan$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1953,13 +1955,13 @@ public final class TaLib {
       return var0.cdlHangingMan(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHangingMan(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHangingMan(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHangingMan(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHangingMan$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHangingMan$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -1981,14 +1983,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHaramiLookback() + previous;
-         throw new InsufficientData("cdlHarami", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHarami", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHarami$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHarami$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -1996,13 +1998,13 @@ public final class TaLib {
       return var0.cdlHarami(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHarami(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHarami(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHarami(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHarami$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHarami$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2024,14 +2026,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHaramiCrossLookback() + previous;
-         throw new InsufficientData("cdlHaramiCross", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHaramiCross", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHaramiCross$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHaramiCross$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2039,13 +2041,13 @@ public final class TaLib {
       return var0.cdlHaramiCross(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHaramiCross(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHaramiCross(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHaramiCross(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHaramiCross$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHaramiCross$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2067,14 +2069,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHignWaveLookback() + previous;
-         throw new InsufficientData("cdlHignWave", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHignWave", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHignWave$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHignWave$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2082,13 +2084,13 @@ public final class TaLib {
       return var0.cdlHignWave(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHignWave(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHignWave(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHignWave(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHignWave$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHignWave$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2110,14 +2112,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHikkakeLookback() + previous;
-         throw new InsufficientData("cdlHikkake", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHikkake", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHikkake$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHikkake$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2125,13 +2127,13 @@ public final class TaLib {
       return var0.cdlHikkake(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHikkake(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHikkake(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHikkake(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHikkake$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHikkake$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2153,14 +2155,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHikkakeModLookback() + previous;
-         throw new InsufficientData("cdlHikkakeMod", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHikkakeMod", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHikkakeMod$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHikkakeMod$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2168,13 +2170,13 @@ public final class TaLib {
       return var0.cdlHikkakeMod(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHikkakeMod(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHikkakeMod(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHikkakeMod(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHikkakeMod$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHikkakeMod$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2196,14 +2198,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlHomingPigeonLookback() + previous;
-         throw new InsufficientData("cdlHomingPigeon", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlHomingPigeon", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlHomingPigeon$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlHomingPigeon$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2211,13 +2213,13 @@ public final class TaLib {
       return var0.cdlHomingPigeon(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlHomingPigeon(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlHomingPigeon(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlHomingPigeon(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlHomingPigeon$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlHomingPigeon$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2239,14 +2241,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlIdentical3CrowsLookback() + previous;
-         throw new InsufficientData("cdlIdentical3Crows", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlIdentical3Crows", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlIdentical3Crows$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlIdentical3Crows$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2254,13 +2256,13 @@ public final class TaLib {
       return var0.cdlIdentical3Crows(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlIdentical3Crows(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlIdentical3Crows(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlIdentical3Crows(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlIdentical3Crows$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlIdentical3Crows$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2282,14 +2284,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlInNeckLookback() + previous;
-         throw new InsufficientData("cdlInNeck", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlInNeck", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlInNeck$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlInNeck$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2297,13 +2299,13 @@ public final class TaLib {
       return var0.cdlInNeck(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlInNeck(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlInNeck(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlInNeck(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlInNeck$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlInNeck$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2325,14 +2327,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlInvertedHammerLookback() + previous;
-         throw new InsufficientData("cdlInvertedHammer", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlInvertedHammer", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlInvertedHammer$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlInvertedHammer$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2340,13 +2342,13 @@ public final class TaLib {
       return var0.cdlInvertedHammer(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlInvertedHammer(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlInvertedHammer(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlInvertedHammer(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlInvertedHammer$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlInvertedHammer$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2368,14 +2370,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlKickingLookback() + previous;
-         throw new InsufficientData("cdlKicking", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlKicking", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlKicking$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlKicking$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2383,13 +2385,13 @@ public final class TaLib {
       return var0.cdlKicking(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlKicking(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlKicking(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlKicking(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlKicking$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlKicking$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2411,14 +2413,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlKickingByLengthLookback() + previous;
-         throw new InsufficientData("cdlKickingByLength", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlKickingByLength", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlKickingByLength$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlKickingByLength$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2426,13 +2428,13 @@ public final class TaLib {
       return var0.cdlKickingByLength(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlKickingByLength(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlKickingByLength(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlKickingByLength(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlKickingByLength$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlKickingByLength$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2454,14 +2456,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlLadderBottomLookback() + previous;
-         throw new InsufficientData("cdlLadderBottom", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlLadderBottom", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlLadderBottom$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlLadderBottom$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2469,13 +2471,13 @@ public final class TaLib {
       return var0.cdlLadderBottom(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlLadderBottom(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlLadderBottom(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlLadderBottom(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlLadderBottom$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlLadderBottom$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2497,14 +2499,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlLongLeggedDojiLookback() + previous;
-         throw new InsufficientData("cdlLongLeggedDoji", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlLongLeggedDoji", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlLongLeggedDoji$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlLongLeggedDoji$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2512,13 +2514,13 @@ public final class TaLib {
       return var0.cdlLongLeggedDoji(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlLongLeggedDoji(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlLongLeggedDoji(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlLongLeggedDoji(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlLongLeggedDoji$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlLongLeggedDoji$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2540,14 +2542,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlLongLineLookback() + previous;
-         throw new InsufficientData("cdlLongLine", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlLongLine", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlLongLine$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlLongLine$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2555,13 +2557,13 @@ public final class TaLib {
       return var0.cdlLongLine(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlLongLine(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlLongLine(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlLongLine(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlLongLine$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlLongLine$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2583,14 +2585,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlMarubozuLookback() + previous;
-         throw new InsufficientData("cdlMarubozu", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlMarubozu", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlMarubozu$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlMarubozu$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2598,13 +2600,13 @@ public final class TaLib {
       return var0.cdlMarubozu(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlMarubozu(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlMarubozu(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlMarubozu(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlMarubozu$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlMarubozu$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2626,14 +2628,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlMatchingLowLookback() + previous;
-         throw new InsufficientData("cdlMatchingLow", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlMatchingLow", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlMatchingLow$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlMatchingLow$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2641,13 +2643,13 @@ public final class TaLib {
       return var0.cdlMatchingLow(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlMatchingLow(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlMatchingLow(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlMatchingLow(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlMatchingLow$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlMatchingLow$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2669,14 +2671,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlMatHoldLookback(penetration) + previous;
-         throw new InsufficientData("cdlMatHold", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlMatHold", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlMatHold$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlMatHold$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = (double)0.5F;
       }
@@ -2688,13 +2690,13 @@ public final class TaLib {
       return var0.cdlMatHold(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlMatHold(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlMatHold(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlMatHold(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlMatHold$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlMatHold$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = (double)0.5F;
       }
@@ -2720,14 +2722,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlMorningDojiStarLookback(penetration) + previous;
-         throw new InsufficientData("cdlMorningDojiStar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlMorningDojiStar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlMorningDojiStar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlMorningDojiStar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = 0.3;
       }
@@ -2739,13 +2741,13 @@ public final class TaLib {
       return var0.cdlMorningDojiStar(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlMorningDojiStar(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlMorningDojiStar(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlMorningDojiStar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlMorningDojiStar$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlMorningDojiStar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 0.3;
       }
@@ -2771,14 +2773,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlMorningStarLookback(penetration) + previous;
-         throw new InsufficientData("cdlMorningStar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlMorningStar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlMorningStar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
+   public static boolean cdlMorningStar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, double var5, int var7, int var8, Object var9) {
       if ((var8 & 16) != 0) {
          var5 = 0.3;
       }
@@ -2790,13 +2792,13 @@ public final class TaLib {
       return var0.cdlMorningStar(var1, var2, var3, var4, var5, var7);
    }
 
-   public final boolean cdlMorningStar(@NotNull PriceBarSeries serie, double penetration, int previous) {
+   public final boolean cdlMorningStar(@NotNull org.robok.ta.PriceBarSeries serie, double penetration, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlMorningStar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), penetration, previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlMorningStar$default(TaLib var0, PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
+   public static boolean cdlMorningStar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 0.3;
       }
@@ -2822,14 +2824,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlOnNeckLookback() + previous;
-         throw new InsufficientData("cdlOnNeck", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlOnNeck", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlOnNeck$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlOnNeck$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2837,13 +2839,13 @@ public final class TaLib {
       return var0.cdlOnNeck(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlOnNeck(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlOnNeck(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlOnNeck(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlOnNeck$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlOnNeck$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2865,14 +2867,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlPiercingLookback() + previous;
-         throw new InsufficientData("cdlPiercing", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlPiercing", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlPiercing$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlPiercing$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2880,13 +2882,13 @@ public final class TaLib {
       return var0.cdlPiercing(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlPiercing(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlPiercing(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlPiercing(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlPiercing$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlPiercing$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2908,14 +2910,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlRickshawManLookback() + previous;
-         throw new InsufficientData("cdlRickshawMan", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlRickshawMan", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlRickshawMan$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlRickshawMan$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2923,13 +2925,13 @@ public final class TaLib {
       return var0.cdlRickshawMan(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlRickshawMan(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlRickshawMan(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlRickshawMan(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlRickshawMan$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlRickshawMan$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2951,14 +2953,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlRiseFall3MethodsLookback() + previous;
-         throw new InsufficientData("cdlRiseFall3Methods", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlRiseFall3Methods", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlRiseFall3Methods$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlRiseFall3Methods$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -2966,13 +2968,13 @@ public final class TaLib {
       return var0.cdlRiseFall3Methods(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlRiseFall3Methods(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlRiseFall3Methods(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlRiseFall3Methods(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlRiseFall3Methods$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlRiseFall3Methods$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -2994,14 +2996,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlSeperatingLinesLookback() + previous;
-         throw new InsufficientData("cdlSeperatingLines", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlSeperatingLines", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlSeperatingLines$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlSeperatingLines$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3009,13 +3011,13 @@ public final class TaLib {
       return var0.cdlSeperatingLines(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlSeperatingLines(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlSeperatingLines(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlSeperatingLines(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlSeperatingLines$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlSeperatingLines$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3037,14 +3039,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlShootingStarLookback() + previous;
-         throw new InsufficientData("cdlShootingStar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlShootingStar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlShootingStar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlShootingStar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3052,13 +3054,13 @@ public final class TaLib {
       return var0.cdlShootingStar(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlShootingStar(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlShootingStar(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlShootingStar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlShootingStar$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlShootingStar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3080,14 +3082,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlShortLineLookback() + previous;
-         throw new InsufficientData("cdlShortLine", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlShortLine", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlShortLine$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlShortLine$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3095,13 +3097,13 @@ public final class TaLib {
       return var0.cdlShortLine(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlShortLine(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlShortLine(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlShortLine(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlShortLine$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlShortLine$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3123,14 +3125,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlSpinningTopLookback() + previous;
-         throw new InsufficientData("cdlSpinningTop", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlSpinningTop", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlSpinningTop$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlSpinningTop$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3138,13 +3140,13 @@ public final class TaLib {
       return var0.cdlSpinningTop(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlSpinningTop(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlSpinningTop(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlSpinningTop(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlSpinningTop$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlSpinningTop$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3166,14 +3168,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlStalledPatternLookback() + previous;
-         throw new InsufficientData("cdlStalledPattern", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlStalledPattern", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlStalledPattern$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlStalledPattern$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3181,13 +3183,13 @@ public final class TaLib {
       return var0.cdlStalledPattern(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlStalledPattern(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlStalledPattern(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlStalledPattern(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlStalledPattern$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlStalledPattern$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3209,14 +3211,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlStickSandwhichLookback() + previous;
-         throw new InsufficientData("cdlStickSandwich", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlStickSandwich", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlStickSandwich$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlStickSandwich$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3224,13 +3226,13 @@ public final class TaLib {
       return var0.cdlStickSandwich(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlStickSandwich(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlStickSandwich(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlStickSandwich(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlStickSandwich$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlStickSandwich$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3252,14 +3254,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlTakuriLookback() + previous;
-         throw new InsufficientData("cdlTakuri", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlTakuri", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlTakuri$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlTakuri$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3267,13 +3269,13 @@ public final class TaLib {
       return var0.cdlTakuri(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlTakuri(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlTakuri(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlTakuri(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlTakuri$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlTakuri$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3295,14 +3297,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlTasukiGapLookback() + previous;
-         throw new InsufficientData("cdlTasukiGap", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlTasukiGap", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlTasukiGap$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlTasukiGap$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3310,13 +3312,13 @@ public final class TaLib {
       return var0.cdlTasukiGap(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlTasukiGap(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlTasukiGap(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlTasukiGap(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlTasukiGap$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlTasukiGap$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3338,14 +3340,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlThrustingLookback() + previous;
-         throw new InsufficientData("cdlThrusting", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlThrusting", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlThrusting$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlThrusting$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3353,13 +3355,13 @@ public final class TaLib {
       return var0.cdlThrusting(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlThrusting(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlThrusting(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlThrusting(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlThrusting$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlThrusting$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3381,14 +3383,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlTristarLookback() + previous;
-         throw new InsufficientData("cdlTristar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlTristar", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlTristar$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlTristar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3396,13 +3398,13 @@ public final class TaLib {
       return var0.cdlTristar(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlTristar(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlTristar(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlTristar(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlTristar$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlTristar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3424,14 +3426,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlUnique3RiverLookback() + previous;
-         throw new InsufficientData("cdlUnique3River", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlUnique3River", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlUnique3River$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlUnique3River$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3439,13 +3441,13 @@ public final class TaLib {
       return var0.cdlUnique3River(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlUnique3River(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlUnique3River(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlUnique3River(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlUnique3River$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlUnique3River$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3467,14 +3469,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlUpsideGap2CrowsLookback() + previous;
-         throw new InsufficientData("cdlUpsideGap2Crows", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlUpsideGap2Crows", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlUpsideGap2Crows$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlUpsideGap2Crows$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3482,13 +3484,13 @@ public final class TaLib {
       return var0.cdlUpsideGap2Crows(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlUpsideGap2Crows(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlUpsideGap2Crows(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlUpsideGap2Crows(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlUpsideGap2Crows$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlUpsideGap2Crows$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3510,14 +3512,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cdlXSideGap3MethodsLookback() + previous;
-         throw new InsufficientData("cdlXSideGap3Methods", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cdlXSideGap3Methods", lookback + 1);
       } else {
          return output1[0] != 0;
       }
    }
 
    // $FF: synthetic method
-   public static boolean cdlXSideGap3Methods$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
+   public static boolean cdlXSideGap3Methods$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, Object var7) {
       if ((var6 & 16) != 0) {
          var5 = 0;
       }
@@ -3525,13 +3527,13 @@ public final class TaLib {
       return var0.cdlXSideGap3Methods(var1, var2, var3, var4, var5);
    }
 
-   public final boolean cdlXSideGap3Methods(@NotNull PriceBarSeries serie, int previous) {
+   public final boolean cdlXSideGap3Methods(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cdlXSideGap3Methods(serie.getOpen(), serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static boolean cdlXSideGap3Methods$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static boolean cdlXSideGap3Methods$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3550,14 +3552,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.ceilLookback() + previous;
-         throw new InsufficientData("ceil", lookback + 1);
+         throw new org.robok.ta.InsufficientData("ceil", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double ceil$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double ceil$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3565,13 +3567,13 @@ public final class TaLib {
       return var0.ceil(var1, var2);
    }
 
-   public final double ceil(@NotNull PriceBarSeries serie, int previous) {
+   public final double ceil(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.ceil(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double ceil$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double ceil$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3590,14 +3592,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cmoLookback(timePeriod) + previous;
-         throw new InsufficientData("cmo", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cmo", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double cmo$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double cmo$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -3609,13 +3611,13 @@ public final class TaLib {
       return var0.cmo(var1, var2, var3);
    }
 
-   public final double cmo(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double cmo(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cmo(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double cmo$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double cmo$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -3639,14 +3641,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.correlLookback(timePeriod) + previous;
-         throw new InsufficientData("correl", lookback + 1);
+         throw new org.robok.ta.InsufficientData("correl", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double correl$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static double correl$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 30;
       }
@@ -3669,14 +3671,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.cosLookback() + previous;
-         throw new InsufficientData("cos", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cos", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double cos$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double cos$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3684,13 +3686,13 @@ public final class TaLib {
       return var0.cos(var1, var2);
    }
 
-   public final double cos(@NotNull PriceBarSeries serie, int previous) {
+   public final double cos(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cos(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double cos$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double cos$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3709,14 +3711,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.coshLookback() + previous;
-         throw new InsufficientData("cosh", lookback + 1);
+         throw new org.robok.ta.InsufficientData("cosh", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double cosh$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double cosh$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3724,13 +3726,13 @@ public final class TaLib {
       return var0.cosh(var1, var2);
    }
 
-   public final double cosh(@NotNull PriceBarSeries serie, int previous) {
+   public final double cosh(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.cosh(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double cosh$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double cosh$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3749,14 +3751,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.demaLookback(timePeriod) + previous;
-         throw new InsufficientData("dema", lookback + 1);
+         throw new org.robok.ta.InsufficientData("dema", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double dema$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double dema$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -3768,13 +3770,13 @@ public final class TaLib {
       return var0.dema(var1, var2, var3);
    }
 
-   public final double dema(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double dema(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.dema(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double dema$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double dema$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -3798,14 +3800,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.divLookback() + previous;
-         throw new InsufficientData("div", lookback + 1);
+         throw new org.robok.ta.InsufficientData("div", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double div$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
+   public static double div$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
@@ -3826,14 +3828,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.dxLookback(timePeriod) + previous;
-         throw new InsufficientData("dx", lookback + 1);
+         throw new org.robok.ta.InsufficientData("dx", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double dx$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double dx$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -3845,13 +3847,13 @@ public final class TaLib {
       return var0.dx(var1, var2, var3, var4, var5);
    }
 
-   public final double dx(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double dx(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.dx(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double dx$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double dx$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -3874,14 +3876,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.emaLookback(timePeriod) + previous;
-         throw new InsufficientData("ema", lookback + 1);
+         throw new org.robok.ta.InsufficientData("ema", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double ema$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double ema$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -3893,13 +3895,13 @@ public final class TaLib {
       return var0.ema(var1, var2, var3);
    }
 
-   public final double ema(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double ema(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.ema(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double ema$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double ema$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -3922,14 +3924,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.expLookback() + previous;
-         throw new InsufficientData("exp", lookback + 1);
+         throw new org.robok.ta.InsufficientData("exp", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double exp$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double exp$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3937,13 +3939,13 @@ public final class TaLib {
       return var0.exp(var1, var2);
    }
 
-   public final double exp(@NotNull PriceBarSeries serie, int previous) {
+   public final double exp(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.exp(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double exp$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double exp$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3962,14 +3964,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.floorLookback() + previous;
-         throw new InsufficientData("floor", lookback + 1);
+         throw new org.robok.ta.InsufficientData("floor", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double floor$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double floor$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -3977,13 +3979,13 @@ public final class TaLib {
       return var0.floor(var1, var2);
    }
 
-   public final double floor(@NotNull PriceBarSeries serie, int previous) {
+   public final double floor(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.floor(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double floor$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double floor$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4002,14 +4004,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.htDcPeriodLookback() + previous;
-         throw new InsufficientData("htDcPeriod", lookback + 1);
+         throw new org.robok.ta.InsufficientData("htDcPeriod", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double htDcPeriod$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double htDcPeriod$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4017,13 +4019,13 @@ public final class TaLib {
       return var0.htDcPeriod(var1, var2);
    }
 
-   public final double htDcPeriod(@NotNull PriceBarSeries serie, int previous) {
+   public final double htDcPeriod(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.htDcPeriod(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double htDcPeriod$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double htDcPeriod$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4042,14 +4044,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.htDcPhaseLookback() + previous;
-         throw new InsufficientData("htDcPhase", lookback + 1);
+         throw new org.robok.ta.InsufficientData("htDcPhase", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double htDcPhase$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double htDcPhase$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4057,13 +4059,13 @@ public final class TaLib {
       return var0.htDcPhase(var1, var2);
    }
 
-   public final double htDcPhase(@NotNull PriceBarSeries serie, int previous) {
+   public final double htDcPhase(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.htDcPhase(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double htDcPhase$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double htDcPhase$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4084,14 +4086,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.htPhasorLookback() + previous;
-         throw new InsufficientData("htPhasor", lookback + 1);
+         throw new org.robok.ta.InsufficientData("htPhasor", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair htPhasor$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static Pair htPhasor$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4100,13 +4102,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair htPhasor(@NotNull PriceBarSeries serie, int previous) {
+   public final Pair htPhasor(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.htPhasor(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static Pair htPhasor$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static Pair htPhasor$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4127,14 +4129,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.htSineLookback() + previous;
-         throw new InsufficientData("htSine", lookback + 1);
+         throw new org.robok.ta.InsufficientData("htSine", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair htSine$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static Pair htSine$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4143,13 +4145,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair htSine(@NotNull PriceBarSeries serie, int previous) {
+   public final Pair htSine(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.htSine(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static Pair htSine$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static Pair htSine$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4168,14 +4170,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.htTrendlineLookback() + previous;
-         throw new InsufficientData("htTrendline", lookback + 1);
+         throw new org.robok.ta.InsufficientData("htTrendline", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double htTrendline$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double htTrendline$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4183,13 +4185,13 @@ public final class TaLib {
       return var0.htTrendline(var1, var2);
    }
 
-   public final double htTrendline(@NotNull PriceBarSeries serie, int previous) {
+   public final double htTrendline(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.htTrendline(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double htTrendline$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double htTrendline$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4208,14 +4210,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.htTrendModeLookback() + previous;
-         throw new InsufficientData("htTrendMode", lookback + 1);
+         throw new org.robok.ta.InsufficientData("htTrendMode", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static int htTrendMode$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static int htTrendMode$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4223,13 +4225,13 @@ public final class TaLib {
       return var0.htTrendMode(var1, var2);
    }
 
-   public final int htTrendMode(@NotNull PriceBarSeries serie, int previous) {
+   public final int htTrendMode(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.htTrendMode(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static int htTrendMode$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static int htTrendMode$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4248,14 +4250,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.kamaLookback(timePeriod) + previous;
-         throw new InsufficientData("kama", lookback + 1);
+         throw new org.robok.ta.InsufficientData("kama", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double kama$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double kama$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -4267,13 +4269,13 @@ public final class TaLib {
       return var0.kama(var1, var2, var3);
    }
 
-   public final double kama(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double kama(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.kama(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double kama$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double kama$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -4296,14 +4298,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.linearRegLookback(timePeriod) + previous;
-         throw new InsufficientData("linearReg", lookback + 1);
+         throw new org.robok.ta.InsufficientData("linearReg", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double linearReg$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double linearReg$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4315,13 +4317,13 @@ public final class TaLib {
       return var0.linearReg(var1, var2, var3);
    }
 
-   public final double linearReg(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double linearReg(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.linearReg(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double linearReg$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double linearReg$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4344,14 +4346,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.linearRegAngleLookback(timePeriod) + previous;
-         throw new InsufficientData("linearRegAngle", lookback + 1);
+         throw new org.robok.ta.InsufficientData("linearRegAngle", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double linearRegAngle$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double linearRegAngle$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4363,13 +4365,13 @@ public final class TaLib {
       return var0.linearRegAngle(var1, var2, var3);
    }
 
-   public final double linearRegAngle(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double linearRegAngle(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.linearRegAngle(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double linearRegAngle$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double linearRegAngle$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4392,14 +4394,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.linearRegInterceptLookback(timePeriod) + previous;
-         throw new InsufficientData("linearRegIntercept", lookback + 1);
+         throw new org.robok.ta.InsufficientData("linearRegIntercept", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double linearRegIntercept$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double linearRegIntercept$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4411,13 +4413,13 @@ public final class TaLib {
       return var0.linearRegIntercept(var1, var2, var3);
    }
 
-   public final double linearRegIntercept(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double linearRegIntercept(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.linearRegIntercept(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double linearRegIntercept$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double linearRegIntercept$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4440,14 +4442,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.linearRegSlopeLookback(timePeriod) + previous;
-         throw new InsufficientData("linearRegSlope", lookback + 1);
+         throw new org.robok.ta.InsufficientData("linearRegSlope", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double linearRegSlope$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double linearRegSlope$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4459,13 +4461,13 @@ public final class TaLib {
       return var0.linearRegSlope(var1, var2, var3);
    }
 
-   public final double linearRegSlope(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double linearRegSlope(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.linearRegSlope(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double linearRegSlope$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double linearRegSlope$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -4488,14 +4490,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.lnLookback() + previous;
-         throw new InsufficientData("ln", lookback + 1);
+         throw new org.robok.ta.InsufficientData("ln", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double ln$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double ln$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4503,13 +4505,13 @@ public final class TaLib {
       return var0.ln(var1, var2);
    }
 
-   public final double ln(@NotNull PriceBarSeries serie, int previous) {
+   public final double ln(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.ln(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double ln$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double ln$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4528,14 +4530,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.log10Lookback() + previous;
-         throw new InsufficientData("log10", lookback + 1);
+         throw new org.robok.ta.InsufficientData("log10", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double log10$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double log10$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4543,13 +4545,13 @@ public final class TaLib {
       return var0.log10(var1, var2);
    }
 
-   public final double log10(@NotNull PriceBarSeries serie, int previous) {
+   public final double log10(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.log10(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double log10$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double log10$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -4569,14 +4571,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.movingAverageLookback(timePeriod, mAType) + previous;
-         throw new InsufficientData("movingAverage", lookback + 1);
+         throw new org.robok.ta.InsufficientData("movingAverage", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double movingAverage$default(TaLib var0, double[] var1, int var2, MAType var3, int var4, int var5, Object var6) {
+   public static double movingAverage$default(org.robok.ta.TaLib var0, double[] var1, int var2, MAType var3, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 30;
       }
@@ -4592,14 +4594,14 @@ public final class TaLib {
       return var0.movingAverage(var1, var2, var3, var4);
    }
 
-   public final double movingAverage(@NotNull PriceBarSeries serie, int timePeriod, @NotNull MAType mAType, int previous) {
+   public final double movingAverage(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, @NotNull MAType mAType, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(mAType, "mAType");
       return this.movingAverage(serie.getClose(), timePeriod, mAType, previous);
    }
 
    // $FF: synthetic method
-   public static double movingAverage$default(TaLib var0, PriceBarSeries var1, int var2, MAType var3, int var4, int var5, Object var6) {
+   public static double movingAverage$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, MAType var3, int var4, int var5, Object var6) {
       if ((var5 & 2) != 0) {
          var2 = 30;
       }
@@ -4629,14 +4631,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.macdLookback(fastPeriod, slowPeriod, signalPeriod) + previous;
-         throw new InsufficientData("macd", lookback + 1);
+         throw new org.robok.ta.InsufficientData("macd", lookback + 1);
       } else {
          return new Triple(output1[0], output2[0], output3[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Triple macd$default(TaLib var0, double[] var1, int var2, int var3, int var4, int var5, int var6, Object var7) {
+   public static Triple macd$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 12;
       }
@@ -4657,13 +4659,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Triple macd(@NotNull PriceBarSeries serie, int fastPeriod, int slowPeriod, int signalPeriod, int previous) {
+   public final Triple macd(@NotNull org.robok.ta.PriceBarSeries serie, int fastPeriod, int slowPeriod, int signalPeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.macd(serie.getClose(), fastPeriod, slowPeriod, signalPeriod, previous);
    }
 
    // $FF: synthetic method
-   public static Triple macd$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, int var5, int var6, Object var7) {
+   public static Triple macd$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 12;
       }
@@ -4700,14 +4702,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.macdExtLookback(fastPeriod, fastMA, slowPeriod, slowMA, signalPeriod, signalMA) + previous;
-         throw new InsufficientData("macdExt", lookback + 1);
+         throw new org.robok.ta.InsufficientData("macdExt", lookback + 1);
       } else {
          return new Triple(output1[0], output2[0], output3[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Triple macdExt$default(TaLib var0, double[] var1, int var2, MAType var3, int var4, MAType var5, int var6, MAType var7, int var8, int var9, Object var10) {
+   public static Triple macdExt$default(org.robok.ta.TaLib var0, double[] var1, int var2, MAType var3, int var4, MAType var5, int var6, MAType var7, int var8, int var9, Object var10) {
       if ((var9 & 2) != 0) {
          var2 = 12;
       }
@@ -4740,7 +4742,7 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Triple macdExt(@NotNull PriceBarSeries serie, int fastPeriod, @NotNull MAType fastMA, int slowPeriod, @NotNull MAType slowMA, int signalPeriod, @NotNull MAType signalMA, int previous) {
+   public final Triple macdExt(@NotNull org.robok.ta.PriceBarSeries serie, int fastPeriod, @NotNull MAType fastMA, int slowPeriod, @NotNull MAType slowMA, int signalPeriod, @NotNull MAType signalMA, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(fastMA, "fastMA");
       Intrinsics.checkNotNullParameter(slowMA, "slowMA");
@@ -4749,7 +4751,7 @@ public final class TaLib {
    }
 
    // $FF: synthetic method
-   public static Triple macdExt$default(TaLib var0, PriceBarSeries var1, int var2, MAType var3, int var4, MAType var5, int var6, MAType var7, int var8, int var9, Object var10) {
+   public static Triple macdExt$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, MAType var3, int var4, MAType var5, int var6, MAType var7, int var8, int var9, Object var10) {
       if ((var9 & 2) != 0) {
          var2 = 12;
       }
@@ -4795,14 +4797,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.macdFixLookback(signalPeriod) + previous;
-         throw new InsufficientData("macdFix", lookback + 1);
+         throw new org.robok.ta.InsufficientData("macdFix", lookback + 1);
       } else {
          return new Triple(output1[0], output2[0], output3[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Triple macdFix$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static Triple macdFix$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 9;
       }
@@ -4815,13 +4817,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Triple macdFix(@NotNull PriceBarSeries serie, int signalPeriod, int previous) {
+   public final Triple macdFix(@NotNull org.robok.ta.PriceBarSeries serie, int signalPeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.macdFix(serie.getClose(), signalPeriod, previous);
    }
 
    // $FF: synthetic method
-   public static Triple macdFix$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static Triple macdFix$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 9;
       }
@@ -4846,14 +4848,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.mamaLookback(fastLimit, slowLimit) + previous;
-         throw new InsufficientData("mama", lookback + 1);
+         throw new org.robok.ta.InsufficientData("mama", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair mama$default(TaLib var0, double[] var1, double var2, double var4, int var6, int var7, Object var8) {
+   public static Pair mama$default(org.robok.ta.TaLib var0, double[] var1, double var2, double var4, int var6, int var7, Object var8) {
       if ((var7 & 2) != 0) {
          var2 = (double)0.5F;
       }
@@ -4870,13 +4872,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair mama(@NotNull PriceBarSeries serie, double fastLimit, double slowLimit, int previous) {
+   public final Pair mama(@NotNull org.robok.ta.PriceBarSeries serie, double fastLimit, double slowLimit, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.mama(serie.getClose(), fastLimit, slowLimit, previous);
    }
 
    // $FF: synthetic method
-   public static Pair mama$default(TaLib var0, PriceBarSeries var1, double var2, double var4, int var6, int var7, Object var8) {
+   public static Pair mama$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, double var4, int var6, int var7, Object var8) {
       if ((var7 & 2) != 0) {
          var2 = (double)0.5F;
       }
@@ -4905,14 +4907,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.movingAverageVariablePeriodLookback(minimumPeriod, maximumPeriod, mAType) + previous;
-         throw new InsufficientData("movingAverageVariablePeriod", lookback + 1);
+         throw new org.robok.ta.InsufficientData("movingAverageVariablePeriod", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double movingAverageVariablePeriod$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, MAType var5, int var6, int var7, Object var8) {
+   public static double movingAverageVariablePeriod$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, MAType var5, int var6, int var7, Object var8) {
       if ((var7 & 4) != 0) {
          var3 = 2;
       }
@@ -4943,14 +4945,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.maxLookback(timePeriod) + previous;
-         throw new InsufficientData("max", lookback + 1);
+         throw new org.robok.ta.InsufficientData("max", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double max$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double max$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -4962,13 +4964,13 @@ public final class TaLib {
       return var0.max(var1, var2, var3);
    }
 
-   public final double max(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double max(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.max(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double max$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double max$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -4991,14 +4993,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.maxIndexLookback(timePeriod) + previous;
-         throw new InsufficientData("maxIndex", lookback + 1);
+         throw new org.robok.ta.InsufficientData("maxIndex", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static int maxIndex$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static int maxIndex$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5010,13 +5012,13 @@ public final class TaLib {
       return var0.maxIndex(var1, var2, var3);
    }
 
-   public final int maxIndex(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final int maxIndex(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.maxIndex(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static int maxIndex$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static int maxIndex$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5040,14 +5042,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.medPriceLookback() + previous;
-         throw new InsufficientData("medPrice", lookback + 1);
+         throw new org.robok.ta.InsufficientData("medPrice", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double medPrice$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
+   public static double medPrice$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
@@ -5055,13 +5057,13 @@ public final class TaLib {
       return var0.medPrice(var1, var2, var3);
    }
 
-   public final double medPrice(@NotNull PriceBarSeries serie, int previous) {
+   public final double medPrice(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.medPrice(serie.getHigh(), serie.getLow(), previous);
    }
 
    // $FF: synthetic method
-   public static double medPrice$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double medPrice$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -5083,14 +5085,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.mfiLookback(timePeriod) + previous;
-         throw new InsufficientData("mfi", lookback + 1);
+         throw new org.robok.ta.InsufficientData("mfi", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double mfi$default(TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, int var7, Object var8) {
+   public static double mfi$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, double[] var4, int var5, int var6, int var7, Object var8) {
       if ((var7 & 16) != 0) {
          var5 = 14;
       }
@@ -5102,13 +5104,13 @@ public final class TaLib {
       return var0.mfi(var1, var2, var3, var4, var5, var6);
    }
 
-   public final double mfi(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double mfi(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.mfi(serie.getHigh(), serie.getLow(), serie.getClose(), serie.getVolume(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double mfi$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double mfi$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5131,14 +5133,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.midPointLookback(timePeriod) + previous;
-         throw new InsufficientData("midPoint", lookback + 1);
+         throw new org.robok.ta.InsufficientData("midPoint", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double midPoint$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double midPoint$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5150,13 +5152,13 @@ public final class TaLib {
       return var0.midPoint(var1, var2, var3);
    }
 
-   public final double midPoint(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double midPoint(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.midPoint(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double midPoint$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double midPoint$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5180,14 +5182,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.midPriceLookback(timePeriod) + previous;
-         throw new InsufficientData("midPrice", lookback + 1);
+         throw new org.robok.ta.InsufficientData("midPrice", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double midPrice$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static double midPrice$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 14;
       }
@@ -5199,13 +5201,13 @@ public final class TaLib {
       return var0.midPrice(var1, var2, var3, var4);
    }
 
-   public final double midPrice(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double midPrice(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.midPrice(serie.getHigh(), serie.getLow(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double midPrice$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double midPrice$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5228,14 +5230,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.minLookback(timePeriod) + previous;
-         throw new InsufficientData("min", lookback + 1);
+         throw new org.robok.ta.InsufficientData("min", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double min$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double min$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5247,13 +5249,13 @@ public final class TaLib {
       return var0.min(var1, var2, var3);
    }
 
-   public final double min(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double min(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.min(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double min$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double min$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5276,14 +5278,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.minIndexLookback(timePeriod) + previous;
-         throw new InsufficientData("minIndex", lookback + 1);
+         throw new org.robok.ta.InsufficientData("minIndex", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static int minIndex$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static int minIndex$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5295,13 +5297,13 @@ public final class TaLib {
       return var0.minIndex(var1, var2, var3);
    }
 
-   public final int minIndex(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final int minIndex(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.minIndex(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static int minIndex$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static int minIndex$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5326,14 +5328,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.minMaxLookback(timePeriod) + previous;
-         throw new InsufficientData("minMax", lookback + 1);
+         throw new org.robok.ta.InsufficientData("minMax", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair minMax$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static Pair minMax$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5346,13 +5348,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair minMax(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final Pair minMax(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.minMax(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static Pair minMax$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static Pair minMax$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5377,14 +5379,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.minMaxIndexLookback(timePeriod) + previous;
-         throw new InsufficientData("minMaxIndex", lookback + 1);
+         throw new org.robok.ta.InsufficientData("minMaxIndex", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair minMaxIndex$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static Pair minMaxIndex$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5397,13 +5399,13 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair minMaxIndex(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final Pair minMaxIndex(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.minMaxIndex(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static Pair minMaxIndex$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static Pair minMaxIndex$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -5428,14 +5430,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.minusDILookback(timePeriod) + previous;
-         throw new InsufficientData("minusDI", lookback + 1);
+         throw new org.robok.ta.InsufficientData("minusDI", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double minusDI$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double minusDI$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -5447,13 +5449,13 @@ public final class TaLib {
       return var0.minusDI(var1, var2, var3, var4, var5);
    }
 
-   public final double minusDI(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double minusDI(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.minusDI(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double minusDI$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double minusDI$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5477,14 +5479,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.minusDMLookback(timePeriod) + previous;
-         throw new InsufficientData("minusDM", lookback + 1);
+         throw new org.robok.ta.InsufficientData("minusDM", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double minusDM$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static double minusDM$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 14;
       }
@@ -5496,13 +5498,13 @@ public final class TaLib {
       return var0.minusDM(var1, var2, var3, var4);
    }
 
-   public final double minusDM(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double minusDM(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.minusDM(serie.getHigh(), serie.getLow(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double minusDM$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double minusDM$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5525,14 +5527,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.momLookback(timePeriod) + previous;
-         throw new InsufficientData("mom", lookback + 1);
+         throw new org.robok.ta.InsufficientData("mom", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double mom$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double mom$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5544,13 +5546,13 @@ public final class TaLib {
       return var0.mom(var1, var2, var3);
    }
 
-   public final double mom(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double mom(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.mom(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double mom$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double mom$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5574,14 +5576,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.multLookback() + previous;
-         throw new InsufficientData("mult", lookback + 1);
+         throw new org.robok.ta.InsufficientData("mult", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double mult$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
+   public static double mult$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
@@ -5602,14 +5604,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.natrLookback(timePeriod) + previous;
-         throw new InsufficientData("natr", lookback + 1);
+         throw new org.robok.ta.InsufficientData("natr", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double natr$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double natr$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -5621,13 +5623,13 @@ public final class TaLib {
       return var0.natr(var1, var2, var3, var4, var5);
    }
 
-   public final double natr(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double natr(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.natr(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double natr$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double natr$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5651,14 +5653,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.obvLookback() + previous;
-         throw new InsufficientData("obv", lookback + 1);
+         throw new org.robok.ta.InsufficientData("obv", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double obv$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
+   public static double obv$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
@@ -5679,14 +5681,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.plusDILookback(timePeriod) + previous;
-         throw new InsufficientData("plusDI", lookback + 1);
+         throw new org.robok.ta.InsufficientData("plusDI", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double plusDI$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double plusDI$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -5698,13 +5700,13 @@ public final class TaLib {
       return var0.plusDI(var1, var2, var3, var4, var5);
    }
 
-   public final double plusDI(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double plusDI(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.plusDI(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double plusDI$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double plusDI$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5728,14 +5730,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.plusDMLookback(timePeriod) + previous;
-         throw new InsufficientData("plusDM", lookback + 1);
+         throw new org.robok.ta.InsufficientData("plusDM", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double plusDM$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
+   public static double plusDM$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, int var5, Object var6) {
       if ((var5 & 4) != 0) {
          var3 = 14;
       }
@@ -5747,13 +5749,13 @@ public final class TaLib {
       return var0.plusDM(var1, var2, var3, var4);
    }
 
-   public final double plusDM(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double plusDM(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.plusDM(serie.getHigh(), serie.getLow(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double plusDM$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double plusDM$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -5777,14 +5779,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.ppoLookback(fastPeriod, slowPeriod, mAType) + previous;
-         throw new InsufficientData("ppo", lookback + 1);
+         throw new org.robok.ta.InsufficientData("ppo", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double ppo$default(TaLib var0, double[] var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
+   public static double ppo$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 12;
       }
@@ -5804,14 +5806,14 @@ public final class TaLib {
       return var0.ppo(var1, var2, var3, var4, var5);
    }
 
-   public final double ppo(@NotNull PriceBarSeries serie, int fastPeriod, int slowPeriod, @NotNull MAType mAType, int previous) {
+   public final double ppo(@NotNull org.robok.ta.PriceBarSeries serie, int fastPeriod, int slowPeriod, @NotNull MAType mAType, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(mAType, "mAType");
       return this.ppo(serie.getClose(), fastPeriod, slowPeriod, mAType, previous);
    }
 
    // $FF: synthetic method
-   public static double ppo$default(TaLib var0, PriceBarSeries var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
+   public static double ppo$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 12;
       }
@@ -5842,14 +5844,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.rocLookback(timePeriod) + previous;
-         throw new InsufficientData("roc", lookback + 1);
+         throw new org.robok.ta.InsufficientData("roc", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double roc$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double roc$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5861,13 +5863,13 @@ public final class TaLib {
       return var0.roc(var1, var2, var3);
    }
 
-   public final double roc(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double roc(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.roc(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double roc$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double roc$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5890,14 +5892,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.rocPLookback(timePeriod) + previous;
-         throw new InsufficientData("rocP", lookback + 1);
+         throw new org.robok.ta.InsufficientData("rocP", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double rocP$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double rocP$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5909,13 +5911,13 @@ public final class TaLib {
       return var0.rocP(var1, var2, var3);
    }
 
-   public final double rocP(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double rocP(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.rocP(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double rocP$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double rocP$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5938,14 +5940,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.rocRLookback(timePeriod) + previous;
-         throw new InsufficientData("rocR", lookback + 1);
+         throw new org.robok.ta.InsufficientData("rocR", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double rocR$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double rocR$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5957,13 +5959,13 @@ public final class TaLib {
       return var0.rocR(var1, var2, var3);
    }
 
-   public final double rocR(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double rocR(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.rocR(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double rocR$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double rocR$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -5986,14 +5988,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.rocR100Lookback(timePeriod) + previous;
-         throw new InsufficientData("rocR100", lookback + 1);
+         throw new org.robok.ta.InsufficientData("rocR100", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double rocR100$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double rocR100$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -6005,13 +6007,13 @@ public final class TaLib {
       return var0.rocR100(var1, var2, var3);
    }
 
-   public final double rocR100(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double rocR100(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.rocR100(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double rocR100$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double rocR100$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 10;
       }
@@ -6034,14 +6036,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.rsiLookback(timePeriod) + previous;
-         throw new InsufficientData("rsi", lookback + 1);
+         throw new org.robok.ta.InsufficientData("rsi", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double rsi$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double rsi$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -6053,13 +6055,13 @@ public final class TaLib {
       return var0.rsi(var1, var2, var3);
    }
 
-   public final double rsi(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double rsi(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.rsi(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double rsi$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double rsi$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -6083,14 +6085,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.sarLookback(accelerationFactor, aFMaximum) + previous;
-         throw new InsufficientData("sar", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sar", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sar$default(TaLib var0, double[] var1, double[] var2, double var3, double var5, int var7, int var8, Object var9) {
+   public static double sar$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double var3, double var5, int var7, int var8, Object var9) {
       if ((var8 & 4) != 0) {
          var3 = 0.02;
       }
@@ -6106,13 +6108,13 @@ public final class TaLib {
       return var0.sar(var1, var2, var3, var5, var7);
    }
 
-   public final double sar(@NotNull PriceBarSeries serie, double accelerationFactor, double aFMaximum, int previous) {
+   public final double sar(@NotNull org.robok.ta.PriceBarSeries serie, double accelerationFactor, double aFMaximum, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sar(serie.getHigh(), serie.getLow(), accelerationFactor, aFMaximum, previous);
    }
 
    // $FF: synthetic method
-   public static double sar$default(TaLib var0, PriceBarSeries var1, double var2, double var4, int var6, int var7, Object var8) {
+   public static double sar$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, double var4, int var6, int var7, Object var8) {
       if ((var7 & 2) != 0) {
          var2 = 0.02;
       }
@@ -6140,14 +6142,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.sarExtLookback(startValue, offsetonReverse, aFInitLong, aFLong, aFMaxLong, aFInitShort, aFShort, aFMaxShort) + previous;
-         throw new InsufficientData("sarExt", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sarExt", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sarExt$default(TaLib var0, double[] var1, double[] var2, double var3, double var5, double var7, double var9, double var11, double var13, double var15, double var17, int var19, int var20, Object var21) {
+   public static double sarExt$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double var3, double var5, double var7, double var9, double var11, double var13, double var15, double var17, int var19, int var20, Object var21) {
       if ((var20 & 4) != 0) {
          var3 = (double)0.0F;
       }
@@ -6187,13 +6189,13 @@ public final class TaLib {
       return var0.sarExt(var1, var2, var3, var5, var7, var9, var11, var13, var15, var17, var19);
    }
 
-   public final double sarExt(@NotNull PriceBarSeries serie, double startValue, double offsetonReverse, double aFInitLong, double aFLong, double aFMaxLong, double aFInitShort, double aFShort, double aFMaxShort, int previous) {
+   public final double sarExt(@NotNull org.robok.ta.PriceBarSeries serie, double startValue, double offsetonReverse, double aFInitLong, double aFLong, double aFMaxLong, double aFInitShort, double aFShort, double aFMaxShort, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sarExt(serie.getHigh(), serie.getLow(), startValue, offsetonReverse, aFInitLong, aFLong, aFMaxLong, aFInitShort, aFShort, aFMaxShort, previous);
    }
 
    // $FF: synthetic method
-   public static double sarExt$default(TaLib var0, PriceBarSeries var1, double var2, double var4, double var6, double var8, double var10, double var12, double var14, double var16, int var18, int var19, Object var20) {
+   public static double sarExt$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, double var2, double var4, double var6, double var8, double var10, double var12, double var14, double var16, int var18, int var19, Object var20) {
       if ((var19 & 2) != 0) {
          var2 = (double)0.0F;
       }
@@ -6244,14 +6246,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.sinLookback() + previous;
-         throw new InsufficientData("sin", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sin", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sin$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double sin$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6259,13 +6261,13 @@ public final class TaLib {
       return var0.sin(var1, var2);
    }
 
-   public final double sin(@NotNull PriceBarSeries serie, int previous) {
+   public final double sin(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sin(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double sin$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double sin$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6284,14 +6286,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.sinhLookback() + previous;
-         throw new InsufficientData("sinh", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sinh", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sinh$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double sinh$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6299,13 +6301,13 @@ public final class TaLib {
       return var0.sinh(var1, var2);
    }
 
-   public final double sinh(@NotNull PriceBarSeries serie, int previous) {
+   public final double sinh(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sinh(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double sinh$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double sinh$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6324,14 +6326,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.smaLookback(timePeriod) + previous;
-         throw new InsufficientData("sma", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sma", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sma$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double sma$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -6343,13 +6345,13 @@ public final class TaLib {
       return var0.sma(var1, var2, var3);
    }
 
-   public final double sma(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double sma(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sma(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double sma$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double sma$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -6372,14 +6374,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.sqrtLookback() + previous;
-         throw new InsufficientData("sqrt", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sqrt", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sqrt$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double sqrt$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6387,13 +6389,13 @@ public final class TaLib {
       return var0.sqrt(var1, var2);
    }
 
-   public final double sqrt(@NotNull PriceBarSeries serie, int previous) {
+   public final double sqrt(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sqrt(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double sqrt$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double sqrt$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6412,14 +6414,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.stdDevLookback(timePeriod, deviations) + previous;
-         throw new InsufficientData("stdDev", lookback + 1);
+         throw new org.robok.ta.InsufficientData("stdDev", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double stdDev$default(TaLib var0, double[] var1, int var2, double var3, int var5, int var6, Object var7) {
+   public static double stdDev$default(org.robok.ta.TaLib var0, double[] var1, int var2, double var3, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -6435,13 +6437,13 @@ public final class TaLib {
       return var0.stdDev(var1, var2, var3, var5);
    }
 
-   public final double stdDev(@NotNull PriceBarSeries serie, int timePeriod, double deviations, int previous) {
+   public final double stdDev(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, double deviations, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.stdDev(serie.getClose(), timePeriod, deviations, previous);
    }
 
    // $FF: synthetic method
-   public static double stdDev$default(TaLib var0, PriceBarSeries var1, int var2, double var3, int var5, int var6, Object var7) {
+   public static double stdDev$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, double var3, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -6474,14 +6476,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.stochLookback(fastKPeriod, slowKPeriod, slowKMA, slowDPeriod, slowDMA) + previous;
-         throw new InsufficientData("stoch", lookback + 1);
+         throw new org.robok.ta.InsufficientData("stoch", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair stoch$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, MAType var6, int var7, MAType var8, int var9, int var10, Object var11) {
+   public static Pair stoch$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, MAType var6, int var7, MAType var8, int var9, int var10, Object var11) {
       if ((var10 & 8) != 0) {
          var4 = 5;
       }
@@ -6510,7 +6512,7 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair stoch(@NotNull PriceBarSeries serie, int fastKPeriod, int slowKPeriod, @NotNull MAType slowKMA, int slowDPeriod, @NotNull MAType slowDMA, int previous) {
+   public final Pair stoch(@NotNull org.robok.ta.PriceBarSeries serie, int fastKPeriod, int slowKPeriod, @NotNull MAType slowKMA, int slowDPeriod, @NotNull MAType slowDMA, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(slowKMA, "slowKMA");
       Intrinsics.checkNotNullParameter(slowDMA, "slowDMA");
@@ -6518,7 +6520,7 @@ public final class TaLib {
    }
 
    // $FF: synthetic method
-   public static Pair stoch$default(TaLib var0, PriceBarSeries var1, int var2, int var3, MAType var4, int var5, MAType var6, int var7, int var8, Object var9) {
+   public static Pair stoch$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, MAType var4, int var5, MAType var6, int var7, int var8, Object var9) {
       if ((var8 & 2) != 0) {
          var2 = 5;
       }
@@ -6562,14 +6564,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.stochFLookback(fastKPeriod, fastDPeriod, fastDMA) + previous;
-         throw new InsufficientData("stochF", lookback + 1);
+         throw new org.robok.ta.InsufficientData("stochF", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair stochF$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, MAType var6, int var7, int var8, Object var9) {
+   public static Pair stochF$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, MAType var6, int var7, int var8, Object var9) {
       if ((var8 & 8) != 0) {
          var4 = 5;
       }
@@ -6590,14 +6592,14 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair stochF(@NotNull PriceBarSeries serie, int fastKPeriod, int fastDPeriod, @NotNull MAType fastDMA, int previous) {
+   public final Pair stochF(@NotNull org.robok.ta.PriceBarSeries serie, int fastKPeriod, int fastDPeriod, @NotNull MAType fastDMA, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(fastDMA, "fastDMA");
       return this.stochF(serie.getHigh(), serie.getLow(), serie.getClose(), fastKPeriod, fastDPeriod, fastDMA, previous);
    }
 
    // $FF: synthetic method
-   public static Pair stochF$default(TaLib var0, PriceBarSeries var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
+   public static Pair stochF$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, MAType var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -6631,14 +6633,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.stochRsiLookback(timePeriod, fastKPeriod, fastDPeriod, fastDMA) + previous;
-         throw new InsufficientData("stochRsi", lookback + 1);
+         throw new org.robok.ta.InsufficientData("stochRsi", lookback + 1);
       } else {
          return new Pair(output1[0], output2[0]);
       }
    }
 
    // $FF: synthetic method
-   public static Pair stochRsi$default(TaLib var0, double[] var1, int var2, int var3, int var4, MAType var5, int var6, int var7, Object var8) {
+   public static Pair stochRsi$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, MAType var5, int var6, int var7, Object var8) {
       if ((var7 & 2) != 0) {
          var2 = 14;
       }
@@ -6663,14 +6665,14 @@ public final class TaLib {
    }
 
    @NotNull
-   public final Pair stochRsi(@NotNull PriceBarSeries serie, int timePeriod, int fastKPeriod, int fastDPeriod, @NotNull MAType fastDMA, int previous) {
+   public final Pair stochRsi(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int fastKPeriod, int fastDPeriod, @NotNull MAType fastDMA, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       Intrinsics.checkNotNullParameter(fastDMA, "fastDMA");
       return this.stochRsi(serie.getClose(), timePeriod, fastKPeriod, fastDPeriod, fastDMA, previous);
    }
 
    // $FF: synthetic method
-   public static Pair stochRsi$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, MAType var5, int var6, int var7, Object var8) {
+   public static Pair stochRsi$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, MAType var5, int var6, int var7, Object var8) {
       if ((var7 & 2) != 0) {
          var2 = 14;
       }
@@ -6706,14 +6708,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.subLookback() + previous;
-         throw new InsufficientData("sub", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sub", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sub$default(TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
+   public static double sub$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, int var3, int var4, Object var5) {
       if ((var4 & 4) != 0) {
          var3 = 0;
       }
@@ -6732,14 +6734,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.sumLookback(timePeriod) + previous;
-         throw new InsufficientData("sum", lookback + 1);
+         throw new org.robok.ta.InsufficientData("sum", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double sum$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double sum$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -6751,13 +6753,13 @@ public final class TaLib {
       return var0.sum(var1, var2, var3);
    }
 
-   public final double sum(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double sum(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.sum(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double sum$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double sum$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -6780,14 +6782,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.t3Lookback(timePeriod, volumeFactor) + previous;
-         throw new InsufficientData("t3", lookback + 1);
+         throw new org.robok.ta.InsufficientData("t3", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double t3$default(TaLib var0, double[] var1, int var2, double var3, int var5, int var6, Object var7) {
+   public static double t3$default(org.robok.ta.TaLib var0, double[] var1, int var2, double var3, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -6803,13 +6805,13 @@ public final class TaLib {
       return var0.t3(var1, var2, var3, var5);
    }
 
-   public final double t3(@NotNull PriceBarSeries serie, int timePeriod, double volumeFactor, int previous) {
+   public final double t3(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, double volumeFactor, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.t3(serie.getClose(), timePeriod, volumeFactor, previous);
    }
 
    // $FF: synthetic method
-   public static double t3$default(TaLib var0, PriceBarSeries var1, int var2, double var3, int var5, int var6, Object var7) {
+   public static double t3$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, double var3, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -6836,14 +6838,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.tanLookback() + previous;
-         throw new InsufficientData("tan", lookback + 1);
+         throw new org.robok.ta.InsufficientData("tan", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double tan$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double tan$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6851,13 +6853,13 @@ public final class TaLib {
       return var0.tan(var1, var2);
    }
 
-   public final double tan(@NotNull PriceBarSeries serie, int previous) {
+   public final double tan(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.tan(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double tan$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double tan$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6876,14 +6878,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.tanhLookback() + previous;
-         throw new InsufficientData("tanh", lookback + 1);
+         throw new org.robok.ta.InsufficientData("tanh", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double tanh$default(TaLib var0, double[] var1, int var2, int var3, Object var4) {
+   public static double tanh$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6891,13 +6893,13 @@ public final class TaLib {
       return var0.tanh(var1, var2);
    }
 
-   public final double tanh(@NotNull PriceBarSeries serie, int previous) {
+   public final double tanh(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.tanh(serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double tanh$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double tanh$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -6916,14 +6918,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.temaLookback(timePeriod) + previous;
-         throw new InsufficientData("tema", lookback + 1);
+         throw new org.robok.ta.InsufficientData("tema", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double tema$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double tema$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -6935,13 +6937,13 @@ public final class TaLib {
       return var0.tema(var1, var2, var3);
    }
 
-   public final double tema(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double tema(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.tema(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double tema$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double tema$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -6966,14 +6968,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.trueRangeLookback() + previous;
-         throw new InsufficientData("trueRange", lookback + 1);
+         throw new org.robok.ta.InsufficientData("trueRange", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double trueRange$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, Object var6) {
+   public static double trueRange$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, Object var6) {
       if ((var5 & 8) != 0) {
          var4 = 0;
       }
@@ -6981,13 +6983,13 @@ public final class TaLib {
       return var0.trueRange(var1, var2, var3, var4);
    }
 
-   public final double trueRange(@NotNull PriceBarSeries serie, int previous) {
+   public final double trueRange(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.trueRange(serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double trueRange$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double trueRange$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -7006,14 +7008,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.trimaLookback(timePeriod) + previous;
-         throw new InsufficientData("trima", lookback + 1);
+         throw new org.robok.ta.InsufficientData("trima", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double trima$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double trima$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -7025,13 +7027,13 @@ public final class TaLib {
       return var0.trima(var1, var2, var3);
    }
 
-   public final double trima(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double trima(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.trima(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double trima$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double trima$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -7054,14 +7056,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.trixLookback(timePeriod) + previous;
-         throw new InsufficientData("trix", lookback + 1);
+         throw new org.robok.ta.InsufficientData("trix", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double trix$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double trix$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -7073,13 +7075,13 @@ public final class TaLib {
       return var0.trix(var1, var2, var3);
    }
 
-   public final double trix(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double trix(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.trix(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double trix$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double trix$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -7102,14 +7104,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.tsfLookback(timePeriod) + previous;
-         throw new InsufficientData("tsf", lookback + 1);
+         throw new org.robok.ta.InsufficientData("tsf", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double tsf$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double tsf$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -7121,13 +7123,13 @@ public final class TaLib {
       return var0.tsf(var1, var2, var3);
    }
 
-   public final double tsf(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double tsf(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.tsf(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double tsf$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double tsf$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -7152,14 +7154,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.typPriceLookback() + previous;
-         throw new InsufficientData("typPrice", lookback + 1);
+         throw new org.robok.ta.InsufficientData("typPrice", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double typPrice$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, Object var6) {
+   public static double typPrice$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, Object var6) {
       if ((var5 & 8) != 0) {
          var4 = 0;
       }
@@ -7167,13 +7169,13 @@ public final class TaLib {
       return var0.typPrice(var1, var2, var3, var4);
    }
 
-   public final double typPrice(@NotNull PriceBarSeries serie, int previous) {
+   public final double typPrice(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.typPrice(serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double typPrice$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double typPrice$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -7194,14 +7196,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.ultOscLookback(firstPeriod, secondPeriod, thirdPeriod) + previous;
-         throw new InsufficientData("ultOsc", lookback + 1);
+         throw new org.robok.ta.InsufficientData("ultOsc", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double ultOsc$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, int var7, int var8, Object var9) {
+   public static double ultOsc$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, int var7, int var8, Object var9) {
       if ((var8 & 8) != 0) {
          var4 = 7;
       }
@@ -7221,13 +7223,13 @@ public final class TaLib {
       return var0.ultOsc(var1, var2, var3, var4, var5, var6, var7);
    }
 
-   public final double ultOsc(@NotNull PriceBarSeries serie, int firstPeriod, int secondPeriod, int thirdPeriod, int previous) {
+   public final double ultOsc(@NotNull org.robok.ta.PriceBarSeries serie, int firstPeriod, int secondPeriod, int thirdPeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.ultOsc(serie.getHigh(), serie.getLow(), serie.getClose(), firstPeriod, secondPeriod, thirdPeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double ultOsc$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, int var5, int var6, Object var7) {
+   public static double ultOsc$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 7;
       }
@@ -7258,14 +7260,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.varianceLookback(timePeriod, deviations) + previous;
-         throw new InsufficientData("variance", lookback + 1);
+         throw new org.robok.ta.InsufficientData("variance", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double variance$default(TaLib var0, double[] var1, int var2, double var3, int var5, int var6, Object var7) {
+   public static double variance$default(org.robok.ta.TaLib var0, double[] var1, int var2, double var3, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -7281,13 +7283,13 @@ public final class TaLib {
       return var0.variance(var1, var2, var3, var5);
    }
 
-   public final double variance(@NotNull PriceBarSeries serie, int timePeriod, double deviations, int previous) {
+   public final double variance(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, double deviations, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.variance(serie.getClose(), timePeriod, deviations, previous);
    }
 
    // $FF: synthetic method
-   public static double variance$default(TaLib var0, PriceBarSeries var1, int var2, double var3, int var5, int var6, Object var7) {
+   public static double variance$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, double var3, int var5, int var6, Object var7) {
       if ((var6 & 2) != 0) {
          var2 = 5;
       }
@@ -7316,14 +7318,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.wclPriceLookback() + previous;
-         throw new InsufficientData("wclPrice", lookback + 1);
+         throw new org.robok.ta.InsufficientData("wclPrice", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double wclPrice$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, Object var6) {
+   public static double wclPrice$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, Object var6) {
       if ((var5 & 8) != 0) {
          var4 = 0;
       }
@@ -7331,13 +7333,13 @@ public final class TaLib {
       return var0.wclPrice(var1, var2, var3, var4);
    }
 
-   public final double wclPrice(@NotNull PriceBarSeries serie, int previous) {
+   public final double wclPrice(@NotNull org.robok.ta.PriceBarSeries serie, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.wclPrice(serie.getHigh(), serie.getLow(), serie.getClose(), previous);
    }
 
    // $FF: synthetic method
-   public static double wclPrice$default(TaLib var0, PriceBarSeries var1, int var2, int var3, Object var4) {
+   public static double wclPrice$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, Object var4) {
       if ((var3 & 2) != 0) {
          var2 = 0;
       }
@@ -7358,14 +7360,14 @@ public final class TaLib {
          throw new DoesNotComputeException(ret.toString());
       } else if (endOutput.value <= 0) {
          int lookback = this.core.willRLookback(timePeriod) + previous;
-         throw new InsufficientData("willR", lookback + 1);
+         throw new org.robok.ta.InsufficientData("willR", lookback + 1);
       } else {
          return output1[0];
       }
    }
 
    // $FF: synthetic method
-   public static double willR$default(TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
+   public static double willR$default(org.robok.ta.TaLib var0, double[] var1, double[] var2, double[] var3, int var4, int var5, int var6, Object var7) {
       if ((var6 & 8) != 0) {
          var4 = 14;
       }
@@ -7377,13 +7379,13 @@ public final class TaLib {
       return var0.willR(var1, var2, var3, var4, var5);
    }
 
-   public final double willR(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double willR(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.willR(serie.getHigh(), serie.getLow(), serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double willR$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double willR$default(org.robok.ta.TaLib var0, org.robok.ta.PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 14;
       }
@@ -7413,7 +7415,7 @@ public final class TaLib {
    }
 
    // $FF: synthetic method
-   public static double wma$default(TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
+   public static double wma$default(org.robok.ta.TaLib var0, double[] var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }
@@ -7425,13 +7427,13 @@ public final class TaLib {
       return var0.wma(var1, var2, var3);
    }
 
-   public final double wma(@NotNull PriceBarSeries serie, int timePeriod, int previous) {
+   public final double wma(@NotNull org.robok.ta.PriceBarSeries serie, int timePeriod, int previous) {
       Intrinsics.checkNotNullParameter(serie, "serie");
       return this.wma(serie.getClose(), timePeriod, previous);
    }
 
    // $FF: synthetic method
-   public static double wma$default(TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
+   public static double wma$default(org.robok.ta.TaLib var0, PriceBarSeries var1, int var2, int var3, int var4, Object var5) {
       if ((var4 & 2) != 0) {
          var2 = 30;
       }

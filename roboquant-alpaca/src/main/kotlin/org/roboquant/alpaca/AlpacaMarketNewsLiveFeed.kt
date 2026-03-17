@@ -19,14 +19,14 @@ package org.roboquant.alpaca
 import net.jacobpeterson.alpaca.AlpacaAPI
 import net.jacobpeterson.alpaca.websocket.marketdata.streams.news.NewsMarketDataListenerAdapter
 import net.jacobpeterson.alpaca.websocket.marketdata.streams.news.NewsMarketDataWebsocketInterface
-import org.roboquant.common.Asset
-import org.roboquant.common.ConfigurationException
-import org.roboquant.common.Event
-import org.roboquant.common.Logging
-import org.roboquant.common.NewsItems
-import org.roboquant.common.Stock
-import org.roboquant.common.symbols
-import org.roboquant.feeds.LiveFeed
+import org.robok.common.Asset
+import org.robok.common.ConfigurationException
+import org.robok.common.EventK
+import org.robok.common.Logging
+import org.robok.common.NewsItems
+import org.robok.common.Stock
+import org.robok.common.symbols
+import org.robok.feeds.LiveFeed
 import java.io.IOException
 import java.time.Instant
 import java.util.concurrent.TimeUnit
@@ -75,7 +75,7 @@ class AlpacaMarketNewsLiveFeed(
      * Utility to send a NewsItems event to listeners at the specified [time].
      */
     fun sendNews(time: Instant, items: NewsItems) {
-        val event = Event(time, listOf(items))
+        val event = EventK(time, listOf(items))
         send(event)
     }
 

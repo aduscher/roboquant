@@ -1,0 +1,79 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+@file:Suppress("RunBlocking")
+
+package org.robok.feeds
+
+import kotlinx.coroutines.runBlocking
+import org.robok.feedTest
+import org.robok.feeds.random.RandomWalk
+import org.robok.feeds.util.play
+import java.time.Instant
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
+
+internal class CombinedFeedTest {
+
+    @Test
+    fun testCombinedFeed2() {
+        val f1 = RandomWalk.lastYears()
+        val f2 = RandomWalk.lastYears(2)
+        val cf = _root_ide_package_.org.robok.feeds.CombinedFeed(f1, f2)
+        assertTrue { cf.timeframe == f2.timeframe }
+        var cnt = 0
+        var t = Instant.MIN
+        runBlocking {
+            for (step in play(cf)) {
+                assertTrue(step.items.isNotEmpty())
+                assertTrue(step.time >= t)
+                cnt++
+                t = step.time
+            }
+        }
+        assertEquals(f1.toList().size + f2.toList().size, cnt)
+    }
+
+    @Test
+    fun testCombinedFeed4(){
+        val f1 = RandomWalk.lastYears()
+        val f2 = RandomWalk.lastYears(2)
+        val cf = _root_ide_package_.org.robok.feeds.CombinedFeed(f1, f2, channelCapacity = 10)
+        assertTrue { cf.timeframe == f2.timeframe }
+        var cnt = 0
+        var t = Instant.MIN
+        runBlocking {
+            for (step in play(cf)) {
+                assertTrue(step.items.isNotEmpty())
+                assertTrue(step.time >= t)
+                cnt++
+                t = step.time
+            }
+        }
+        assertEquals(f1.toList().size + f2.toList().size, cnt)
+    }
+
+    @Test
+    fun testCombinedFeed5() = runBlocking {
+        val f1 = RandomWalk.lastYears()
+        val f2 = RandomWalk.lastYears(2)
+        val cf = CombinedFeed(f1, f2)
+        feedTest(cf)
+    }
+
+
+
+}

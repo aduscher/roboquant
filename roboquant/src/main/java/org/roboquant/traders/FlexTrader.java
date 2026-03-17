@@ -15,18 +15,9 @@ import kotlin.jvm.internal.Reflection;
 import kotlin.jvm.internal.SourceDebugExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Account;
-import org.roboquant.common.Amount;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Event;
-import org.roboquant.common.ExtensionsKt;
-import org.roboquant.common.Logging;
-import org.roboquant.common.Order;
-import org.roboquant.common.Position;
-import org.roboquant.common.PriceItem;
-import org.roboquant.common.Signal;
-import org.roboquant.common.Size;
-import org.roboquant.common.TIF;
+import org.robok.common.*;
+import org.robok.traders.FlexPolicyConfig;
+import org.robok.traders.Trader;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -40,13 +31,13 @@ public class FlexTrader implements Trader {
    @NotNull
    private final Logging.Logger logger;
    @NotNull
-   private final FlexPolicyConfig config;
+   private final org.robok.traders.FlexPolicyConfig config;
 
    public FlexTrader(@NotNull Function1 configure) {
       Intrinsics.checkNotNullParameter(configure, "configure");
       super();
-      this.logger = Logging.INSTANCE.getLogger(Reflection.getOrCreateKotlinClass(FlexTrader.class));
-      this.config = new FlexPolicyConfig((double)0.0F, false, (String)null, 0, false, (double)0.0F, (Amount)null, 127, (DefaultConstructorMarker)null);
+      this.logger = Logging.INSTANCE.getLogger(Reflection.getOrCreateKotlinClass(org.robok.traders.FlexTrader.class));
+      this.config = new org.robok.traders.FlexPolicyConfig((double)0.0F, false, (String)null, 0, false, (double)0.0F, (Amount)null, 127, (DefaultConstructorMarker)null);
       configure.invoke(this.config);
    }
 
@@ -160,7 +151,7 @@ public class FlexTrader implements Trader {
    }
 
    @NotNull
-   public List createOrders(@NotNull List signals, @NotNull Account account, @NotNull Event event) {
+   public List createOrders(@NotNull List signals, @NotNull Account account, @NotNull EventK event) {
       Intrinsics.checkNotNullParameter(signals, "signals");
       Intrinsics.checkNotNullParameter(account, "account");
       Intrinsics.checkNotNullParameter(event, "event");

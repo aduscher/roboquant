@@ -30,6 +30,16 @@ import org.apache.avro.generic.GenericDatumWriter
 import org.apache.avro.generic.GenericRecord
 import org.apache.avro.io.DatumWriter
 import org.apache.avro.util.Utf8
+import org.robok.common.Asset
+import org.robok.common.AssetFilter
+import org.robok.common.Config
+import org.robok.common.EventK
+import org.robok.common.Logging
+import org.robok.common.PriceItem
+import org.robok.common.PriceItemType
+import org.robok.common.Timeframe
+import org.robok.feeds.EventChannel
+import org.robok.feeds.Feed
 import org.roboquant.common.*
 import org.roboquant.feeds.*
 import java.io.File
@@ -100,7 +110,7 @@ class AvroFeed(private val file: File) : Feed {
     }
 
     /**
-     * (Re)play the events of the feed using the provided [EventChannel]
+     * (Re)play the events of the feed using the provided [org.robok.feeds.EventChannel]
      *
      * @param channel
      * @return
@@ -122,7 +132,7 @@ class AvroFeed(private val file: File) : Feed {
 
                 if (now != last) {
                     val time = Instant.parse(last)
-                    channel.sendNotEmpty(Event(time, items))
+                    channel.sendNotEmpty(EventK(time, items))
                     last = now
                     items = ArrayList<PriceItem>(items.size)
                 }
@@ -139,7 +149,7 @@ class AvroFeed(private val file: File) : Feed {
                 items.add(item)
             }
             val time = Instant.parse(last)
-            channel.sendNotEmpty(Event(time, items))
+            channel.sendNotEmpty(EventK(time, items))
         }
     }
 
@@ -181,7 +191,7 @@ class AvroFeed(private val file: File) : Feed {
 
     /**
      * Record the price-actions in a [feed] and store them in an Avro file that can be later used as input for
-     * an AvroFeed. The provided [feed] needs to implement the [AssetFeed] interface.
+     * an AvroFeed. The provided [feed] needs to implement the [org.robok.feeds.AssetFeed] interface.
      *
      * [compress] can be enabled, which results in a smaller file. The `snappy` compression codec is used, that
      * achieves decent compression ratio while using limited CPU usage.
@@ -267,7 +277,7 @@ class AvroFeed(private val file: File) : Feed {
     companion object {
 
         /**
-         * Get an AvroFeed containing end-of-day [PriceBar] data for the 25 largest US stocks. This feed
+         * Get an AvroFeed containing end-of-day [org.robok.common.PriceBar] data for the 25 largest US stocks. This feed
          * contains a few years of public data.
          *
          * This is sample data and should NOT be relies on for real back testing.

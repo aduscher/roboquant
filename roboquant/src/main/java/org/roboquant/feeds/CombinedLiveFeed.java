@@ -1,114 +1,87 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.feeds;
 
-import kotlin.Metadata;
-import kotlin.ResultKt;
-import kotlin.Unit;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.intrinsics.IntrinsicsKt;
-import kotlin.jvm.functions.Function2;
-import kotlin.jvm.internal.Intrinsics;
-import kotlin.jvm.internal.SourceDebugExtension;
-import kotlinx.coroutines.CoroutineScope;
-import kotlinx.coroutines.Job;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.roboquant.common.ParallelJobs;
 import org.roboquant.common.Timeframe;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000&\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0011\n\u0002\u0018\u0002\n\u0002\b\u0005\n\u0002\u0010\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\u0018\u00002\u00020\u0001B\u0019\u0012\u0012\u0010\u0002\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00040\u0003\"\u00020\u0004¢\u0006\u0002\u0010\u0005J\b\u0010\t\u001a\u00020\nH\u0016J\u0016\u0010\u000b\u001a\u00020\n2\u0006\u0010\f\u001a\u00020\rH\u0096@¢\u0006\u0002\u0010\u000eR\u001b\u0010\u0002\u001a\n\u0012\u0006\b\u0001\u0012\u00020\u00040\u0003¢\u0006\n\n\u0002\u0010\b\u001a\u0004\b\u0006\u0010\u0007¨\u0006\u000f"},
-   d2 = {"Lorg/roboquant/feeds/CombinedLiveFeed;", "Lorg/roboquant/feeds/Feed;", "feeds", "", "Lorg/roboquant/feeds/LiveFeed;", "([Lorg/roboquant/feeds/LiveFeed;)V", "getFeeds", "()[Lorg/roboquant/feeds/LiveFeed;", "[Lorg/roboquant/feeds/LiveFeed;", "close", "", "play", "channel", "Lorg/roboquant/feeds/EventChannel;", "(Lorg/roboquant/feeds/EventChannel;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", "roboquant"}
-)
-@SourceDebugExtension({"SMAP\nCombinedLiveFeed.kt\nKotlin\n*S Kotlin\n*F\n+ 1 CombinedLiveFeed.kt\norg/roboquant/feeds/CombinedLiveFeed\n+ 2 _Arrays.kt\nkotlin/collections/ArraysKt___ArraysKt\n*L\n1#1,53:1\n13309#2,2:54\n*S KotlinDebug\n*F\n+ 1 CombinedLiveFeed.kt\norg/roboquant/feeds/CombinedLiveFeed\n*L\n48#1:54,2\n*E\n"})
-public final class CombinedLiveFeed implements Feed {
-   @NotNull
-   private final LiveFeed[] feeds;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
-   public CombinedLiveFeed(@NotNull LiveFeed... feeds) {
-      Intrinsics.checkNotNullParameter(feeds, "feeds");
-      super();
-      this.feeds = feeds;
-   }
+/**
+ * Combines several live feeds into a single new feed. It assumes the feeds are delivering
+ * the events in the right order. If any feed sends an event past the timeframe as configured
+ * by the channel, the channel closes for all feeds.
+ */
+public class CombinedLiveFeed implements Feed {
 
-   @NotNull
-   public final LiveFeed[] getFeeds() {
-      return this.feeds;
-   }
+    private final LiveFeed[] feeds;
+    private final ExecutorService executor = Executors.newCachedThreadPool();
 
-   @Nullable
-   public Object play(@NotNull final EventChannel channel, @NotNull Continuation $completion) {
-      ParallelJobs jobs = new ParallelJobs();
-      LiveFeed[] var4 = this.feeds;
-      int var5 = 0;
+    public CombinedLiveFeed(LiveFeed... feeds) {
+        this.feeds = feeds;
+    }
 
-      for(int var6 = var4.length; var5 < var6; ++var5) {
-         final LiveFeed feed = var4[var5];
-         jobs.add(new Function2((Continuation)null) {
-            int label;
+    public LiveFeed[] getFeeds() {
+        return feeds;
+    }
 
-            @Nullable
-            public final Object invokeSuspend(@NotNull Object $result) {
-               Object var2 = IntrinsicsKt.getCOROUTINE_SUSPENDED();
-               switch (this.label) {
-                  case 0:
-                     ResultKt.throwOnFailure($result);
-                     LiveFeed var10000 = feed;
-                     EventChannel var10001 = channel;
-                     Continuation var10002 = (Continuation)this;
-                     this.label = 1;
-                     if (var10000.play(var10001, var10002) == var2) {
-                        return var2;
-                     }
-                     break;
-                  case 1:
-                     ResultKt.throwOnFailure($result);
-                     break;
-                  default:
-                     throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
-               }
+    @Override
+    public CompletableFuture<Void> play(EventChannel channel) throws InterruptedException {
+        ParallelJobs jobs = new ParallelJobs(executor);
+        for (LiveFeed feed : feeds) {
+            jobs.add(() -> {
+                try {
+                    feed.play(channel);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            });
+        }
+        jobs.joinAll();
+    }
 
-               return Unit.INSTANCE;
+    @Override
+    public void close() {
+        for (LiveFeed feed : feeds) {
+            feed.close();
+        }
+    }
+
+    @Override
+    public Timeframe getTimeframe() {
+        return Timeframe.INFINITE;
+    }
+
+    @Override
+    public Future<Void> playBackground(EventChannel channel) {
+        return executor.submit(() -> {
+            try {
+               return play(channel);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
+        });
+    }
 
-            @NotNull
-            public final Continuation create(@Nullable Object value, @NotNull Continuation $completion) {
-               return (Continuation)(new <anonymous constructor>($completion));
-            }
-
-            @Nullable
-            public final Object invoke(@NotNull CoroutineScope p1, @Nullable Continuation p2) {
-               return ((<undefinedtype>)this.create(p1, p2)).invokeSuspend(Unit.INSTANCE);
-            }
-         });
-      }
-
-      Object var10000 = jobs.joinAll($completion);
-      return var10000 == IntrinsicsKt.getCOROUTINE_SUSPENDED() ? var10000 : Unit.INSTANCE;
-   }
-
-   public void close() {
-      Object[] $this$forEach$iv = this.feeds;
-      int $i$f$forEach = 0;
-      int var3 = 0;
-
-      for(int var4 = $this$forEach$iv.length; var3 < var4; ++var3) {
-         Object element$iv = $this$forEach$iv[var3];
-         int var7 = 0;
-         ((LiveFeed)element$iv).close();
-      }
-
-   }
-
-   @NotNull
-   public Timeframe getTimeframe() {
-      return Feed.DefaultImpls.getTimeframe(this);
-   }
-
-   @NotNull
-   public Job playBackground(@NotNull EventChannel channel) {
-      return Feed.DefaultImpls.playBackground(this, channel);
-   }
+    @Override
+    public ExecutorService getExecutor() {
+        return executor;
+    }
 }

@@ -22,12 +22,17 @@ import io.questdb.cairo.TableWriter
 import io.questdb.griffin.SqlException
 import io.questdb.griffin.SqlExecutionContext
 import io.questdb.griffin.SqlExecutionContextImpl
-import org.roboquant.common.Account
+import org.robok.common.Account
+import org.robok.common.Config
 import org.roboquant.common.*
-import org.roboquant.common.Event
-import org.roboquant.journals.MetricsJournal
-import org.roboquant.journals.metrics.Metric
-import org.roboquant.common.Signal
+import org.robok.common.EventK
+import org.robok.common.Logging
+import org.robok.common.Observation
+import org.robok.common.Order
+import org.robok.journals.MetricsJournal
+import org.robok.journals.metrics.Metric
+import org.robok.common.Signal
+import org.robok.common.TimeSeries
 import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.collections.component1
@@ -186,7 +191,7 @@ class QuestDBJournal(
      * The [account] is used to provide context for the metrics.
      * The [signals] and [orders] are optional and can be used to provide additional context.
      */
-    override fun track(event: Event, account: Account, signals: List<Signal>, orders: List<Order>) {
+    override fun track(event: EventK, account: Account, signals: List<Signal>, orders: List<Order>) {
 
         val result = mutableMapOf<String, Double>()
         for (metric in metrics) {

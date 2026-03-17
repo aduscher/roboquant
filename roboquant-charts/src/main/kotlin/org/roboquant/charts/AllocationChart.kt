@@ -20,8 +20,8 @@ import org.icepear.echarts.Option
 import org.icepear.echarts.Pie
 import org.icepear.echarts.charts.pie.PieSeries
 import org.icepear.echarts.components.tooltip.Tooltip
-import org.roboquant.common.Account
-import org.roboquant.common.Currency
+import org.robok.common.Account
+import org.robok.common.CurrencyK
 
 import java.math.BigDecimal
 import kotlin.math.absoluteValue
@@ -35,7 +35,7 @@ import kotlin.math.absoluteValue
  */
 class AllocationChart(
     private val account: Account,
-    private val currency: Currency = account.baseCurrency
+    private val currency: CurrencyK = account.baseCurrency
 ) : Chart() {
 
     private class Entry(val name: String, val value: BigDecimal) {

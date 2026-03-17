@@ -1,0 +1,49 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.robok.brokers
+
+import org.junit.jupiter.api.assertThrows
+import org.robok.common.CAD
+import org.robok.common.ConfigurationException
+import org.roboquant.common.*
+import org.robok.common.CurrencyK.Companion.EUR
+import org.robok.common.CurrencyK.Companion.USD
+import org.robok.common.Forex
+import org.robok.common.USD
+import org.robok.feeds.util.HistoricTestFeed
+import java.time.Instant
+import kotlin.test.Test
+import kotlin.test.assertEquals
+
+internal class FeedExchangeRatesTest {
+
+    @Test
+    fun basic() {
+        val rates = listOf(1.15, 1.16, 1.20, 1.18)
+        val feed = HistoricTestFeed(rates, asset = Forex.fromSymbol("USD_EUR"))
+        val er = _root_ide_package_.org.robok.brokers.FeedExchangeRates(feed)
+        assertEquals(setOf(EUR, USD), er.currencies)
+        val r = er.convert(100.USD, EUR, Instant.now())
+        assertEquals(EUR, r.currency)
+        assertEquals(118.0, r.value)
+
+        assertThrows<ConfigurationException> {
+            er.convert(100.CAD, EUR, Instant.now())
+        }
+    }
+
+}

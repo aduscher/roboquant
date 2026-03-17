@@ -3,7 +3,9 @@ package org.roboquant.traders;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.TimeSpan;
+import org.robok.common.TimeSpan;
+import org.robok.traders.CircuitBreaker;
+import org.robok.traders.Trader;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -14,7 +16,7 @@ import org.roboquant.common.TimeSpan;
 )
 public final class CircuitBreakerKt {
    @NotNull
-   public static final Trader circuitBreaker(@NotNull Trader $this$circuitBreaker, int maxOrders, @NotNull TimeSpan period) {
+   public static final org.robok.traders.Trader circuitBreaker(@NotNull Trader $this$circuitBreaker, int maxOrders, @NotNull TimeSpan period) {
       Intrinsics.checkNotNullParameter($this$circuitBreaker, "<this>");
       Intrinsics.checkNotNullParameter(period, "period");
       return new CircuitBreaker($this$circuitBreaker, maxOrders, period);

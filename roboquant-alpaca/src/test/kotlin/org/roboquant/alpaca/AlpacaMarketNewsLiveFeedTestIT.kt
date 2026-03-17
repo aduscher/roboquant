@@ -16,12 +16,12 @@
 
 package org.roboquant.alpaca
 
-import org.roboquant.common.Config
-import org.roboquant.common.NewsItems
-import org.roboquant.common.Stock
-import org.roboquant.common.Timeframe
-import org.roboquant.common.seconds
-import org.roboquant.feeds.filter
+import org.robok.common.Config
+import org.robok.common.NewsItems
+import org.robok.common.Stock
+import org.robok.common.Timeframe
+import org.robok.common.seconds
+import org.robok.feeds.filter
 import kotlin.test.Test
 import kotlin.test.assertTrue
 

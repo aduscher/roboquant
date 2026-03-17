@@ -18,10 +18,10 @@ package org.roboquant.ibkr
 
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
-import org.roboquant.common.Config
-import org.roboquant.common.ConfigurationException
-import org.roboquant.common.Currency
-import org.roboquant.common.EUR
+import org.robok.common.Config
+import org.robok.common.ConfigurationException
+import org.robok.common.CurrencyK
+import org.robok.common.EUR
 import java.time.Instant
 import kotlin.test.Test
 import kotlin.test.assertTrue
@@ -58,7 +58,7 @@ internal class IBKRBrokerTestIT {
         val er = broker.exchangeRates
         val amount = 1.EUR
         assertDoesNotThrow {
-            er.convert(amount, Currency.USD, Instant.now())
+            er.convert(amount, CurrencyK.USD, Instant.now())
         }
     }
 

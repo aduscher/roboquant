@@ -17,7 +17,7 @@
 package org.roboquant.charts
 
 import org.junit.jupiter.api.io.TempDir
-import org.roboquant.feeds.random.RandomWalk
+import org.robok.feeds.random.RandomWalk
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test

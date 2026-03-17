@@ -5,8 +5,8 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Amount;
-import org.roboquant.common.ExtensionsKt;
+import org.robok.common.Amount;
+import org.robok.common.ExtensionsKt;
 
 @Metadata(
    mv = {1, 9, 0},

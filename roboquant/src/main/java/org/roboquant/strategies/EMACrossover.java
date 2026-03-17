@@ -8,11 +8,12 @@ import kotlin.Metadata;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Event;
-import org.roboquant.common.PriceItem;
-import org.roboquant.common.Signal;
-import org.roboquant.common.SignalType;
+import org.robok.common.Asset;
+import org.robok.common.EventK;
+import org.robok.common.PriceItem;
+import org.robok.common.Signal;
+import org.robok.common.SignalType;
+import org.robok.strategies.Strategy;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -68,7 +69,7 @@ public final class EMACrossover implements Strategy {
    }
 
    @NotNull
-   public List createSignals(@NotNull Event event) {
+   public List createSignals(@NotNull EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       List signals = (List)(new ArrayList());
 
@@ -120,18 +121,18 @@ public final class EMACrossover implements Strategy {
       }
 
       @NotNull
-      public final EMACrossover getPERIODS_50_200() {
-         return new EMACrossover(50, 200, (double)0.0F, 0, (String)null, 28, (DefaultConstructorMarker)null);
+      public final org.robok.strategies.EMACrossover getPERIODS_50_200() {
+         return new org.robok.strategies.EMACrossover(50, 200, (double)0.0F, 0, (String)null, 28, (DefaultConstructorMarker)null);
       }
 
       @NotNull
-      public final EMACrossover getPERIODS_12_26() {
-         return new EMACrossover(12, 26, (double)0.0F, 0, (String)null, 28, (DefaultConstructorMarker)null);
+      public final org.robok.strategies.EMACrossover getPERIODS_12_26() {
+         return new org.robok.strategies.EMACrossover(12, 26, (double)0.0F, 0, (String)null, 28, (DefaultConstructorMarker)null);
       }
 
       @NotNull
-      public final EMACrossover getPERIODS_5_15() {
-         return new EMACrossover(5, 15, (double)0.0F, 0, (String)null, 28, (DefaultConstructorMarker)null);
+      public final org.robok.strategies.EMACrossover getPERIODS_5_15() {
+         return new org.robok.strategies.EMACrossover(5, 15, (double)0.0F, 0, (String)null, 28, (DefaultConstructorMarker)null);
       }
 
       // $FF: synthetic method
@@ -174,10 +175,10 @@ public final class EMACrossover implements Strategy {
       }
 
       public final boolean addPrice(double price) {
-         this.emaFast = this.emaFast * EMACrossover.this.fast + ((double)1 - EMACrossover.this.fast) * price;
-         this.emaSlow = this.emaSlow * EMACrossover.this.slow + ((double)1 - EMACrossover.this.slow) * price;
+         this.emaFast = this.emaFast * org.robok.strategies.EMACrossover.this.fast + ((double)1 - org.robok.strategies.EMACrossover.this.fast) * price;
+         this.emaSlow = this.emaSlow * org.robok.strategies.EMACrossover.this.slow + ((double)1 - org.robok.strategies.EMACrossover.this.slow) * price;
          ++this.step;
-         return this.step >= (long)EMACrossover.this.minEvents;
+         return this.step >= (long) org.robok.strategies.EMACrossover.this.minEvents;
       }
 
       public final double getDirection() {

@@ -23,10 +23,15 @@ import org.icepear.echarts.charts.treemap.TreemapSeries
 import org.icepear.echarts.charts.treemap.TreemapSeriesItemStyle
 import org.icepear.echarts.charts.treemap.TreemapSeriesLabel
 import org.icepear.echarts.components.tooltip.Tooltip
+import org.robok.common.Asset
+import org.robok.common.AssetFilter
+import org.robok.common.CurrencyK
 import org.roboquant.common.*
-import org.roboquant.feeds.Feed
-import org.roboquant.common.PriceItem
-import org.roboquant.feeds.filter
+import org.robok.feeds.Feed
+import org.robok.common.PriceItem
+import org.robok.common.Size
+import org.robok.common.Timeframe
+import org.robok.feeds.filter
 import java.math.BigDecimal
 import java.math.RoundingMode
 
@@ -46,7 +51,7 @@ class PerformanceChart(
     private val timeframe: Timeframe = Timeframe.INFINITE,
     private val priceType: String = "DEFAULT",
     private val compensateVolume: Boolean = true,
-    private val currency: Currency? = null,
+    private val currency: CurrencyK? = null,
     private val assetFilter: AssetFilter = AssetFilter.all()
 ) : Chart() {
 

@@ -16,22 +16,30 @@
 
 package org.roboquant.samples
 
-import org.roboquant.brokers.FixedExchangeRates
+import org.robok.brokers.FixedExchangeRates
+import org.robok.common.Amount
+import org.robok.common.CurrencyK
+import org.robok.common.Order
 import org.roboquant.common.*
-import org.roboquant.common.PriceItem
-import org.roboquant.feeds.filter
+import org.robok.common.PriceItem
+import org.robok.common.Stock
+import org.robok.common.Timeframe
+import org.robok.common.hours
+import org.robok.common.minutes
+import org.robok.feeds.filter
+import org.robok.run
 import org.roboquant.ibkr.IBKR
 import org.roboquant.ibkr.IBKRBroker
 import org.roboquant.ibkr.IBKRHistoricFeed
 import org.roboquant.ibkr.IBKRLiveFeed
-import org.roboquant.strategies.EMACrossover
+import org.robok.strategies.EMACrossover
 import kotlin.test.Test
 
 internal class IBKRSamples {
 
     @Test
     internal fun broker() {
-        Amount.registerConvertor(FixedExchangeRates(Currency.USD, Currency.EUR to 1.1))
+        Amount.registerConvertor(FixedExchangeRates(CurrencyK.USD, CurrencyK.EUR to 1.1))
         val broker = IBKRBroker()
         val account = broker.sync()
 
@@ -97,7 +105,7 @@ internal class IBKRSamples {
         feed.subscribe(tsla, msft, googl)
 
         val strategy = EMACrossover.PERIODS_12_26
-        org.roboquant.run(feed, strategy,timeframe = Timeframe.next(2.hours))
+        run(feed, strategy, timeframe = Timeframe.next(2.hours))
 
         feed.disconnect()
         broker.disconnect()
@@ -107,7 +115,7 @@ internal class IBKRSamples {
     @Test
     internal fun liveFeedEU() {
         val feed = IBKRLiveFeed()
-        val asset = Stock("ABN", Currency.EUR)
+        val asset = Stock("ABN", CurrencyK.EUR)
         feed.subscribe(listOf(asset))
         val tf = Timeframe.next(10.minutes)
         val data = feed.filter<PriceItem>(tf) {
@@ -138,7 +146,7 @@ internal class IBKRSamples {
 
         // This assumes you have a valid market subscription for European stocks
         val symbols = listOf("ABN", "ASML", "KPN")
-        val assets = symbols.map { Stock(it, Currency.EUR) }
+        val assets = symbols.map { Stock(it, CurrencyK.EUR) }
         feed.retrieve(assets)
         feed.waitTillRetrieved()
         println("historic feed with ${feed.timeline.size} events and ${feed.assets.size} assets")
@@ -164,7 +172,7 @@ internal class IBKRSamples {
 
         // This assumes you have a valid market subscription for European stocks
         val symbols = listOf("ABN", "ASML", "KPN")
-        val assets = symbols.map { Stock(it, Currency.EUR) }
+        val assets = symbols.map { Stock(it, CurrencyK.EUR) }
         feed.retrieve(assets, duration = "5 D", barSize = "1 min")
         feed.waitTillRetrieved()
         println("historic feed with ${feed.timeline.size} events and ${feed.assets.size} assets")

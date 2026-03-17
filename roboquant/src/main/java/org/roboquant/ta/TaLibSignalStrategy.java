@@ -15,13 +15,11 @@ import kotlin.jvm.internal.Intrinsics;
 import kotlin.jvm.internal.SourceDebugExtension;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Event;
-import org.roboquant.common.ExtensionsKt;
-import org.roboquant.common.PriceBar;
-import org.roboquant.common.Signal;
-import org.roboquant.common.SignalType;
-import org.roboquant.strategies.Strategy;
+import org.robok.common.*;
+import org.robok.strategies.Strategy;
+import org.robok.ta.InsufficientData;
+import org.robok.ta.PriceBarSeries;
+import org.robok.ta.TaLib;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -40,7 +38,7 @@ public final class TaLibSignalStrategy implements Strategy {
    @NotNull
    private final Map history;
    @NotNull
-   private final TaLib taLib;
+   private final org.robok.ta.TaLib taLib;
 
    public TaLibSignalStrategy(int initialCapacity, @NotNull Function3 block) {
       Intrinsics.checkNotNullParameter(block, "block");
@@ -48,7 +46,7 @@ public final class TaLibSignalStrategy implements Strategy {
       this.initialCapacity = initialCapacity;
       this.block = block;
       this.history = (Map)(new LinkedHashMap());
-      this.taLib = new TaLib((Core)null, 1, (DefaultConstructorMarker)null);
+      this.taLib = new org.robok.ta.TaLib((Core)null, 1, (DefaultConstructorMarker)null);
    }
 
    // $FF: synthetic method
@@ -61,12 +59,12 @@ public final class TaLibSignalStrategy implements Strategy {
    }
 
    @NotNull
-   public final TaLib getTaLib() {
+   public final org.robok.ta.TaLib getTaLib() {
       return this.taLib;
    }
 
    @NotNull
-   public List createSignals(@NotNull Event event) {
+   public List createSignals(@NotNull EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       List signals = (List)(new ArrayList());
       Instant time = event.getTime();
@@ -89,14 +87,14 @@ public final class TaLibSignalStrategy implements Strategy {
          Object var10000;
          if (value$iv == null) {
             int var19 = 0;
-            Object answer$iv = new PriceBarSeries(this.initialCapacity);
+            Object answer$iv = new org.robok.ta.PriceBarSeries(this.initialCapacity);
             $this$getOrPut$iv.put(asset, answer$iv);
             var10000 = answer$iv;
          } else {
             var10000 = value$iv;
          }
 
-         PriceBarSeries buffer = (PriceBarSeries)var10000;
+         org.robok.ta.PriceBarSeries buffer = (org.robok.ta.PriceBarSeries)var10000;
          if (buffer.add(priceAction, time)) {
             try {
                Signal signal = (Signal)this.block.invoke(this.taLib, asset, buffer);
@@ -127,10 +125,10 @@ public final class TaLibSignalStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibSignalStrategy breakout(final int entryPeriod, final int exitPeriod) {
-         return new TaLibSignalStrategy(0, new Function3() {
+      public final org.robok.ta.TaLibSignalStrategy breakout(final int entryPeriod, final int exitPeriod) {
+         return new org.robok.ta.TaLibSignalStrategy(0, new Function3() {
             @Nullable
-            public final Signal invoke(@NotNull TaLib $this$$receiver, @NotNull Asset asset, @NotNull PriceBarSeries series) {
+            public final Signal invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull Asset asset, @NotNull org.robok.ta.PriceBarSeries series) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(asset, "asset");
                Intrinsics.checkNotNullParameter(series, "series");
@@ -140,7 +138,7 @@ public final class TaLibSignalStrategy implements Strategy {
       }
 
       // $FF: synthetic method
-      public static TaLibSignalStrategy breakout$default(Companion var0, int var1, int var2, int var3, Object var4) {
+      public static org.robok.ta.TaLibSignalStrategy breakout$default(Companion var0, int var1, int var2, int var3, Object var4) {
          if ((var3 & 1) != 0) {
             var1 = 100;
          }
@@ -153,16 +151,16 @@ public final class TaLibSignalStrategy implements Strategy {
       }
 
       @NotNull
-      public final TaLibSignalStrategy macd() {
-         TaLibSignalStrategy strategy = new TaLibSignalStrategy(0, null.INSTANCE, 1, (DefaultConstructorMarker)null);
+      public final org.robok.ta.TaLibSignalStrategy macd() {
+         org.robok.ta.TaLibSignalStrategy strategy = new org.robok.ta.TaLibSignalStrategy(0, null.INSTANCE, 1, (DefaultConstructorMarker)null);
          return strategy;
       }
 
       @NotNull
-      public final TaLibSignalStrategy superTrend(final int period, final double multiplier) {
-         TaLibSignalStrategy strategy = new TaLibSignalStrategy(0, new Function3() {
+      public final org.robok.ta.TaLibSignalStrategy superTrend(final int period, final double multiplier) {
+         org.robok.ta.TaLibSignalStrategy strategy = new org.robok.ta.TaLibSignalStrategy(0, new Function3() {
             @Nullable
-            public final Signal invoke(@NotNull TaLib $this$$receiver, @NotNull Asset asset, @NotNull PriceBarSeries prices) {
+            public final Signal invoke(@NotNull org.robok.ta.TaLib $this$$receiver, @NotNull Asset asset, @NotNull PriceBarSeries prices) {
                Intrinsics.checkNotNullParameter($this$$receiver, "$this$$receiver");
                Intrinsics.checkNotNullParameter(asset, "asset");
                Intrinsics.checkNotNullParameter(prices, "prices");
@@ -176,7 +174,7 @@ public final class TaLibSignalStrategy implements Strategy {
       }
 
       // $FF: synthetic method
-      public static TaLibSignalStrategy superTrend$default(Companion var0, int var1, double var2, int var4, Object var5) {
+      public static org.robok.ta.TaLibSignalStrategy superTrend$default(Companion var0, int var1, double var2, int var4, Object var5) {
          if ((var4 & 1) != 0) {
             var1 = 14;
          }

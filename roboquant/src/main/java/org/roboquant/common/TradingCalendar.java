@@ -1,24 +1,77 @@
 package org.roboquant.common;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import kotlin.Metadata;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.util.EnumSet;
+import java.util.Set;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u001e\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0000\bf\u0018\u00002\u00020\u0001J\u0012\u0010\u0002\u001a\u0004\u0018\u00010\u00032\u0006\u0010\u0004\u001a\u00020\u0005H&J\u0012\u0010\u0006\u001a\u0004\u0018\u00010\u00032\u0006\u0010\u0004\u001a\u00020\u0005H&J\u0010\u0010\u0007\u001a\u00020\b2\u0006\u0010\u0004\u001a\u00020\u0005H&¨\u0006\t"},
-   d2 = {"Lorg/roboquant/common/TradingCalendar;", "", "getClosingTime", "Ljava/time/LocalTime;", "date", "Ljava/time/LocalDate;", "getOpeningTime", "isTradingDay", "", "roboquant"}
-)
+/**
+ * Trading calendar defines when an Exchange is open for trading.
+ */
 public interface TradingCalendar {
-   @Nullable
-   LocalTime getOpeningTime(@NotNull LocalDate var1);
 
-   @Nullable
-   LocalTime getClosingTime(@NotNull LocalDate var1);
+   /**
+    * Returns the opening time for the provided local date or null if it is not a trading day.
+    */
+   LocalTime getOpeningTime(LocalDate date);
 
-   boolean isTradingDay(@NotNull LocalDate var1);
+   /**
+    * Returns the closing time for the provided local date or null if it is not a trading day.
+    */
+   LocalTime getClosingTime(LocalDate date);
+
+   /**
+    * Returns true if the provided date is a trading day, false otherwise.
+    */
+   boolean isTradingDay(LocalDate date);
+
+
+   class SimpleTradingCalendar implements TradingCalendar {
+
+      private final LocalTime opening;
+      private final LocalTime closing;
+      private final Set<DayOfWeek> excludeDays;
+
+      /**
+       * Hauptkonstruktor mit allen Parametern.
+       */
+      public SimpleTradingCalendar(LocalTime opening, LocalTime closing, Set<DayOfWeek> excludeDays) {
+         this.opening = opening;
+         this.closing = closing;
+         this.excludeDays = excludeDays;
+      }
+
+      /**
+       * Standardkonstruktor mit Default-Werten (analog zu Kotlins Default-Argumenten).
+       */
+      public SimpleTradingCalendar() {
+         this(LocalTime.parse("09:30"), LocalTime.parse("16:00"), 
+               EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY));
+      }
+
+      /**
+       * Hilfskonstruktor für Strings (wie im Kotlin-Code).
+       */
+      public SimpleTradingCalendar(String opening, String closing) {
+         this(LocalTime.parse(opening), LocalTime.parse(closing), 
+               EnumSet.of(DayOfWeek.SATURDAY, DayOfWeek.SUNDAY));
+      }
+
+      @Override
+      public LocalTime getOpeningTime(LocalDate date) {
+         return isTradingDay(date) ? opening : null;
+      }
+
+      @Override
+      public LocalTime getClosingTime(LocalDate date) {
+         return isTradingDay(date) ? closing : null;
+      }
+
+      @Override
+      public boolean isTradingDay(LocalDate date) {
+         return !excludeDays.contains(date.getDayOfWeek());
+      }
+   }
+
 }

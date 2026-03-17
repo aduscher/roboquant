@@ -7,8 +7,9 @@ import kotlin.collections.CollectionsKt;
 import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Exchange;
-import org.roboquant.common.PriceBar;
+import org.robok.common.Exchange;
+import org.robok.common.PriceBar;
+import org.robok.ta.PriceBarSeries;
 
 @Metadata(
    mv = {1, 9, 0},

@@ -11,9 +11,10 @@ import kotlin.jvm.internal.SourceDebugExtension;
 import kotlinx.coroutines.CoroutineScope;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Timeframe;
-import org.roboquant.feeds.Feed;
+import org.robok.common.Asset;
+import org.robok.common.Timeframe;
+import org.robok.feeds.Feed;
+import org.robok.ta.Indicator;
 
 @DebugMetadata(
    f = "Indicator.kt",
@@ -43,7 +44,7 @@ public final class IndicatorKt$apply$$inlined$apply$1 extends SuspendLambda impl
    // $FF: synthetic field
    final Asset $asset$inlined;
    // $FF: synthetic field
-   final Indicator $indicator$inlined;
+   final org.robok.ta.Indicator $indicator$inlined;
    // $FF: synthetic field
    final boolean $addSymbolPostfix$inlined;
    // $FF: synthetic field

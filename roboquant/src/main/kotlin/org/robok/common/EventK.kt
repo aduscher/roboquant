@@ -1,0 +1,76 @@
+package org.robok.common
+
+import java.time.Instant
+
+/**
+ * An event contains a list of [items] that all happened at the same moment in [time]. An [Item]
+ * can be anything, but a common use case is price items like candlesticks.
+ *
+ * @property items the list of items that are part of this event
+ * @property time the time that the items in this event became available
+ */
+class EventK(val time: Instant, val items: List<Item>) : Comparable<EventK> {
+
+    /**
+     * Convenience property for accessing the price items in this event. The result is cached so that accessing
+     * this property multiple times is quick.
+     *
+     * If there are multiple price items for a single asset in the event, the last one found will be returned. If
+     * you need access to all prices for an asset, iterate over the [items] directly.
+     */
+    val prices: Map<Asset, PriceItem> by lazy {
+        buildMap(items.size) {
+            for (item in items) {
+                if (item is PriceItem) {
+                    set(item.asset, item)
+                }
+            }
+        }
+    }
+
+    /**
+     * @suppress
+     */
+    companion object {
+
+        /**
+         * Return an event without any [items] with as default [time] the current system time.
+         */
+        fun empty(time: Instant = Instant.now()): EventK = EventK(time, emptyList())
+
+    }
+
+    /**
+     * Convenience method to get a single price for an [asset] or null if there is no price item present for
+     * the asset in this event. Optionally you can specify the [type] of price.
+     *
+     * If there are multiple price items for a single asset in the event, the last one found will be returned. If
+     * you require access to all prices for an asset, access [items] directly.
+     */
+    fun getPrice(asset: Asset, type: String = "DEFAULT"): Double? {
+        return prices[asset]?.getPrice(type)
+    }
+
+    /**
+     * Compare this event to an [other] event based on their [time]. This is used for sorting a list of events by
+     * their chronological order.
+     */
+    override fun compareTo(other: EventK): Int = time.compareTo(other.time)
+
+    /**
+     * Return true if this is event has at least one item, false otherwise
+     */
+    fun isNotEmpty(): Boolean = items.isNotEmpty()
+
+    /**
+     * Return true if this event has no items, false otherwise
+     */
+    fun isEmpty(): Boolean = items.isEmpty()
+
+    /**
+     * Simple display of an event
+     */
+    override fun toString(): String {
+        return "Event(time=$time items=${items.size})"
+    }
+}

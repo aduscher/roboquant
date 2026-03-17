@@ -12,14 +12,8 @@ import kotlin.jvm.internal.DefaultConstructorMarker;
 import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Asset;
-import org.roboquant.common.Event;
-import org.roboquant.common.ExtensionsKt;
-import org.roboquant.common.PriceSeries;
-import org.roboquant.common.PriceSeriesKt;
-import org.roboquant.common.RoboquantException;
-import org.roboquant.common.Signal;
-import org.roboquant.common.SignalType;
+import org.robok.common.*;
+import org.robok.strategies.Strategy;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -57,7 +51,7 @@ public abstract class HistoricPriceStrategy implements Strategy {
    }
 
    @NotNull
-   public List createSignals(@NotNull Event event) {
+   public List createSignals(@NotNull EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       Set assets = PriceSeriesKt.addAll(this.history, event, this.period, this.priceType);
       List result = (List)(new ArrayList());

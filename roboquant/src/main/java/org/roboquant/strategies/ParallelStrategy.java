@@ -26,7 +26,8 @@ import kotlinx.coroutines.Job;
 import kotlinx.coroutines.JobKt;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.roboquant.common.Event;
+import org.robok.common.EventK;
+import org.robok.strategies.Strategy;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -36,7 +37,7 @@ import org.roboquant.common.Event;
    d2 = {"Lorg/roboquant/strategies/ParallelStrategy;", "Lorg/roboquant/strategies/Strategy;", "strategies", "", "signalResolver", "Lkotlin/Function1;", "", "Lorg/roboquant/common/Signal;", "Lorg/roboquant/strategies/SignalResolver;", "Lkotlin/ExtensionFunctionType;", "([Lorg/roboquant/strategies/Strategy;Lkotlin/jvm/functions/Function1;)V", "", "(Ljava/util/Collection;Lkotlin/jvm/functions/Function1;)V", "scope", "Lkotlinx/coroutines/CoroutineScope;", "getStrategies", "()Ljava/util/Collection;", "createSignals", "event", "Lorg/roboquant/common/Event;", "roboquant"}
 )
 @SourceDebugExtension({"SMAP\nParallelStrategy.kt\nKotlin\n*S Kotlin\n*F\n+ 1 ParallelStrategy.kt\norg/roboquant/strategies/ParallelStrategy\n+ 2 fake.kt\nkotlin/jvm/internal/FakeKt\n*L\n1#1,70:1\n1#2:71\n*E\n"})
-public final class ParallelStrategy implements Strategy {
+public final class ParallelStrategy implements org.robok.strategies.Strategy {
    @NotNull
    private final Collection strategies;
    @Nullable
@@ -66,13 +67,13 @@ public final class ParallelStrategy implements Strategy {
       return this.strategies;
    }
 
-   public ParallelStrategy(@NotNull Strategy[] strategies, @Nullable Function1 signalResolver) {
+   public ParallelStrategy(@NotNull org.robok.strategies.Strategy[] strategies, @Nullable Function1 signalResolver) {
       Intrinsics.checkNotNullParameter(strategies, "strategies");
       this((Collection)ArraysKt.toList(strategies), signalResolver);
    }
 
    // $FF: synthetic method
-   public ParallelStrategy(Strategy[] var1, Function1 var2, int var3, DefaultConstructorMarker var4) {
+   public ParallelStrategy(org.robok.strategies.Strategy[] var1, Function1 var2, int var3, DefaultConstructorMarker var4) {
       if ((var3 & 2) != 0) {
          var2 = null;
       }
@@ -81,7 +82,7 @@ public final class ParallelStrategy implements Strategy {
    }
 
    @NotNull
-   public List createSignals(@NotNull final Event event) {
+   public List createSignals(@NotNull final EventK event) {
       Intrinsics.checkNotNullParameter(event, "event");
       final List signals = (List)(new ArrayList());
       BuildersKt.runBlocking$default((CoroutineContext)null, new Function2((Continuation)null) {
@@ -100,8 +101,8 @@ public final class ParallelStrategy implements Strategy {
                   ResultKt.throwOnFailure($result);
                   List deferredList = (List)(new ArrayList());
 
-                  for(final Strategy strategy : ParallelStrategy.this.getStrategies()) {
-                     Deferred deferred = BuildersKt.async$default(ParallelStrategy.this.scope, (CoroutineContext)null, (CoroutineStart)null, new Function2((Continuation)null) {
+                  for(final Strategy strategy : org.robok.strategies.ParallelStrategy.this.getStrategies()) {
+                     Deferred deferred = BuildersKt.async$default(org.robok.strategies.ParallelStrategy.this.scope, (CoroutineContext)null, (CoroutineStart)null, new Function2((Continuation)null) {
                         int label;
 
                         @Nullable

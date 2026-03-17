@@ -16,7 +16,7 @@
 
 package org.roboquant.jupyter
 
-import org.roboquant.common.Config
+import org.robok.common.Config
 
 /**
  * Provides current environment settings in HTML format suitable for displaying in a Jupyter Notebook.

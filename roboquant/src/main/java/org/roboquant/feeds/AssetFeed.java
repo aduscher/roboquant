@@ -1,42 +1,33 @@
+/*
+ * Copyright 2020-2026 Neural Layer
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.roboquant.feeds;
 
+import org.roboquant.common.Asset;
+
 import java.util.Set;
-import kotlin.Metadata;
-import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.Job;
-import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Timeframe;
 
-@Metadata(
-   mv = {1, 9, 0},
-   k = 1,
-   xi = 48,
-   d1 = {"\u0000\u0016\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\"\n\u0002\u0018\u0002\n\u0002\b\u0003\bf\u0018\u00002\u00020\u0001R\u0018\u0010\u0002\u001a\b\u0012\u0004\u0012\u00020\u00040\u0003X¦\u0004¢\u0006\u0006\u001a\u0004\b\u0005\u0010\u0006¨\u0006\u0007"},
-   d2 = {"Lorg/roboquant/feeds/AssetFeed;", "Lorg/roboquant/feeds/Feed;", "assets", "", "Lorg/roboquant/common/Asset;", "getAssets", "()Ljava/util/Set;", "roboquant"}
-)
+/**
+ * Implementations of AssetFeed need to list the assets it contains.
+ */
 public interface AssetFeed extends Feed {
-   @NotNull
-   Set getAssets();
 
-   @Metadata(
-      mv = {1, 9, 0},
-      k = 3,
-      xi = 48
-   )
-   public static final class DefaultImpls {
-      @NotNull
-      public static Timeframe getTimeframe(@NotNull AssetFeed $this) {
-         return Feed.DefaultImpls.getTimeframe($this);
-      }
+    /**
+     * Returns a sorted set of all the assets contained in this feed
+     */
+    Set<Asset> getAssets();
 
-      public static void close(@NotNull AssetFeed $this) {
-         Feed.DefaultImpls.close($this);
-      }
-
-      @NotNull
-      public static Job playBackground(@NotNull AssetFeed $this, @NotNull EventChannel channel) {
-         Intrinsics.checkNotNullParameter(channel, "channel");
-         return Feed.DefaultImpls.playBackground($this, channel);
-      }
-   }
 }

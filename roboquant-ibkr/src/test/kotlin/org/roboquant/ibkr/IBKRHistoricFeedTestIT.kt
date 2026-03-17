@@ -16,9 +16,12 @@
 
 package org.roboquant.ibkr
 
+import org.robok.common.Config
+import org.robok.common.CurrencyK
 import org.roboquant.common.*
-import org.roboquant.common.PriceItem
-import org.roboquant.feeds.filter
+import org.robok.common.PriceItem
+import org.robok.common.Stock
+import org.robok.feeds.filter
 import kotlin.test.Test
 import kotlin.test.assertTrue
 
@@ -30,7 +33,7 @@ internal class IBKRHistoricFeedTestIT {
 
         val feed = IBKRHistoricFeed()
         val symbols = listOf("ABN", "ASML", "KPN")
-        val assets = symbols.map { Stock(it, Currency.EUR) }.toTypedArray()
+        val assets = symbols.map { Stock(it, CurrencyK.EUR) }.toTypedArray()
         feed.retrieve(*assets)
         feed.waitTillRetrieved()
         val actions = feed.filter<PriceItem>()

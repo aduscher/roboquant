@@ -17,8 +17,8 @@
 package org.roboquant.charts
 
 import org.junit.jupiter.api.assertDoesNotThrow
-import org.roboquant.feeds.random.RandomWalk
-import org.roboquant.strategies.EMACrossover
+import org.robok.feeds.random.RandomWalk
+import org.robok.strategies.EMACrossover
 import kotlin.test.Test
 
 internal class SignalChartTest {

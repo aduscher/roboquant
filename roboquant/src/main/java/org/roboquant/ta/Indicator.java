@@ -4,7 +4,7 @@ import java.time.Instant;
 import java.util.Map;
 import kotlin.Metadata;
 import org.jetbrains.annotations.NotNull;
-import org.roboquant.common.Item;
+import org.robok.common.Item;
 
 @Metadata(
    mv = {1, 9, 0},
@@ -25,7 +25,7 @@ public interface Indicator {
       xi = 48
    )
    public static final class DefaultImpls {
-      public static void clear(@NotNull Indicator $this) {
+      public static void clear(@NotNull org.robok.ta.Indicator $this) {
       }
    }
 }

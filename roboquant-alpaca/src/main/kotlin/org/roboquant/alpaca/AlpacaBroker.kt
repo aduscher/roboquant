@@ -20,11 +20,25 @@ import net.jacobpeterson.alpaca.AlpacaAPI
 import net.jacobpeterson.alpaca.openapi.trader.model.AssetClass
 import net.jacobpeterson.alpaca.openapi.trader.model.OrderSide
 import net.jacobpeterson.alpaca.openapi.trader.model.OrderType
+import org.robok.brokers.Broker
 import org.roboquant.brokers.*
-import org.roboquant.brokers.InternalAccount
+import org.robok.brokers.InternalAccount
+import org.robok.common.Account
+import org.robok.common.Amount
+import org.robok.common.Asset
+import org.robok.common.Crypto
 import org.roboquant.common.*
-import org.roboquant.common.Currency
-import org.roboquant.common.Event
+import org.robok.common.CurrencyK
+import org.robok.common.EventK
+import org.robok.common.Logging
+import org.robok.common.Order
+import org.robok.common.Position
+import org.robok.common.RoboquantException
+import org.robok.common.Size
+import org.robok.common.Stock
+import org.robok.common.UnsupportedException
+import org.robok.common.hours
+import org.robok.common.minus
 import java.time.Instant
 import java.util.*
 import net.jacobpeterson.alpaca.openapi.trader.model.Order as AlpacaOrder
@@ -45,7 +59,7 @@ class AlpacaBroker(
     configure: AlpacaConfig.() -> Unit = {}
 ) : Broker {
 
-    private val _account = InternalAccount(Currency.USD)
+    private val _account = InternalAccount(CurrencyK.USD)
     private val config = AlpacaConfig()
 
 
@@ -157,7 +171,7 @@ class AlpacaBroker(
     /**
      * @see Broker.sync
      */
-    override fun sync(event: Event?): Account {
+    override fun sync(event: EventK?): Account {
         if (event != null) {
             if (event.time < Instant.now() - 1.hours) throw UnsupportedException("cannot place orders in the past")
         }
